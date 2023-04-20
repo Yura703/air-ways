@@ -1,0 +1,65 @@
+@import "./../../../../styles.scss";
+
+.footer-container {
+    height: 60px;
+    border-top: 1px solid #D0D9DF;
+    background: #F5F5F5;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 3%;
+}
+
+.footer-text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: $log-in_hover;
+    justify-self: center;
+    align-self: center;
+}
+
+.footer-text_pay {
+    color: #000000;
+    margin-right: 10px;
+}
+
+.payment-container {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+}
+
+.ico-container {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.ico-img {
+    height: 35px;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+
+@media (max-width: 800px) {
+    .footer-container {
+        height: auto;
+        grid-template-columns: none;
+        grid-template-rows: repeat(3, 1fr);
+        padding: 1%;
+    }
+
+    .payment-container {
+        justify-self: center;
+    }
+
+    .ico-container {
+        justify-self: center;
+    }
+
+}
