@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  max-width: 1440px;
+  height: 68px;
+  margin: 0 auto;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #74767A;
+}
+
+.second-menu {
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  &__title {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #000000;
+  }
+
+  &__return {
+    margin-left: 40px;
+  }
+
+  &__icon {
+    margin: 0 16px;
+    width: 24px;
+  }
+
+  &__dot {
+    margin: 8px;
+    width: 4px;
+    height: 4px;
+    background: #0090BD;
+    border-radius: 2px;
+  }
+
+  &__person-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0 63px 0 5px;
+  }
+
+  &__btn {
+    width: 44px;
+    height: 28px;
+    background: #F4F6F9;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #11397E;
+    cursor: pointer;
+  }
+}
