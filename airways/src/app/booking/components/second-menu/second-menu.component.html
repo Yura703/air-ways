@@ -1,14 +1,36 @@
-<div class="second-menu">
-  <div class="second-menu__title">{{ ticketInfo.from }}</div>
-  <img src="assets/flys.svg" alt="to" class="second-menu__icon">
-  <div class="second-menu__title">{{ ticketInfo.to }}</div>
-  <div class="second-menu__return">Return</div>
-  <div class="second-menu__dot"></div>
-  <div>{{ ticketInfo.dateFrom }} - {{ ticketInfo.dateTo }}</div>
-  <div class="second-menu__dot"></div>
-  <div>{{ ticketInfo.person }}</div>
-  <img src="assets/person-icon.svg" alt="person" class="second-menu__person-icon">
+<div class="wrapper">
+  <div class="second-menu">
+    <div class="second-menu__title">{{ ticketInfo.from }}</div>
+    <img src="assets/flys.svg" alt="to" class="second-menu__icon">
+    <div class="second-menu__title">{{ ticketInfo.to }}</div>
+    <div class="second-menu__return">Return</div>
+    <div class="second-menu__dot"></div>
+    <div>{{ ticketInfo.dateFrom }} - {{ ticketInfo.dateTo }}</div>
+    <div class="second-menu__dot"></div>
+    <div>{{ ticketInfo.person.summ }}</div>
+    <img src="assets/person-icon.svg" alt="person" class="second-menu__person-icon">
 
-  <button class="second-menu__btn">Edit</button>
+    <button class="second-menu__btn" (click)="changeAvailableEdit()">Edit</button>
+  </div>
+</div>
+
+<div class="edit" *ngIf="isAvailableEdit">
+  <div>
+    <p class="edit__title">From</p>
+    <p class="edit__content">{{ ticketInfo.from }} {{ ticketInfo.fromABR }}</p>
+    <!-- ! сделать пайп менять цвет на серый -->
+  </div>
+  <div>
+    <p class="edit__title">Destination</p>
+    <p class="edit__content">{{ ticketInfo.to }} {{ ticketInfo.toABR }}</p>
+  </div>
+  <div>
+    <p class="edit__title">Dates</p>
+    <p class="edit__content">{{ ticketInfo.dateFrom }} - {{ ticketInfo.dateTo }}</p>
+  </div>
+  <div>
+    <p class="edit__title">Passengers</p>
+    <p class="edit__content">{{ ticketInfo.person.adult }} Adult, {{ ticketInfo.person.child }} Child, {{ ticketInfo.person.infant }} Infant</p>
+  </div>
 </div>
 
