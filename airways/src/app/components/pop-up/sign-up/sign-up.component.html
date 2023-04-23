@@ -1,0 +1,177 @@
+<div mat-dialog-content>
+  <div class="button-column">
+    <button mat-stroked-button>
+      <span class="google"></span> Continue with Google
+    </button>
+    <button mat-stroked-button>
+      <span class="facebook"></span>Continue with Facebook
+    </button>
+  </div>
+  <div class="line-container">
+    <span class="line"></span>
+    <span class="text">or sign up with your email</span>
+    <span class="line"></span>
+  </div>
+  <form id="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm)" >
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="e.g. example@email.com"
+        formControlName="email"
+        autocomplete="username"
+        required
+      />
+      <mat-error
+        *ngIf="(email?.invalid && email?.dirty) || email?.touched"
+        class="error"
+      >
+        <mat-error *ngIf="email?.errors?.['required']">
+          Please enter a email.
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">
+          The email is invalid.
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <div class="info">
+        <input
+          matInput
+          type="password"
+          placeholder="●●●●●"
+          formControlName="password"
+          autocomplete="current-password"
+          required
+        />
+        <span class="material-symbols-outlined" *ngIf="!password?.touched" matTooltip="The password must be at least 8 characters, a mixture of uppercase and lowercase letters, a mixture of letters and numbers, and contain at least one special character (! @# ? ])">info</span>
+        <span class="material-symbols-outlined error" *ngIf="password?.invalid && (password?.dirty || password?.touched)" matTooltip="Your password isn't strong enough. Please ensure it has at least 8
+          characters, a mixture of uppercase and lowercase letters, a mixture of
+          letters and numbers, and includes at least one special character (! @
+          # ? ])">error</span>
+      </div>
+
+      <mat-error
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        class="error"
+      >
+        <mat-error *ngIf="password?.errors?.['required']">
+          Please enter a password.
+        </mat-error>
+<!--        <mat-error *ngIf="password?.errors?.['strongPassword']">-->
+<!--          Your password isn't strong enough. Please ensure it has at least 8-->
+<!--          characters, a mixture of uppercase and lowercase letters, a mixture of-->
+<!--          letters and numbers, and includes at least one special character (! @-->
+<!--          # ? ]).-->
+<!--        </mat-error>-->
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>First name</mat-label>
+      <input matInput type="text" formControlName="firstName" required />
+      <mat-error
+        *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"
+        class="error"
+      >
+        <mat-error *ngIf="firstName?.errors?.['required']">
+          Please enter a First name.
+        </mat-error>
+        <mat-error *ngIf="firstName?.errors?.['minlength']">
+          The First name is too short.
+        </mat-error>
+        <mat-error *ngIf="firstName?.errors?.['pattern']">
+          Invalid character
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input matInput type="text" formControlName="lastName" required />
+      <mat-error
+        *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+        class="error"
+      >
+        <mat-error *ngIf="lastName?.errors?.['required']">
+          Please enter a Last name.
+        </mat-error>
+        <mat-error *ngIf="lastName?.errors?.['minlength']">
+          The Last name is too short.
+        </mat-error>
+        <mat-error *ngIf="lastName?.errors?.['pattern']">
+          Invalid character
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date of birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="datepicker" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-button-toggle-group formControlName="gender" (change)="onGenderChange($event)">
+      <mat-button-toggle value="male" [checked]="signUpForm.get('gender')?.value === 'male'"
+        ><mat-icon>check</mat-icon>Male
+      </mat-button-toggle
+      >
+      <mat-button-toggle value="female"
+        ><mat-icon>check</mat-icon>Female</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+    <div class="phone">
+      <app-phone-code-country
+        (phoneCodeCountryChange)="handlePhoneCodeCountryChange($event)"></app-phone-code-country>
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile phone number</mat-label>
+        <input matInput type="tel"
+               placeholder="e.g. 111-111-1111"
+               formControlName="phoneNumber"
+               (input)="onInput($event)"
+               required />
+        <mat-error
+          *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)"
+          class="error"
+        >
+          <mat-error *ngIf="phoneNumber?.errors?.['required']">
+            Please enter a phone number.
+          </mat-error>
+          <mat-error
+            *ngIf="phoneNumber?.errors?.['minlength']">
+            The phone number is too short.
+          </mat-error>
+          <mat-error
+            *ngIf="phoneNumber?.errors?.['maxlength']">
+            The phone number is too long.
+          </mat-error>
+          <mat-error *ngIf="phoneNumber?.errors?.['pattern']">
+            Invalid character
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <app-citizenship (citizenshipChange)="handleCitizenshipChange($event)"></app-citizenship>
+      <mat-checkbox color="primary" formControlName="termsAndConditions" required>
+        I agree to Airway's <a href="">Privacy Policy</a> and <a href="">Terms of Use</a>
+      </mat-checkbox>
+    <mat-error
+      *ngIf="termsAndConditions?.invalid && (termsAndConditions?.dirty || termsAndConditions?.touched)"
+      class="error"
+    >
+      <mat-error
+        *ngIf="termsAndConditions?.errors?.['required']">You must agree to the terms and conditions</mat-error>
+    </mat-error>
+    <button
+      class="sign-up"
+      mat-button
+      type="submit"
+    >
+      Sign Up
+    </button>
+  </form>
+</div>
