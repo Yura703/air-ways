@@ -33,11 +33,11 @@ export class FormSearchFlightComponent {
   ];
   dateAirport = dateAirport;
   searchForm!: FormGroup;
-  selectDate?: FormGroup;
-  selectFromFlight!: string;
-  selectDestinationFlight!: string;
-  tripOption?: string;
-  optionPassenger!: string;
+  selectDate: FormGroup | undefined;
+  selectFromFlight: string | undefined;
+  selectDestinationFlight: string | undefined;
+  tripOption: string | undefined;
+  optionPassenger: string | undefined;
 
   constructor(private fb: FormBuilder) {
     this.createForm();
@@ -89,8 +89,8 @@ export class FormSearchFlightComponent {
   }
 
   onSubmit() {
-    const controls = this.searchForm.controls;
-    if (this.searchForm.invalid) {
+    const controls = this.searchForm?.controls;
+    if (this.searchForm?.invalid) {
       Object.keys(controls).forEach((controlName) =>
         controls[controlName].markAsTouched()
       );
