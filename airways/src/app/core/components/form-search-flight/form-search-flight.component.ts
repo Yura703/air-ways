@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ILocationForm } from '../form-location/form-location.component';
-import { dateAirport } from './../../../dataAirport';
 
 @Component({
   selector: 'app-form-search-flight',
@@ -22,7 +21,6 @@ export class FormSearchFlightComponent {
     }
   ]
 
-  dateAirport = dateAirport;
   searchForm: FormGroup;
   tripOption: string;
 
