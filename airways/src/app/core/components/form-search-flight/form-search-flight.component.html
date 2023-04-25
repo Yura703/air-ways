@@ -1,1 +1,73 @@
-<p>form-search-flight works!</p>
+<form class="searchFlight-container" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <mat-radio-group aria-label="Select an option" formControlName="type">
+        <mat-radio-button value="Round">Round Trip</mat-radio-button>
+        <mat-radio-button value="One">One Way</mat-radio-button>
+    </mat-radio-group>
+    <div class="input-place-container">
+        <mat-form-field appearance="fill" class="input-select-place">
+            <mat-label>From</mat-label>
+            <mat-select [(value)]="selectFromFlight" formControlName="from">
+                <mat-option *ngFor="let option of dateAirport" value={{option.IATACode}}>
+                    <span class="name-city">{{option.nameCity}} </span>
+                    <span class="name-city IATA-code">{{option.IATACode}}</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div *ngIf="_from?.invalid && (_from?.touched || _from?.dirty)">
+            <span class="error-text" *ngIf="_from?.errors?.['required']">Field From is required</span>
+        </div>
+        <mat-form-field appearance="fill" class="input-select-place">
+            <mat-label>Destination</mat-label>
+            <mat-select [(value)]="selectDestinationFlight" formControlName="destination">
+                <mat-option *ngFor="let option of dateAirport" value={{option.IATACode}}>
+                    <span class="name-city">{{option.nameCity}} </span>
+                    <span class="name-city IATA-code">{{option.IATACode}}</span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div *ngIf="_destination?.invalid && (_destination?.touched || _destination?.dirty)">
+            <span class="error-text" *ngIf="_destination?.errors?.['required']">Field Destination is required</span>
+        </div>
+        <span class="material-icons reverse-search" (click)="reverseClick()"> sync_alt </span>
+    </div>
+    <div>
+        <div class="container-date-pass">
+            <mat-form-field appearance="fill" class="input-select-date">
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate formControlName="startDate" placeholder="Start date">
+                    <input matEndDate formControlName="endDate" placeholder="End date">
+                </mat-date-range-input>
+                <mat-hint>Dates</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <div class="date-error"
+                *ngIf="_startDate?.invalid && (_startDate?.touched || _startDate?.dirty) || _endDate?.invalid && (_endDate?.touched || _endDate?.dirty)">
+                <p class="error-text" *ngIf="_startDate?.errors?.['required']">Field start date is required</p>
+                <p class="error-text" *ngIf="_endDate?.errors?.['required']">Field end date is required</p>
+            </div>
+            <mat-form-field appearance="fill" class="input-select-pass">
+                <mat-label>Passengers</mat-label>
+                <mat-select value="passengers">
+                    <mat-option value="passengers" class="option__dissable">{{optionPassenger}}</mat-option>
+                    <mat-option class="option__nonEvent" *ngFor="let passenger of passengers">
+                        <div class="passenger-option">
+                            <div>
+                                <p class="passenger-option_name">{{passenger.name}}</p>
+                                <p class="passenger-option_desc">{{passenger.desc}}</p>
+                            </div>
+                            <div class="passenger-option_value" id={{passenger.name}}>
+                                <span class="option-value_change" (click)="clickMinus($event, passenger.name)">-</span>
+                                <span class="option-value_number"
+                                    [ngClass]="{'option-value_number__dissable': passenger.value < 1}">{{passenger.value}}</span>
+                                <span class="option-value_change" (click)="clickPlus($event, passenger.name)">+</span>
+                            </div>
+                        </div>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <button class="button-search-flight">Search</button>
+</form>
