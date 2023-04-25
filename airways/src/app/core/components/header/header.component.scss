@@ -1,8 +1,9 @@
 @import "./../../../../scss/abstracts/color-styles";
 @import "./../../../../scss/abstracts/typography-styles";
+@import './../../../../scss/abstracts/color-styles';
 
 .header-container {
-    background: rgba(116, 118, 122, 0.2);
+    background: $color-neutral-70;
     height: 75px;
     padding: 0 8%;
     display: grid;
@@ -31,7 +32,7 @@
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 16px;
-    color: #11397E;
+    color: $color-neutral-100;
     justify-self: end;
     white-space: nowrap;
 }
@@ -43,15 +44,14 @@
 }
 
 .header-cart {
-    color: #11397E;
+    color: $color-neutral-100;
     cursor: pointer;
     transition: .4s;
 
     &:hover {
-        color: #11397E;
+        color: $color-primary;
     }
 }
-
 
 @media (max-width: 800px) {
     .header-container {
