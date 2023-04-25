@@ -1,0 +1,116 @@
+@mixin font-default {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+@mixin title-large {
+  @include font-default;
+  font-size: 24px;
+  line-height: 28px;
+}
+@mixin title-medium {
+  @include font-default;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+@mixin title-small {
+  @include font-default;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+@mixin title-x-small {
+  @include font-default;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.15px;
+}
+
+@mixin subtitle-large {
+  @include font-default;
+  font-size: 30px;
+  line-height: 36px;
+}
+@mixin subtitle-medium {
+  @include font-default;
+  font-size: 20px;
+  line-height: 20px;
+}
+@mixin title-small {
+  @include font-default;
+  font-size: 12px;
+  line-height: 16px;
+}
+@mixin label-large {
+  @include font-default;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+@mixin label-large {
+  @include font-default;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+@mixin label-medium {
+  @include font-default;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+@mixin label-small {
+  @include font-default;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}
+@mixin body-x-large {
+  @include font-default;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0.5px;
+}
+@mixin body-x-large {
+  @include font-default;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0.5px;
+}
+@mixin body-large {
+  @include font-default;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+@mixin body-large-uppercase {
+  @include font-default;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+@mixin body-medium {
+  @include font-default;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+}
+@mixin body-small {
+  @include font-default;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+}
+@mixin body-x-small {
+  @include font-default;
+  font-size: 8px;
+  line-height: 20px;
+}
+@mixin button-medium {
+  @include font-default;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
