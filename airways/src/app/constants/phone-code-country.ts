@@ -1,4 +1,4 @@
-import { PhoneCodeCountryInterface } from '../interfaces/phone-code-country.interface';
+import { PhoneCodeCountryInterface } from '../shared/models/phone-code-country.interface';
 
 export const PhoneCodeCountry: PhoneCodeCountryInterface[] = [
   {

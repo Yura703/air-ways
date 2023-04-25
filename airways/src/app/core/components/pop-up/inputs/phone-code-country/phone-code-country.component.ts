@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { PhoneCodeCountry } from '../../../../../constants/phone-code-country';
-import { PhoneCodeCountryInterface } from '../../../../../interfaces/phone-code-country.interface';
+import { PhoneCodeCountryInterface } from '../../../../../shared/models/phone-code-country.interface';
 
 @Component({
   selector: 'app-phone-code-country',
