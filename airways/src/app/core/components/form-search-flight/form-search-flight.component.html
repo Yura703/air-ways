@@ -6,7 +6,7 @@
     <div class="input-place-container">
         <mat-form-field appearance="fill" class="input-select-place">
             <mat-label>From</mat-label>
-            <mat-select [(value)]="selectFromFlight" formControlName="from">
+            <mat-select [(value)]="selectFromFlight" formControlName="origin">
                 <mat-option *ngFor="let option of dateAirport" value={{option.IATACode}}>
                     <span class="name-city">{{option.nameCity}} </span>
                     <span class="name-city IATA-code">{{option.IATACode}}</span>
