@@ -15,8 +15,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
 
-  selectedOption: string | undefined;
-
   constructor(public dialogRef: MatDialogRef<SignUpComponent>) {}
 
   ngOnInit() {
