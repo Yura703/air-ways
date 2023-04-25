@@ -1,17 +1,21 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { LoginComponentComponent } from '../auth/components/login-component/login-component.component';
+import { MaterialModule } from '../material/material.module';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormSearchFlightComponent } from './components/form-search-flight/form-search-flight.component';
 import { HeaderComponent } from './components/header/header.component';
-import { MainPageComponent } from './pages/main-page/main-page.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    MainPageComponent,
     FooterComponent,
-    FormSearchFlightComponent,
+    LoginComponentComponent,
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MaterialModule],
+  exports: [
+    HeaderComponent,
+    FooterComponent,]
 })
-export class CoreModule {}
+export class CoreModule { }

@@ -12,15 +12,6 @@
     overflow: hidden;
 }
 
-.input-select-place {
-    width: 100%;
-    height: 56px;
-    margin: 0;
-    margin-bottom: 4px;
-    border-radius: 4px;
-    border: 0.5px solid #CECECE;
-}
-
 .input-place-container {
     position: relative;
 }
@@ -46,77 +37,6 @@
     }
 }
 
-
-.passenger-option {
-    display: flex;
-    width: 180px;
-    justify-content: space-between;
-}
-
-.name-city {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    color: #1C1B1F;
-}
-
-.IATA-code {
-    color: #74767A;
-}
-
-
-.passenger-option_value {
-    display: flex;
-    align-items: center;
-}
-
-.option-value_number {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    color: #11397E;
-}
-
-.option-value_number__dissable {
-    opacity: .5;
-}
-
-.option-value_change {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 26px;
-    color: #74767A;
-    width: 30px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: all;
-
-    &:hover {
-        color: #11397E;
-    }
-
-}
-
-.passenger-option_name {
-    font-family: 'Roboto';
-    font-weight: 400;
-    font-size: 16px;
-    color: #11397E;
-}
-
-.passenger-option_desc {
-    font-family: 'Roboto';
-    font-weight: 400;
-    font-size: 14px;
-    color: #74767A;
-}
-
-
 .button-search-flight {
     background: #11397E;
     border-radius: 4px;
@@ -141,11 +61,6 @@
     border: 0.5px solid #CECECE;
 }
 
-.input-select-pass {
-    border-radius: 4px;
-    border: 0.5px solid #CECECE;
-}
-
 .container-date-pass {
     display: flex;
     align-items: center;
@@ -164,14 +79,6 @@
     bottom: -45px;
 }
 
-.option__dissable {
-    display: none;
-}
-
-.option__nonEvent {
-    pointer-events: none;
-}
-
 @media (max-width: 600px) {
     .searchFlight-container {
         padding: 10px;
@@ -185,10 +92,6 @@
     }
 
     .input-select-date {
-        width: 100%;
-    }
-
-    .input-select-pass {
         width: 100%;
     }
 

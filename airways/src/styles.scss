@@ -1,5 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./scss/abstracts/typography-styles";
+@import './scss/abstracts/color-styles';
 
 html, body { height: 100%; }
 body { margin: 0; @include font-default; }
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: $color-neutral-90;
+}
+
+.header-style .mat-mdc-select-value {
+    color: $color-neutral-100;
+}
+
+.mdc-line-ripple {
+    display: none;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+    position: absolute !important;
+}
