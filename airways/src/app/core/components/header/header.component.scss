@@ -1,4 +1,5 @@
-@import './../../../../styles.scss';
+@import "./../../../../scss/abstracts/color-styles";
+@import "./../../../../scss/abstracts/typography-styles";
 
 .header-container {
     background: rgba(116, 118, 122, 0.2);
@@ -30,7 +31,7 @@
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 16px;
-    color: $text-log-in;
+    color: #11397E;
     justify-self: end;
     white-space: nowrap;
 }
@@ -42,12 +43,12 @@
 }
 
 .header-cart {
-    color: $text-log-in;
+    color: #11397E;
     cursor: pointer;
     transition: .4s;
 
     &:hover {
-        color: $log-in_hover;
+        color: #11397E;
     }
 }
 

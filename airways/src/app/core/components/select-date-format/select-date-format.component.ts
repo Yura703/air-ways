@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-select-date-format',
@@ -6,8 +6,11 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./select-date-format.component.scss'],
 })
 export class SelectDateFormatComponent {
- 
-  arrSelectFormatDate = ['MM/DD/YYYY', 'DD/MM/YYYY', 'YYYY/DD/MM', 'YYYY/MM/DD'];
+  arrSelectFormatDate = [
+    'MM/DD/YYYY',
+    'DD/MM/YYYY',
+    'YYYY/DD/MM',
+    'YYYY/MM/DD',
+  ];
   selectFormatDate = this.arrSelectFormatDate[0];
 }
-

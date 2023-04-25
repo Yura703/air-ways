@@ -1,0 +1,26 @@
+@import "../../../../scss/abstracts/color-styles";
+@import "../../../../scss/abstracts/typography-styles";
+
+.loginIn-container {
+    width: 114px;
+    height: 40px;
+    border-radius: 4px;
+    //background: $background-log-in;
+    //border: 0.5px solid $border-log-in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    cursor: pointer;
+    color: #11397e;
+    transition: .4s;
+
+    &:hover {
+        //color: $log-in_hover;
+        //border: 0.5px solid $log-in_hover;
+    }
+}
+
+.logIn-text {
+@include label-large
+}
