@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, Observable, startWith, Subscription, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
-import { IAirportResponse } from '../../models/autocompleteModel';
-import { AutocompleteHttpService } from '../../services/autocomplete-http.service';
+import { IAirportResponse } from '../../../models/autocompleteModel';
+import { AutocompleteHttpService } from '../../../services/autocomplete-http.service';
 
 export interface ILocationForm {
   nameForm: string;
