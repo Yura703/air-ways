@@ -17,7 +17,6 @@ export class PhoneCodeCountryComponent {
   // filteredOptions: Observable<string[]> | undefined;
   // constructor(private phoneCodeNameService: PhoneCodeNameService) {}
 
-  constructor() {}
   // ngOnInit() {
   // this.phoneCodeNameService.createArrayPhoneCodeName().subscribe((value) => {
   //   value.forEach((el) => {

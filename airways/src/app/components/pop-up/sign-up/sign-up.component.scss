@@ -85,6 +85,7 @@ mat-dialog-content {
       }
     }
   }
+
   .info {
     display: flex;
     cursor: pointer;
@@ -94,14 +95,22 @@ mat-dialog-content {
     color: red;
   }
 
+
+
   .material-symbols-outlined {
     font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+    &:visited {
+      &.touch {
+        display: none;
+      }
+    }
   }
 
   .phone {
     display: flex;
     justify-content: space-between;
   }
+
   mat-checkbox {
     margin-bottom: 20px;
     a {
@@ -109,19 +118,25 @@ mat-dialog-content {
       text-decoration: none;
     }
   }
+
   mat-checkbox + mat-error {
     position: relative;
     bottom: 10px;
     left: 12px;
     font-size: 12px;
   }
+
   .sign-up {
     background-color: #11397e;
     color: #ffffff;
   }
+
   mat-error {
     font-size: 12px;
     position: relative;
     bottom: 12px;
+  }
+  #mat-mdc-error-1 {
+    display: flex;
   }
 }

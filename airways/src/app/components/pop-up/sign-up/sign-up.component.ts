@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-sign-up',
@@ -86,6 +87,12 @@ export class SignUpComponent implements OnInit {
     this.phoneCodeCountry?.setValue(value); // обновляем FormControl со значением mat-select
   }
 
+  //проверяет ввод при изменении инпута
+  validateInput(key: any) {
+    key.markAsTouched();
+    key.updateValueAndValidity();
+  }
+
   onSubmit(form: FormGroup) {
     if (form.valid) {
       console.log(this.signUpForm.value); // отправка данных на сервер
@@ -143,5 +150,19 @@ export class SignUpComponent implements OnInit {
     }
     // Устанавливаем новое значение поля ввода
     event.target.value = value;
+  }
+
+  //открывает подсказку по клику
+  @ViewChild('myTooltip') myTooltip: MatTooltip | undefined;
+  public displayTooltip() {
+    if (this.myTooltip) {
+      this.myTooltip.disabled = false;
+      this.myTooltip.show();
+      setTimeout(() => {
+        if (this.myTooltip) {
+          this.myTooltip.disabled = true;
+        }
+      }, 2000);
+    }
   }
 }
