@@ -10,10 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import {
-  MAT_RADIO_DEFAULT_OPTIONS,
-  MatRadioModule,
-} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -21,7 +18,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   declarations: [],
   imports: [
     MatCommonModule,
-    MatDialogModule,
     MatSelectModule,
     MatInputModule,
     MatDatepickerModule,
@@ -39,7 +35,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ],
   exports: [
     MatCommonModule,
-    MatDialogModule,
     MatSelectModule,
     MatInputModule,
     MatDatepickerModule,
@@ -54,15 +49,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonToggleModule,
     MatCheckboxModule,
     MatTooltipModule,
-  ],
-  providers: [
-    MatDatepickerModule,
-    [
-      {
-        provide: MAT_RADIO_DEFAULT_OPTIONS,
-        useValue: { color: 'red' },
-      },
-    ],
   ],
 })
 export class MaterialModule {}
