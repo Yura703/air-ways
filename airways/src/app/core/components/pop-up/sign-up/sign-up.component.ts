@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -6,7 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-sign-up',
@@ -153,16 +152,16 @@ export class SignUpComponent implements OnInit {
   }
 
   //открывает подсказку по клику
-  @ViewChild('myTooltip') myTooltip: MatTooltip | undefined;
-  public displayTooltip() {
-    if (this.myTooltip) {
-      this.myTooltip.disabled = false;
-      this.myTooltip.show();
-      setTimeout(() => {
-        if (this.myTooltip) {
-          this.myTooltip.disabled = true;
-        }
-      }, 2000);
-    }
-  }
+  // @ViewChild('myTooltip') myTooltip: MatTooltip | undefined;
+  // public displayTooltip() {
+  //   if (this.myTooltip) {
+  //     this.myTooltip.disabled = false;
+  //     this.myTooltip.show();
+  //     setTimeout(() => {
+  //       if (this.myTooltip) {
+  //         this.myTooltip.disabled = true;
+  //       }
+  //     }, 2000);
+  //   }
+  // }
 }

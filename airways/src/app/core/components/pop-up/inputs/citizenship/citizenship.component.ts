@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { PhoneCodeNameService } from '../../../services/phone-code-name.service';
+import { PhoneCodeNameService } from '../../../../../services/phone-code-name.service';
 
 @Component({
   selector: 'app-citizenship',

@@ -44,10 +44,10 @@ mat-dialog-content {
     }
   }
   .google {
-    background-image: url("../../../../assets/svg/google.svg");
+    background-image: url("../../../../../assets/svg/google.svg");
   }
   .facebook {
-    background-image: url("../../../../assets/svg/facebook.svg");
+    background-image: url("../../../../../assets/svg/facebook.svg");
   }
 }
 
@@ -82,4 +82,29 @@ mat-dialog-content {
     background-color: #11397e;
     color: #ffffff;
   }
+  mat-error {
+    font-size: 12px;
+    position: relative;
+    bottom: 12px;
+  }
+  .info {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+    &:visited {
+      &.touch {
+        display: none;
+      }
+    }
+  }
 }
+
+
+

@@ -50,13 +50,14 @@
         <span
           class="material-symbols-outlined"
           *ngIf="!password?.dirty && !password?.touched"
-          [matTooltipDisabled]="true"
-          #myTooltip="matTooltip"
-          (click)="displayTooltip()"
-          matTooltipClass="myTooltipClass"
           matTooltip="The password must be at least 8 characters, a mixture of uppercase and lowercase letters, a mixture of letters and numbers, and contain at least one special character (! @# ? ])"
         >info</span
         >
+<!--        вставить в спан для реализации открытия по клику-->
+<!--        [matTooltipDisabled]="true"-->
+<!--        #myTooltip="matTooltip"-->
+<!--        (click)="displayTooltip()"-->
+<!--        matTooltipClass="myTooltipClass"-->
         <span
           class="material-symbols-outlined error"
           *ngIf="password?.invalid && password?.dirty"
@@ -67,7 +68,6 @@
           >error</span
         >
       </div>
-
       <mat-error
         *ngIf="password?.invalid && (password?.dirty || password?.touched)"
         class="error"
