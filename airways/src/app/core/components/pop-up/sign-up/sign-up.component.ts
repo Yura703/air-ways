@@ -85,9 +85,9 @@ export class SignUpComponent implements OnInit {
   }
 
   //проверяет ввод при изменении инпута
-  validateInput(key: any) {
-    key.markAsTouched();
-    key.updateValueAndValidity();
+  validateInput(key: AbstractControl | null) {
+    key?.markAsTouched();
+    key?.updateValueAndValidity();
   }
 
   onSubmit(form: FormGroup) {
