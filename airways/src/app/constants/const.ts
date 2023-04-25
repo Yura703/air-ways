@@ -1,0 +1,1 @@
+export const BASIC_URL_AUTOCOMPLETE = 'https://autocomplete.travelpayouts.com/places2?locale=en&term=' // добавить locale в интерцептор потом

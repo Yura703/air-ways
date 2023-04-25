@@ -1,9 +1,11 @@
-@import "./../../../../styles.scss";
+@import "./../../../../scss/abstracts/color-styles";
+@import "./../../../../scss/abstracts/typography-styles";
+@import './../../../../scss/abstracts/color-styles';
 
 .footer-container {
     height: 60px;
-    border-top: 1px solid #D0D9DF;
-    background: #F5F5F5;
+    border-top: 1px solid $color-secondary-40;
+    background: $color-neutral-80;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 0 3%;
@@ -14,13 +16,13 @@
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
-    color: $log-in_hover;
+    color: $color-primary;
     justify-self: center;
     align-self: center;
 }
 
 .footer-text_pay {
-    color: #000000;
+    color: $color-black;
     margin-right: 10px;
 }
 

@@ -1,0 +1,27 @@
+@import "../../../../scss/abstracts/color-styles";
+@import "../../../../scss/abstracts/typography-styles";
+
+.loginIn-container {
+    width: 114px;
+    height: 40px;
+    border-radius: 4px;
+    background: $color-neutral-90;
+    border: 0.5px solid $color-neutral-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    cursor: pointer;
+    color: $color-neutral-100;
+    transition: .4s;
+
+    &:hover {
+        color: $color-primary;
+        border: 0.5px solid $color-primary;
+    }
+}
+
+.logIn-text {
+    margin: 0;
+    @include label-large
+}
