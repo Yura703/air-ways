@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+/airways/src/assets/svg/check.svg
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/prettier.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/templateLanguages.xml
