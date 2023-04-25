@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { PopUpComponent } from './components/pop-up/pop-up/pop-up.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'air-ways';
+  title = 'airways';
+
+  private dialogRef!: MatDialogRef<PopUpComponent>;
+
+  constructor(private dialog: MatDialog) {}
+
+  openDialog() {
+    this.dialogRef = this.dialog.open(PopUpComponent, {
+      width: '494px',
+    });
+  }
 }

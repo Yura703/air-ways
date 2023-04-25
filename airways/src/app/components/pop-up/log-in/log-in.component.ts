@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+
+@Component({
+  selector: 'app-log-in',
+  templateUrl: './log-in.component.html',
+  styleUrls: ['./log-in.component.scss'],
+})
+export class LogInComponent implements OnInit {
+  logInForm!: FormGroup;
+
+  constructor(public dialogRef: MatDialogRef<LogInComponent>) {}
+  selectedOption: string | undefined;
+
+  ngOnInit() {
+    this.logInForm = new FormGroup({
+      email: new FormControl(''),
+      password: new FormControl(''),
+    });
+  }
+
+  onSubmit(form: FormGroup) {
+    if (form.valid) {
+      console.log(this.logInForm.value); // отправка данных на сервер
+      this.dialogRef.close();
+    } else {
+      // Пользователю выводятся соответствующие предупреждения
+      Object.keys(form.controls).forEach((key) => {
+        form.controls[key].markAsTouched();
+      });
+    }
+  }
+}
