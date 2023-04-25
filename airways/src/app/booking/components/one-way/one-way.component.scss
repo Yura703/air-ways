@@ -1,0 +1,22 @@
+:host {
+  margin: 0 auto;
+  display: block;
+  margin-top: 40px;
+  max-width: 1440px;
+  padding: 0 156px;
+}
+
+p {
+  margin: 0;
+}
+
+.one-way__title {
+  height: 44px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #11397E;
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}

@@ -1,0 +1,27 @@
+<div class="card-slider">
+  <div class="card-slider__card">
+    <p class="card__date">{{(currentDate) | date:'dd LLL' }}</p>
+    <p class="card__day">{{currentDate | date:'cccc'}}</p>
+    <img src="assets/not-fly.svg" alt="no fly" class="card__icon">
+  </div>
+  <div class="card-slider__card">
+    <p class="card__date">{{currentDate | date:'dd LLL'}}</p>
+    <p class="card__day">{{currentDate | date:'cccc'}}</p>
+    <img src="assets/not-fly.svg" alt="no fly" class="card__icon">
+  </div>
+  <div class="card-slider__card active">
+    <p class="card__date">{{ currentDate | date:'dd LLL' }}</p>
+    <p class="card__day">{{ currentDate | date:'cccc' }}</p>
+    <p class="card__cost">{{ currency }}{{ cost | number:'1.2-2' }}</p>
+  </div>
+  <div class="card-slider__card">
+    <p class="card__future-date">{{currentDate | date:'dd LLL'}}</p>
+    <p class="card__day">{{currentDate | date:'cccc'}}</p>
+    <p class="card__cost">{{ currency }}{{ cost | number:'1.2-2' }}</p>
+  </div>
+  <div class="card-slider__card">
+    <p class="card__future-date">{{currentDate | date:'dd LLL'}}</p>
+    <p class="card__day">{{currentDate | date:'cccc'}}</p>
+    <p class="card__cost">{{ currency }}{{ cost | number:'1.2-2' }}</p>
+  </div>
+</div>

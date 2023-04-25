@@ -5,7 +5,6 @@ const routes: Routes = [
   {
     path: 'booking',
     loadChildren: () => import('./booking/booking-routing.module').then((m) => m.default),
-
   },
 ];
 

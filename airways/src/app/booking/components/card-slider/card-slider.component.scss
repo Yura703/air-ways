@@ -1,0 +1,88 @@
+:host {
+  margin: 0 auto;
+  display: block;
+}
+
+p {
+  margin: 0;
+}
+
+.card-slider {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  height: 83px;
+
+  &__card {
+    width: 225px;
+    height: 70px;
+    background: #FFFFFF;
+    border: 1px solid #CECECE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    color: #D0D9DF;
+
+    .card__date {
+      padding-top: 4px;
+    }
+
+    .card__future-date {
+      padding-top: 4px;
+      color: #0090BD;
+    }
+
+    .card__day {
+      padding-bottom: 6px;
+      font-weight: 100;
+      font-size: 12px;
+      line-height: 12px;
+    }
+
+    .card__icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .card__cost {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 20px;
+      color: #11397E;
+    }
+  }
+}
+
+.card-slider__card.active {
+  height: 83px;
+  border-bottom: 4px solid #F1C933 ;
+  box-sizing: border-box;
+
+  .card__date {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #11397E;
+    padding-top: 4px;
+  }
+
+  .card__day {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #74767A;
+    padding-bottom: 4px;
+  }
+
+  .card__cost {
+    font-weight: 700;
+    font-size: 30px;
+    color: #11397E;
+  }
+}
