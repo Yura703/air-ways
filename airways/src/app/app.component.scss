@@ -1,0 +1,17 @@
+@import "../scss/abstracts/color-styles";
+@import "../scss/abstracts/typography-styles";
+
+.container {
+  margin: auto;
+  max-width: 940px;
+  button {
+    background: $color-gradient;
+    @include button-medium;
+    border: 1px solid #11397E;
+    border-radius: 4px;
+    padding: 8px 16px;
+    color: $color-neutral-100;
+    margin: 1em 1em 1em 0;
+  }
+}
+
