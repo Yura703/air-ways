@@ -19,6 +19,7 @@ import { SelectMoneyFormatComponent } from './components/select-money-format/sel
 import { HeaderComponent } from './components/header/header.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { BasketPageComponent } from './pages/basket-page/basket-page.component';
+import { ItemCartFlightComponent } from '../item-cart-flight/item-cart-flight.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { BasketPageComponent } from './pages/basket-page/basket-page.component';
     SelectMoneyFormatComponent,
     MainPageComponent,
     BasketPageComponent,
+    ItemCartFlightComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
   providers: [

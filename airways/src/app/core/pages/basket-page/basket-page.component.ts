@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { IFlightInfo } from '../../../item-cart-flight/item-cart-flight.component';
 
 
 export interface Task {
@@ -9,16 +10,7 @@ export interface Task {
   subtasks?: IFlightInfo[];
 }
 
-export interface IFlightInfo {
-  item: string;
-  flight: string;
-  typeTrip: string;
-  data: string;
-  passengers: string;
-  price: string;
-  completed: boolean;
-  color: ThemePalette;
-}
+
 
 const itemFlight: IFlightInfo = {
   item: 'FR 1925',
@@ -27,6 +19,17 @@ const itemFlight: IFlightInfo = {
   data: 'fsdfsdf',
   passengers: 'fdsfsdf',
   price: '551',
+  completed: false,
+  color: 'warn',
+}
+
+const itemFlight1: IFlightInfo = {
+  item: 'FR 192523',
+  flight: 'Dublin - Warshawa',
+  typeTrip: 'Round trip',
+  data: 'fsdf',
+  passengers: 'fdsfsdf',
+  price: '$551',
   completed: false,
   color: 'warn',
 }
@@ -44,7 +47,7 @@ export class BasketPageComponent {
     color: 'primary',
     subtasks: [
       itemFlight,
-      itemFlight
+      itemFlight1,
     ],
   };
 

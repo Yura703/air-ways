@@ -1,6 +1,6 @@
 <div class="basket-container">
-    <p class="basket-title">Cart</p>
     <div>
+        <p class="basket-title">Cart</p>
         <span class="example-list-section">
             <mat-checkbox class="example-margin" [checked]="allComplete" [color]="task.color"
                 [indeterminate]="someComplete()" (change)="setAll($event.checked)">
@@ -9,34 +9,36 @@
                 </div>
             </mat-checkbox>
         </span>
+    </div>
+    <div>
         <span class="item-cart">
             <ul>
                 <li class="cart-li" *ngFor="let subtask of task.subtasks">
                     <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
                         (ngModelChange)="updateAllComplete()">
-                        <div class="item-cart-container">
-                            <p>{{subtask.item}}</p>
-                            <p>{{subtask.flight}}</p>
-                            <p>{{subtask.typeTrip}}</p>
-                            <p>{{subtask.data}}</p>
-                            <p>{{subtask.passengers}}</p>
-                            <p>{{subtask.price}}</p>
-                            <span class="material-symbols-outlined"> more_vert </span>
-                        </div>
                     </mat-checkbox>
+                    <app-item-cart-flight [item]="subtask"></app-item-cart-flight>
                 </li>
             </ul>
         </span>
     </div>
-    <div class="cart-summary-container">
-        <p class="cart-add-trip">+ Add new trip</p>
-        <div class="cart-total-container">
-            <span class="cart-total_title">Total</span>
-            <span  class="cart-total_price">$536.32</span>
+    <div>
+        <div class="cart-summary-container">
+            <p class="cart-add-trip">+ Add new trip</p>
+            <div class="cart-total-container">
+                <span class="cart-total_title">Total</span>
+                <span class="cart-total_price">$536.32</span>
+            </div>
         </div>
-    </div>
-    <div class="cart-payment-container">
-        <div class="cart-promo-container"></div>
-
+        <div class="cart-footer">
+            <div class="cart-promo-container">
+                <input class="cart-promo-input" placeholder="Promo Code" type="text">
+                <button class="cart-promo-button">APPLY</button>
+            </div>
+            <div class="cart-payment-container">
+                <span class="selected-text">2 selected</span>
+                <button class="cart-button-payment">Payment</button>
+            </div>
+        </div>
     </div>
 </div>
