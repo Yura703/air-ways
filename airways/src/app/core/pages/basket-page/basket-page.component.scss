@@ -1,0 +1,102 @@
+@import './../../../../scss/abstracts/color-styles';
+@import './../../../../scss/abstracts/typography-styles';
+
+.basket-container {
+    width: 80%;
+    max-width: 1200px;
+    height: 400px;
+    margin: 0 auto;
+    padding: 25px;
+    background: $color-neutral-100;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.basket-title {
+    color: $color-primary;
+    @include title-large;
+    font-weight: 700;
+}
+
+.mat-mdc-checkbox {
+    width: 100%;
+}
+
+::ng-deep .mat-mdc-checkbox label {
+    width: 100%;
+}
+
+::ng-deep .mat-mdc-checkbox .mdc-form-field {
+    width: 100%;
+}
+
+.cart-li {
+    list-style: none;
+    margin-left: -40px;
+}
+
+.item-cart-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 11% 17% 9% 28% 13% 7.5% 5%;
+    gap: 2%;
+
+}
+
+.item-cart-container_title {
+    background: $color-neutral-80;
+    border: 0.5px solid $color-secondary-60;
+    padding: 15px 0px;
+    padding-left: 45px;
+    margin-left: -45px;
+}
+
+
+.item-text {
+    color: $color-black;
+    @include body-large;
+    font-weight: 700;
+
+}
+
+.cart-summary-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    border-bottom: solid 1px $color-secondary-50;
+}
+
+.cart-add-trip {
+    color: $color-primary;
+    @include button-medium;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        color: #1562e7;
+    }
+}
+
+.cart-total_title {
+    color: $color-black;
+    @include subtitle-medium;
+    font-weight: 700;
+    margin-right: 20px;
+}
+
+.cart-total_price {
+    @include subtitle-large;
+    color: $color-primary;
+    font-weight: 700;
+}
+
+.cart-total-container {
+    display: flex;
+    align-items: center;
+}
+
+.cart-payment-container {
+    height: 55px;
+    background: darkgreen;
+}

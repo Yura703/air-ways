@@ -1,0 +1,42 @@
+<div class="basket-container">
+    <p class="basket-title">Cart</p>
+    <div>
+        <span class="example-list-section">
+            <mat-checkbox class="example-margin" [checked]="allComplete" [color]="task.color"
+                [indeterminate]="someComplete()" (change)="setAll($event.checked)">
+                <div class="item-cart-container item-cart-container_title ">
+                    <span class="item-text" *ngFor="let item of titleCartTable">{{item}}</span>
+                </div>
+            </mat-checkbox>
+        </span>
+        <span class="item-cart">
+            <ul>
+                <li class="cart-li" *ngFor="let subtask of task.subtasks">
+                    <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
+                        (ngModelChange)="updateAllComplete()">
+                        <div class="item-cart-container">
+                            <p>{{subtask.item}}</p>
+                            <p>{{subtask.flight}}</p>
+                            <p>{{subtask.typeTrip}}</p>
+                            <p>{{subtask.data}}</p>
+                            <p>{{subtask.passengers}}</p>
+                            <p>{{subtask.price}}</p>
+                            <span class="material-symbols-outlined"> more_vert </span>
+                        </div>
+                    </mat-checkbox>
+                </li>
+            </ul>
+        </span>
+    </div>
+    <div class="cart-summary-container">
+        <p class="cart-add-trip">+ Add new trip</p>
+        <div class="cart-total-container">
+            <span class="cart-total_title">Total</span>
+            <span  class="cart-total_price">$536.32</span>
+        </div>
+    </div>
+    <div class="cart-payment-container">
+        <div class="cart-promo-container"></div>
+
+    </div>
+</div>
