@@ -1,9 +1,11 @@
+@import "./../../../../scss/abstracts/color-styles";
+@import "./../../../../scss/abstracts/typography-styles";
+
 :host {
   margin: 0 auto;
   display: block;
   margin-top: 40px;
-  max-width: 1440px;
-  padding: 0 156px;
+  max-width: 1128px;
 }
 
 p {
@@ -20,3 +22,143 @@ p {
   display: flex;
   gap: 12px;
 }
+
+.flight-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  background: $color-neutral-100;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  width: 100%;
+  height: 130px;
+
+  &__central-content-icon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .bottom-padding {
+      border: 2px solid #D0D9DF;
+      width: calc(100%/2 - 45px);
+    }
+  }
+
+  .flight-list-info {
+    padding: 27px 27px 27px 40px;
+    width: 745px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    border-right: 2px dashed #D0D9DF;
+
+    &__left-text {
+      width: 18%;
+    }
+
+    &__text-date {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 16px;
+      color: $color-neutral-30;
+    }
+
+    &__text-sity {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.4px;
+      color: $color-neutral-30;
+    }
+
+    &__central-content {
+      width: 37%;
+      font-size: 12px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    &__right-text {
+      width: 18%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    &__flight-no {
+      width: 18%;
+    }
+  }
+
+  &__price {
+    padding: 15.5px 28px;
+    width: 133px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:flex-end
+  }
+
+  &__price-seats {
+    height: 40px;
+    background: red;
+  }
+
+  &__price-text {
+    color: $color-neutral-30;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    padding-top: 5px;
+  }
+
+  &__price-cost {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: $color-primary;
+  }
+
+  &__btn {
+    width: 78px;
+    height: 36px;
+    background: linear-gradient(108.75deg, #0090BD 59.91%, #073590 95.36%);
+    border: 1px solid #11397E;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    color: #FFFFFF;
+  }
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.date-time {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: $color-black;
+}
+
+.date-utc {
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 20px;
+
+}
+
+
+
+

@@ -1,4 +1,11 @@
 <div class="card-slider">
+
+  <button mat-mini-fab matTooltip="Later" class="card-slider__btn-right">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+  <button mat-mini-fab matTooltip="Befor" class="card-slider__btn-left">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
   <div class="card-slider__card">
     <p class="card__date">{{(currentDate) | date:'dd LLL' }}</p>
     <p class="card__day">{{currentDate | date:'cccc'}}</p>

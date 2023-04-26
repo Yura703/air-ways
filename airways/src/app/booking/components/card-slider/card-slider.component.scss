@@ -1,3 +1,6 @@
+@import "./../../../../scss/abstracts/color-styles";
+@import "./../../../../scss/abstracts/typography-styles";
+
 :host {
   margin: 0 auto;
   display: block;
@@ -12,12 +15,13 @@ p {
   align-items: flex-end;
   flex-wrap: wrap;
   height: 83px;
+  position: relative;
 
   &__card {
-    width: 225px;
+    width: 20%;
     height: 70px;
-    background: #FFFFFF;
-    border: 1px solid #CECECE;
+    background: $color-neutral-100;
+    border: 1px solid $color-neutral-60;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,6 +31,7 @@ p {
     line-height: 20px;
     letter-spacing: 0.1px;
     color: #D0D9DF;
+    box-sizing: border-box;
 
     .card__date {
       padding-top: 4px;
@@ -55,6 +60,26 @@ p {
       line-height: 20px;
       color: #11397E;
     }
+  }
+
+  &__btn-left {
+    position: absolute;
+    top: 34px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: #E9EDF1;
+    color: black;
+  }
+
+  &__btn-right {
+    position: absolute;
+    top: 34px;
+    right: 3px;
+    width: 24px;
+    height: 24px;
+    background: #E9EDF1;
+    color: black;
   }
 }
 

@@ -2,5 +2,46 @@
   <img src="assets/fly.svg" alt="fly">
   <span>{{ ticketInfo.from }} to {{ ticketInfo.to }}</span>
 </div>
+
 <app-card-slider></app-card-slider>
-<div class="flight-list"></div>
+
+<div class="flight-list">
+  <div class="flight-list-info">
+    <div class="flight-list-info__left-text">
+      <div class="flight-list-info__text-date">{{ ticketInfo.dateFlightFrom | date:'EEE, d LLL yyyy' }}</div>
+      <div class="date">
+        <span class="date-time">{{ ticketInfo.dateFlightFrom | date:'H:mm' }} </span>
+        <span class="date-utc">{{ ticketInfo.utc }}</span>
+      </div>
+      <div class="flight-list-info__text-sity">{{ ticketInfo.from }}</div>
+    </div>
+    <div class="flight-list-info__central-content">
+      <div class="flight-list__central-content-tyme">{{ ticketInfo.tymeFly }}</div>
+      <div class="flight-list__central-content-icon">
+        <div class="bottom-padding"></div>
+        <img src="/assets/svg/blue-fly.svg" alt="fly">
+        <div class="bottom-padding"></div>
+      </div>
+      <div class="flight-list__central-content-type">{{ ticketInfo.type }}</div>
+    </div>
+    <div class="flight-list-info__right-text">
+      <div class="flight-list-info__text-date">{{ ticketInfo.dateFlightTo | date:'EEE, d LLL yyyy' }}</div>
+      <div class="date">
+        <span class="date-utc">{{ ticketInfo.utc }}</span>
+        <span class="date-time">{{ ticketInfo.dateFlightTo | date:'H:mm' }}</span>
+      </div>
+      <div class="flight-list-info__text-sity">{{ ticketInfo.to }}</div>
+    </div>
+    <div class="flight-list-info__flight-no">
+      <span style="color: #74767A;">Flight no. </span>
+      <span>{{ ticketInfo.flightNo }}</span>
+    </div>
+  </div>
+
+  <div class="flight-list__price">
+    <div class="flight-list__price-seats">{{ ticketInfo.countSeatsAvailable }} seats available</div>
+    <div class="flight-list__price-text">Price</div>
+    <div class="flight-list__price-cost">{{ ticketInfo.currency }}{{ ticketInfo.cost | number:'1.2-2' }}</div>
+  </div>
+  <button mat-button class="flight-list__btn">Select</button>
+</div>

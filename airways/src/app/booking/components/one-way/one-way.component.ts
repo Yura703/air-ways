@@ -12,5 +12,18 @@ export default class OneWayComponent {
     dateFrom: '1Mar',
     dateTo: '18Mar',
     person: '3',
+    dateFlightFrom: new Date(),
+    dateFlightTo: new Date(),
+    utc: 'UTC +0',
+    type: 'Direct',
+    tymeFly: '2h 50m',
+    flightNo: 'FR 1925',
+    countSeatsAvailable: '100',
+    currency: "€",
+    cost: 146.7777777,
   }
+
+
+
+
 }
