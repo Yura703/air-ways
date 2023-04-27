@@ -7,9 +7,8 @@ import {
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { fakeUser } from '../../../../constants/fake-user';
+import { AuthUserDataService } from '../../../services/auth-user-data.service';
 import { FormValidationService } from '../../../services/form-validation.service';
-
-class signUpInterface {}
 
 @Component({
   selector: 'app-sign-up',
@@ -18,11 +17,11 @@ class signUpInterface {}
 })
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
-  authUser: signUpInterface;
 
   constructor(
     public dialogRef: MatDialogRef<SignUpComponent>,
-    private formValidationService: FormValidationService
+    private formValidationService: FormValidationService,
+    private authUserDataService: AuthUserDataService
   ) {}
 
   ngOnInit() {
@@ -100,8 +99,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     if (form.valid) {
-      this.authUser = this.signUpForm.value; // отправка данных на сервер
-      console.log(this.authUser);
+      this.authUserDataService.authUserDataUp.next(this.signUpForm.value); // отправка данных на сервер
       this.dialogRef.close();
     } else {
       // Пользователю выводятся соответствующие предупреждения
