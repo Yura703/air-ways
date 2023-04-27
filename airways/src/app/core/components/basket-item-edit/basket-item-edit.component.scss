@@ -1,0 +1,56 @@
+@import './../../../../scss/abstracts/color-styles';
+@import './../../../../scss/abstracts/typography-styles';
+@import './../../../../styles.scss';
+
+.item-edit {
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover {
+        color: $color-primary;
+        font-weight: 700;
+    }
+}
+
+.edit-container {
+    position: relative;
+}
+
+.background-edit {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: $color-neutral-40;
+    z-index: 11;
+}
+
+.edit-container_block {
+    width: 90px;
+    background: $color-neutral-100;
+    box-shadow: $box-shadow;
+    z-index: 111;
+    position: absolute;
+    top: -20px;
+    right: 40px;
+
+}
+
+.button-edit{
+    @include body-large;
+    color: $color-black;
+    cursor: pointer;
+    background: $color-neutral-100;
+    width: 100%;
+    border: none;
+    padding: 5px 0;
+    &:hover{
+        background: $color-primary;
+        color: $color-secondary-100;
+    }
+}
+
+.button-edit-border{
+    border-bottom: $color-secondary-50 0.5px solid;
+}

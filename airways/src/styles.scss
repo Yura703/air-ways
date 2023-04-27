@@ -2,8 +2,15 @@
 @import "./scss/abstracts/typography-styles";
 @import './scss/abstracts/color-styles';
 
-html, body { height: 100%; }
-body { margin: 0; @include font-default; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    @include font-default;
+}
 
 body,
 h1,
@@ -23,6 +30,21 @@ dd {
     padding: 0;
     box-sizing: border-box;
 }
+
+@mixin flex-center-space {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-end-space {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+
+
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: $color-neutral-90;

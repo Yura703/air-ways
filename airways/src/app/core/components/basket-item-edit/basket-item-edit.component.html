@@ -1,0 +1,8 @@
+<div class="edit-container">
+    <span class="material-symbols-outlined item-edit" (click)="clickEditItem()"> more_vert </span>
+    <div class="background-edit" *ngIf="isOpen" (click)="clickEditItem()"></div>
+    <div class="edit-container_block" *ngIf="isOpen">
+        <button class="button-edit button-edit-border" (click)="clickDelete()">Delete</button>
+        <button class="button-edit" (click)="clickEdit()">Edit</button>
+    </div>
+</div>
