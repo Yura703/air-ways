@@ -37,6 +37,7 @@ export class LogInComponent implements OnInit {
   onSubmit(form: FormGroup) {
     if (form.valid) {
       this.authUserDataService.authUserDataIn.next(this.authUserData);
+      this.authUserDataService.logIn.next(true);
       this.dialogRef.close();
     } else {
       // Пользователю выводятся соответствующие предупреждения

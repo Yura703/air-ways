@@ -1,7 +1,14 @@
 <div>
-    <div class="loginIn-container" (click)="openDialog()">
-        <span class="material-icons">person_2</span>
-        <p class="logIn-text">{{userName}}</p>
-    </div>
+  <div class="loginIn-container" [matMenuTriggerFor]="menu">
+    <span class="material-icons">person_2</span>
+    <p class="logIn-text">{{ userName }}</p>
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openDialog()" [disabled]="logIn">
+      <span>Sign Up</span>
+    </button>
+    <button mat-menu-item (click)="clearLocalStorage()" [disabled]="!logIn">
+      <span>Sign Out</span>
+    </button>
+  </mat-menu>
 </div>
-

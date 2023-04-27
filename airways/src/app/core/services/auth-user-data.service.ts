@@ -8,4 +8,5 @@ import { SignUpInterface } from '../../shared/models/sign-up-interface';
 export class AuthUserDataService {
   public authUserDataIn = new BehaviorSubject<SignUpInterface | string>('');
   public authUserDataUp = new BehaviorSubject<SignUpInterface | string>('');
+  public logIn = new BehaviorSubject<boolean>(false);
 }
