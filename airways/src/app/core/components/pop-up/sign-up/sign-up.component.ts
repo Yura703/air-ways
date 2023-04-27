@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -6,6 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { fakeUser } from '../../../../constants/fake-user';
+import { AuthUserDataService } from '../../../services/auth-user-data.service';
+import { FormValidationService } from '../../../services/form-validation.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,16 +16,21 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
+  @Input() parent: { childType: string };
   signUpForm!: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<SignUpComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<SignUpComponent>,
+    private formValidationService: FormValidationService,
+    private authUserDataService: AuthUserDataService
+  ) {}
 
   ngOnInit() {
     this.signUpForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
-        this.strongPasswordValidator,
+        this.formValidationService.strongPasswordValidator,
       ]),
       firstName: new FormControl('', [
         Validators.required,
@@ -89,42 +97,21 @@ export class SignUpComponent implements OnInit {
     key?.markAsTouched();
     key?.updateValueAndValidity();
   }
-
+  toggleChild() {
+    this.parent.childType =
+      this.parent.childType === 'signUp' ? 'logIn' : 'signUp';
+  }
   onSubmit(form: FormGroup) {
     if (form.valid) {
-      console.log(this.signUpForm.value); // отправка данных на сервер
-      this.dialogRef.close();
+      this.authUserDataService.authUserDataUp.next(this.signUpForm.value); // отправка данных на сервер
+      this.toggleChild();
+      // this.dialogRef.close();
     } else {
       // Пользователю выводятся соответствующие предупреждения
       Object.keys(form.controls).forEach((key) => {
         form.controls[key].markAsTouched();
       });
     }
-  }
-
-  strongPasswordValidator(
-    control: AbstractControl
-  ): { [key: string]: boolean } | null {
-    const value = control.value;
-    const hasNumber = /[0-9]/.test(value);
-    const hasUppercase = /[A-Z]/.test(value);
-    const hasLowercase = /[a-z]/.test(value);
-    const hasSpecialCharacters = /[!@#?]/.test(value);
-
-    if (!value) {
-      return null;
-    }
-    if (
-      value &&
-      value.length >= 8 &&
-      hasNumber &&
-      hasUppercase &&
-      hasLowercase &&
-      hasSpecialCharacters
-    ) {
-      return null;
-    }
-    return { strongPassword: true };
   }
 
   onGenderChange(event: { source: unknown; value: string }) {
@@ -149,17 +136,10 @@ export class SignUpComponent implements OnInit {
     event.target.value = value;
   }
 
-  //открывает подсказку по клику
-  // @ViewChild('myTooltip') myTooltip: MatTooltip | undefined;
-  // public displayTooltip() {
-  //   if (this.myTooltip) {
-  //     this.myTooltip.disabled = false;
-  //     this.myTooltip.show();
-  //     setTimeout(() => {
-  //       if (this.myTooltip) {
-  //         this.myTooltip.disabled = true;
-  //       }
-  //     }, 2000);
-  //   }
-  // }
+  fakeAuth() {
+    this.signUpForm.get('firstName')?.setValue(fakeUser.firstName);
+    this.signUpForm.get('lastName')?.setValue(fakeUser.lastName);
+    this.signUpForm.get('email')?.setValue(fakeUser.email);
+    this.signUpForm.get('phoneNumber')?.setValue(fakeUser.phoneNumber);
+  }
 }

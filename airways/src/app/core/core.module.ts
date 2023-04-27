@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 import { MaterialModule } from '../material/material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormLocationComponent } from './components/form-location/form-location.component';
 import { FormPassengersComponent } from './components/form-passengers/form-passengers.component';
 import { FormSearchFlightComponent } from './components/form-search-flight/form-search-flight.component';
+import { HeaderComponent } from './components/header/header.component';
 import { LoginComponentComponent } from './components/login-component/login-component.component';
 import { CitizenshipComponent } from './components/pop-up/inputs/citizenship/citizenship.component';
 import { PhoneCodeCountryComponent } from './components/pop-up/inputs/phone-code-country/phone-code-country.component';
@@ -61,4 +62,4 @@ import { BasketItemEditComponent } from './components/basket-item-edit/basket-it
     FooterComponent,
   ]
 })
-export class CoreModule { }
+export class CoreModule {}
