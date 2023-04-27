@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -16,6 +16,7 @@ import { FormValidationService } from '../../../services/form-validation.service
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
+  @Input() parent: any;
   signUpForm!: FormGroup;
 
   constructor(
@@ -96,11 +97,15 @@ export class SignUpComponent implements OnInit {
     key?.markAsTouched();
     key?.updateValueAndValidity();
   }
-
+  toggleChild() {
+    this.parent.childType =
+      this.parent.childType === 'signUp' ? 'logIn' : 'signUp';
+  }
   onSubmit(form: FormGroup) {
     if (form.valid) {
       this.authUserDataService.authUserDataUp.next(this.signUpForm.value); // отправка данных на сервер
-      this.dialogRef.close();
+      this.toggleChild();
+      // this.dialogRef.close();
     } else {
       // Пользователю выводятся соответствующие предупреждения
       Object.keys(form.controls).forEach((key) => {

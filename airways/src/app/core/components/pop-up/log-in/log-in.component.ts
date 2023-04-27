@@ -24,6 +24,7 @@ export class LogInComponent implements OnInit {
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
+    this.fakeAuth();
   }
 
   get email() {
