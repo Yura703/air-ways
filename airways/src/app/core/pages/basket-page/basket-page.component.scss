@@ -48,7 +48,6 @@
     display: grid;
     grid-template-columns: 11% 17% 9% 28% 13% 7.5% 5%;
     gap: 2%;
-
 }
 
 .item-cart-container_title {
@@ -168,4 +167,26 @@
     &:hover {
         background: #1562e7;
     }
+}
+
+
+@media (max-width: 1150px) {
+    .basket-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    ::ng-deep .item-cart-container {
+        grid-template-columns: 11% 18% 10% 29% 13% 8% 5%;
+        gap: 5px;
+    }
+
+}
+
+@media (max-width: 850px) {
+    .basket-container {
+        width: 95%;
+        padding: 5px;
+    }
+
 }
