@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SignUpInterface } from '../../../shared/models/sign-up-interface';
 import { AuthUserDataService } from '../../services/auth-user-data.service';
 import { PopUpComponent } from '../pop-up/pop-up/pop-up.component';
 
@@ -17,11 +18,13 @@ export class LoginComponentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.athUserDataService.authUserDataIn.subscribe((value: any) => {
-      if (value) {
-        this.userName = `${value.firstName} ${value.lastName}`;
+    this.athUserDataService.authUserDataIn.subscribe(
+      (value: string | SignUpInterface) => {
+        if (typeof value !== 'string') {
+          this.userName = `${value.firstName} ${value.lastName}`;
+        }
       }
-    });
+    );
   }
   openDialog() {
     this.dialogRef = this.dialog.open(PopUpComponent, {

@@ -16,7 +16,7 @@ import { FormValidationService } from '../../../services/form-validation.service
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  @Input() parent: any;
+  @Input() parent: { childType: string };
   signUpForm!: FormGroup;
 
   constructor(
