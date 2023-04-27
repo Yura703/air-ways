@@ -24,9 +24,6 @@ dd {
     box-sizing: border-box;
 }
 
-
-
-
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: $color-neutral-90;
 }
@@ -37,8 +34,4 @@ dd {
 
 .mdc-line-ripple {
     display: none;
-}
-
-.mat-mdc-form-field-subscript-wrapper {
-    position: absolute !important;
 }

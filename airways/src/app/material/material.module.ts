@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCommonModule, MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -32,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonToggleModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatMenuModule,
   ],
   exports: [
     MatCommonModule,
@@ -49,13 +51,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonToggleModule,
     MatCheckboxModule,
     MatTooltipModule,
+    MatMenuModule,
   ],
-  providers: [
-    MatDatepickerModule,
-    [{
-      provide: MAT_RADIO_DEFAULT_OPTIONS,
-      useValue: { color: 'red' },
-    }],
-  ]
 })
-export class MaterialModule { }
+export class MaterialModule {}
