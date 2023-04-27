@@ -1,6 +1,6 @@
-@import './../../scss/abstracts/color-styles';
-@import './../../scss/abstracts/typography-styles';
-@import './../../styles.scss';
+@import './../../../../scss/abstracts/color-styles';
+@import './../../../../scss/abstracts/typography-styles';
+@import './../../../../styles.scss';
 
 .item-cart-flight {
     width: 95%;
@@ -8,7 +8,6 @@
     left: 55px;
     top: 30px;
 }
-
 
 .item-text {
     color: $color-black;
@@ -25,13 +24,3 @@
     color: $color-green;
 }
 
-.item-edit {
-    cursor: pointer;
-    transition: .3s;
-    z-index: 111;
-
-    &:hover {
-        color: $color-primary;
-        font-weight: 700;
-    }
-}

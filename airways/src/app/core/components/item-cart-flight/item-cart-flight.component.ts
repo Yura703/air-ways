@@ -19,9 +19,5 @@ export interface IFlightInfo {
 })
 export class ItemCartFlightComponent {
   @Input() item: IFlightInfo;
-
-  clickEditItem(event: Event) {
-    event.stopPropagation();
-    console.log(this.item)
-  }
+ 
 }
