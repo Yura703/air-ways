@@ -17,7 +17,6 @@ import { PopUpComponent } from './components/pop-up/pop-up/pop-up.component';
 import { SignUpComponent } from './components/pop-up/sign-up/sign-up.component';
 import { SelectDateFormatComponent } from './components/select-date-format/select-date-format.component';
 import { SelectMoneyFormatComponent } from './components/select-money-format/select-money-format.component';
-import { HeaderComponent } from './components/header/header.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { BasketPageComponent } from './pages/basket-page/basket-page.component';
 import { ItemCartFlightComponent } from './components/item-cart-flight/item-cart-flight.component';
