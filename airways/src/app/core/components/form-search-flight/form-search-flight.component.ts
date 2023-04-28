@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AddSearch } from 'src/app/store/actions/actions';
+import { IAppStore } from 'src/app/store/models/stateModel';
 import { ILocationForm } from '../form-location/form-location.component';
 
 
@@ -25,7 +28,7 @@ export class FormSearchFlightComponent {
   searchForm: FormGroup;
   tripOption: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store<IAppStore>) {
     this.createForm();
   }
 
@@ -47,8 +50,11 @@ export class FormSearchFlightComponent {
       this.searchForm.markAllAsTouched()
       return;
     }
+    this.store.dispatch(new AddSearch(this.searchForm.value))
+    // const search: ISearchMain = {
+    // destination: this.searchForm.value
+    // }
 
-    console.log(this.searchForm.value)
   }
 
 
