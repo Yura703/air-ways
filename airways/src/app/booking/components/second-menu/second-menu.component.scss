@@ -76,13 +76,31 @@ p {
   align-items: center;
   justify-content: space-around;
 
-  div {
+  &__sity {
     width: 255px;
     height: 56px;
     border-radius: 4px;
     background: #F4F6F9;
     border: 0.5px solid rgba(116, 118, 122, 0.6);
     padding: 8px 16px;
+    box-sizing: border-box;
+  }
+
+  &__date {
+    width: 255px;
+    height: 56px;
+    border-radius: 4px;
+    background: #F4F6F9;
+    border: 0.5px solid rgba(116, 118, 122, 0.6);
+    box-sizing: border-box;
+  }
+
+  &__edit__passengers {
+    width: 255px !important;
+    height: 56px;
+    border-radius: 4px;
+    background: #F4F6F9;
+    border: 0.5px solid rgba(116, 118, 122, 0.6);
     box-sizing: border-box;
   }
 
@@ -101,3 +119,8 @@ p {
     color: #1C1B1F;
   }
 }
+
+.input-select {
+  width: 100% !important;
+}
+

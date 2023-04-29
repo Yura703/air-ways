@@ -50,6 +50,6 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
       },
     ],
   ],
-  exports: []
+  exports: [FormPassengersComponent]
 })
 export class CoreModule { }

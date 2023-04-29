@@ -3,7 +3,7 @@
   <span>{{ ticketInfo.from }} to {{ ticketInfo.to }}</span>
 </div>
 
-<app-card-slider></app-card-slider>
+<app-card-slider *ngIf="isAvailablePrice"></app-card-slider>
 
 <div class="flight-list">
   <div class="flight-list-info">
@@ -38,10 +38,22 @@
     </div>
   </div>
 
-  <div class="flight-list__price">
-    <div class="flight-list__price-seats">{{ ticketInfo.countSeatsAvailable }} seats available</div>
-    <div class="flight-list__price-text">Price</div>
-    <div class="flight-list__price-cost">{{ ticketInfo.currency }}{{ ticketInfo.cost | number:'1.2-2' }}</div>
+  <div class="flight-list__price-section" *ngIf="isAvailablePrice; else elseBlock">
+    <div class="flight-list__select-price" >
+      <div class="flight-list__price-seats">{{ ticketInfo.countSeatsAvailable }} seats available</div>
+      <div class="flight-list__price-text">Price</div>
+      <div class="flight-list__price-cost">{{ ticketInfo.currency }}{{ ticketInfo.cost | number:'1.2-2' }}</div>
+    </div>
+    <button mat-button class="flight-list__btn-select" (click)='changeAvailablePrice()'>
+      Select
+    </button>
   </div>
-  <button mat-button class="flight-list__btn">Select</button>
+  <ng-template #elseBlock>
+    <div class="flight-list__price" >
+      <div class="flight-list__price-cost" style="color:black">{{ ticketInfo.currency }}{{ ticketInfo.cost | number:'1.2-2' }}</div>
+      <button mat-button class="flight-list__btn-edit" (click)='changeAvailablePrice()'>
+        Edit
+      </button>
+    </div>
+  </ng-template>
 </div>

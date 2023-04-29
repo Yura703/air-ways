@@ -8,6 +8,7 @@ import TicketSectionComponent from './components/ticket-section/ticket-section.c
 import OneWayComponent from './components/one-way/one-way.component';
 import { CardSliderComponent } from './components/card-slider/card-slider.component';
 import { MaterialModule } from '../material/material.module';
+import { CoreModule } from '../core/core.module';
 @NgModule({
   declarations: [
     SecondMenuComponent,
@@ -16,12 +17,12 @@ import { MaterialModule } from '../material/material.module';
     ReturnWayComponent,
     TicketSectionComponent,
     CardSliderComponent,
-
   ],
   imports: [
     CommonModule,
     BookingRoutingModule,
     MaterialModule,
+    CoreModule
   ],
   exports: [BookingPageComponent]
 })

@@ -23,7 +23,9 @@ export default class OneWayComponent {
     cost: 146.7777777,
   }
 
+  public isAvailablePrice = true;
 
-
-
+  public changeAvailablePrice(): void {
+    this.isAvailablePrice = !this.isAvailablePrice;
+  }
 }

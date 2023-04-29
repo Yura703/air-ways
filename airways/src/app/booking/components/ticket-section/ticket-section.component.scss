@@ -1,0 +1,30 @@
+:host {
+  margin: 0 auto;
+  display: block;
+  max-width: 1128px;
+}
+
+.button-group {
+  margin: 40px 0 20px 0;
+  display: flex;
+  gap: 40px;
+  justify-content: flex-end;
+
+  .btn-back {
+    width: 126px;
+    height: 60px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    color:  #11397E;
+  }
+
+  .btn-continue {
+    width: 126px;
+    height: 60px;
+    background: #11397E;
+    border-radius: 4px;
+
+  }
+}

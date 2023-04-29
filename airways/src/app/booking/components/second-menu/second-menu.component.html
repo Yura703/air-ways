@@ -1,13 +1,13 @@
 <div class="wrapper">
   <div class="second-menu">
-    <div class="second-menu__title">{{ ticketInfo.from }}</div>
+    <div class="second-menu__title">{{ searchData.sityFrom }}</div>
     <img src="assets/flys.svg" alt="to" class="second-menu__icon">
-    <div class="second-menu__title">{{ ticketInfo.to }}</div>
+    <div class="second-menu__title">{{ searchData.sityTo }}</div>
     <div class="second-menu__return">Return</div>
     <div class="second-menu__dot"></div>
-    <div>{{ ticketInfo.dateFrom }} - {{ ticketInfo.dateTo }}</div>
+    <div>{{ searchData.departureDate | date:'dLLL' }} - {{ searchData.arrivalDate | date:'dLLL' }}</div>
     <div class="second-menu__dot"></div>
-    <div>{{ ticketInfo.person.summ }}</div>
+    <div>{{ searchData.passengers.amountPassengers }}</div>
     <img src="assets/person-icon.svg" alt="person" class="second-menu__person-icon">
 
     <button class="second-menu__btn" (click)="changeAvailableEdit()">Edit</button>
@@ -15,22 +15,35 @@
 </div>
 
 <div class="edit" *ngIf="isAvailableEdit">
-  <div>
+  <div class="edit__sity">
     <p class="edit__title">From</p>
-    <p class="edit__content">{{ ticketInfo.from }} {{ ticketInfo.fromABR }}</p>
-    <!-- ! сделать пайп менять цвет на серый -->
+    <p class="edit__content">
+      <span>{{ searchData.sityFrom }} </span>
+      <span style="color:#74767A">{{ searchData.sityFromABBR }}</span>
+    </p>
   </div>
-  <div>
+  <div class="edit__sity">
     <p class="edit__title">Destination</p>
-    <p class="edit__content">{{ ticketInfo.to }} {{ ticketInfo.toABR }}</p>
+    <p class="edit__content">
+      <span>{{ searchData.sityTo }} </span>
+      <span style="color:#74767A">{{ searchData.sityToABBR }}</span>
+    </p>
   </div>
-  <div>
-    <p class="edit__title">Dates</p>
-    <p class="edit__content">{{ ticketInfo.dateFrom }} - {{ ticketInfo.dateTo }}</p>
+  <div class="edit__date">
+    <mat-form-field appearance="fill" class="input-select">
+      <mat-label style="color:#49454F;">Dates</mat-label>
+      <mat-date-range-input [rangePicker]="picker" style="color:#1C1B1F;">
+          <input matStartDate placeholder="Start date" [formControl]="departureDate">
+          <input matEndDate  placeholder="End date" [formControl]="arrivalDate">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
   </div>
-  <div>
-    <p class="edit__title">Passengers</p>
-    <p class="edit__content">{{ ticketInfo.person.adult }} Adult, {{ ticketInfo.person.child }} Child, {{ ticketInfo.person.infant }} Infant</p>
+  <div class="edit__passengers">
+    <app-form-passengers [parentForm]="searchForm" class="input-select"></app-form-passengers>
+    <!-- <p class="edit__title">Passengers</p>
+    <p class="edit__content">{{ searchData.passengers.adult }} Adult, {{ searchData.passengers.child }} Child, {{ searchData.passengers.infant }} Infant</p> -->
   </div>
 </div>
 
