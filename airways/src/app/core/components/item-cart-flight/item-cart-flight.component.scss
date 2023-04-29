@@ -1,0 +1,26 @@
+@import './../../../../scss/abstracts/color-styles';
+@import './../../../../scss/abstracts/typography-styles';
+@import './../../../../styles.scss';
+
+.item-cart-flight {
+    width: 95%;
+    position: absolute;
+    left: 55px;
+    top: 30px;
+}
+
+.item-text {
+    color: $color-black;
+    @include label-large;
+    font-weight: 500;
+}
+
+.item-text-id {
+    color: $color-secondary-0;
+    font-weight: 700;
+}
+
+.item-text-price {
+    color: $color-green;
+}
+

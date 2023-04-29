@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import BookingModule from './booking/booking.module';
 import { MaterialModule } from './material/material.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,4 +22,4 @@ import { MaterialModule } from './material/material.module';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
