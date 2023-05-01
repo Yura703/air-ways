@@ -59,7 +59,6 @@ import { BasketItemEditComponent } from './components/basket-item-edit/basket-it
   exports: [
     HeaderComponent,
     FooterComponent,
-    FormPassengersComponent
   ]
 })
 export class CoreModule {}

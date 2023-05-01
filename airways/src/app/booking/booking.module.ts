@@ -9,6 +9,8 @@ import OneWayComponent from './components/one-way/one-way.component';
 import { CardSliderComponent } from './components/card-slider/card-slider.component';
 import { MaterialModule } from '../material/material.module';
 import { CoreModule } from '../core/core.module';
+import { PassengersFormComponent } from './components/passengers-form/passengers-form.component';
+import QuantityPassengersPipe from './pipes/quantity-passengers.pipe';
 @NgModule({
   declarations: [
     SecondMenuComponent,
@@ -17,6 +19,8 @@ import { CoreModule } from '../core/core.module';
     ReturnWayComponent,
     TicketSectionComponent,
     CardSliderComponent,
+    PassengersFormComponent,
+    QuantityPassengersPipe,
   ],
   imports: [
     CommonModule,

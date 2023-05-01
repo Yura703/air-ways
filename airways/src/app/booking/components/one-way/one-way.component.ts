@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-one-way',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./one-way.component.scss']
 })
 export default class OneWayComponent {
+
+  @Input() direction: boolean;
+
   public ticketInfo = {
     from: 'Dooblin',
     to: "Warsaw Modlin",

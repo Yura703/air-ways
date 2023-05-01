@@ -7,10 +7,10 @@
     <div class="second-menu__dot"></div>
     <div>{{ searchData.departureDate | date:'dLLL' }} - {{ searchData.arrivalDate | date:'dLLL' }}</div>
     <div class="second-menu__dot"></div>
-    <div>{{ searchData.passengers.amountPassengers }}</div>
+    <div>{{ searchData.passengers | quantityPassengers }}</div>
     <img src="assets/person-icon.svg" alt="person" class="second-menu__person-icon">
 
-    <button class="second-menu__btn" (click)="changeAvailableEdit()">Edit</button>
+    <button class="second-menu__btn" (click)="editSearchData()">Edit</button>
   </div>
 </div>
 
@@ -29,6 +29,7 @@
       <span style="color:#74767A">{{ searchData.sityToABBR }}</span>
     </p>
   </div>
+
   <div class="edit__date">
     <mat-form-field appearance="fill" class="input-select">
       <mat-label style="color:#49454F;">Dates</mat-label>
@@ -40,10 +41,9 @@
       <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
   </div>
+
   <div class="edit__passengers">
-    <app-form-passengers [parentForm]="searchForm" class="input-select"></app-form-passengers>
-    <!-- <p class="edit__title">Passengers</p>
-    <p class="edit__content">{{ searchData.passengers.adult }} Adult, {{ searchData.passengers.child }} Child, {{ searchData.passengers.infant }} Infant</p> -->
+    <app-passengers-form [passengers]="searchData.passengers"></app-passengers-form>
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 <div class="one-way__title">
   <img src="assets/fly.svg" alt="fly">
-  <span>{{ ticketInfo.from }} to {{ ticketInfo.to }}</span>
+  <span>{{ direction ? ticketInfo.from : ticketInfo.to }} to {{ direction ? ticketInfo.to : ticketInfo.from }}</span>
 </div>
 
 <app-card-slider *ngIf="isAvailablePrice"></app-card-slider>

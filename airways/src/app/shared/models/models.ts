@@ -15,7 +15,6 @@ export interface ISearchData {
     adult: string,
     child: string,
     infant: string,
-    amountPassengers?: string,
   }
 }
 

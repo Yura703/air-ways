@@ -95,12 +95,9 @@ p {
     box-sizing: border-box;
   }
 
-  &__edit__passengers {
-    width: 255px !important;
-    height: 56px;
-    border-radius: 4px;
-    background: #F4F6F9;
-    border: 0.5px solid rgba(116, 118, 122, 0.6);
+  &__passengers {
+    width: 255px;
+    height: 54px;
     box-sizing: border-box;
   }
 
@@ -123,4 +120,3 @@ p {
 .input-select {
   width: 100% !important;
 }
-
