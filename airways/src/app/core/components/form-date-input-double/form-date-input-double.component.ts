@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-date-input-double',
   templateUrl: './form-date-input-double.component.html',
-  styleUrls: ['./form-date-input-double.component.scss']
+  styleUrls: ['./form-date-input-double.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FormDateInputDoubleComponent {
 

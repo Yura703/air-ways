@@ -7,7 +7,7 @@
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
-    <div class="date-error"
+    <div
         *ngIf="_startDate?.invalid && (_startDate?.touched || _startDate?.dirty) || _returnDate?.invalid && (_returnDate?.touched || _returnDate?.dirty)">
         <p class="error-text" *ngIf="_startDate?.errors?.required">Field start date is required</p>
         <p class="error-text" *ngIf="_returnDate?.errors?.required">Field end date is required</p>

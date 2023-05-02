@@ -1,5 +1,6 @@
 @import "./../../../../scss/abstracts/color-styles";
 @import "./../../../../scss/abstracts/typography-styles";
+@import "./../../../../styles.scss";
 
 .format-date-container {
     transform: scale(0.73);
@@ -8,8 +9,14 @@
     border-radius: 4px;
 }
 
+.format-date-container {
+    .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+    }
 
+    
+}
 
-
-
-
+.mdc-list-item__primary-text{
+    font-size: 14px !important;
+}

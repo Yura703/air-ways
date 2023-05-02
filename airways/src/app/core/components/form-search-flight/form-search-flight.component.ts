@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormProcessingService } from '../../services/form-processing.service';
 import { ILocationForm } from '../form-location/form-location.component';
@@ -8,6 +8,7 @@ import { ILocationForm } from '../form-location/form-location.component';
   selector: 'app-form-search-flight',
   templateUrl: './form-search-flight.component.html',
   styleUrls: ['./form-search-flight.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class FormSearchFlightComponent {
