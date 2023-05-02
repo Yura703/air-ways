@@ -11,17 +11,21 @@ export const Reducers = (
 ): IState => {
     switch (action.type) {
         case AppActionTypes.AddSearchMain: {
-            console.log(action.payload)
             return {
                 ...state,
                 searchMain: action.payload,
             };
         }
         case AppActionTypes.AddInfoFlight: {
-
             return {
                 ...state,
-                reponseApi: action.payload,
+                dateFlight: action.payload,
+            };
+        }
+        case AppActionTypes.ErrorInfoFlight: {
+            return {
+                ...state,
+                errorLoading: true,
             };
         }
         default:

@@ -1,5 +1,5 @@
 <form class="searchFlight-container" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-    <mat-radio-group aria-label="Select an option" formControlName="type">
+    <mat-radio-group aria-label="Select an option" formControlName="type" (change)="changeType()">
         <mat-radio-button value="Round">Round Trip</mat-radio-button>
         <mat-radio-button value="One">One Way</mat-radio-button>
     </mat-radio-group>
@@ -10,23 +10,14 @@
     </div>
     <div>
         <div class="container-date-pass">
-            <mat-form-field appearance="fill" class="input-select-date">
-                <mat-date-range-input [rangePicker]="picker">
-                    <input matStartDate formControlName="startDate" placeholder="Start date">
-                    <input matEndDate formControlName="endDate" placeholder="End date">
-                </mat-date-range-input>
-                <mat-hint>Dates</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-            </mat-form-field>
-            <div class="date-error"
-                *ngIf="_startDate?.invalid && (_startDate?.touched || _startDate?.dirty) || _endDate?.invalid && (_endDate?.touched || _endDate?.dirty)">
-                <p class="error-text" *ngIf="_startDate?.errors?.required">Field start date is required</p>
-                <p class="error-text" *ngIf="_endDate?.errors?.required">Field end date is required</p>
-            </div>
+            <app-form-date-input-single [parentForm]="searchForm" *ngIf="tripOption === 'Round' else elseDate">
+            </app-form-date-input-single>
+            <ng-template #elseDate>
+                <app-form-date-input-double [parentForm]="searchForm"></app-form-date-input-double>
+            </ng-template>
+
             <app-form-passengers [parentForm]="searchForm"></app-form-passengers>
         </div>
     </div>
-
     <button class="button-search-flight">Search</button>
 </form>

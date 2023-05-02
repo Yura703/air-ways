@@ -12,7 +12,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { FlightEffects } from './store/effects/effects';
 import { ApiInterceptor } from './services/api.interceptor';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

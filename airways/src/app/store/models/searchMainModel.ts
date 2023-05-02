@@ -12,7 +12,9 @@ export interface ISearchMain {
     destination: ILocation;
     origin: ILocation;
     type: string;
-    startDate: Date;
-    endData: Date
+    date: {
+        startDate: Date,
+        returnDate?: Date,
+    }
     passengers: IPassengers[];
 }

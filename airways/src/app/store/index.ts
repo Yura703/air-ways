@@ -1,11 +1,12 @@
 import { ActionReducerMap } from "@ngrx/store";
-import { ISearchMain } from "./models/searchMainModel";
+import { IOptionsSearch } from "./models/optionsSearch";
 import { IAppStore, IState } from "./models/stateModel";
 import { Reducers } from "./reducers/reducers";
 
 export const stateApp: IState = {
-    reponseApi: [],
-    searchMain: {} as ISearchMain,
+    dateFlight: [],
+    searchMain: {} as IOptionsSearch,
+    errorLoading: false,
 };
 
 export const initalState: IAppStore = {

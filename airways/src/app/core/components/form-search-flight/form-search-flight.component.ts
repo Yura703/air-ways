@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { AddSearch } from 'src/app/store/actions/actions';
-import { IAppStore } from 'src/app/store/models/stateModel';
+import { FormProcessingService } from '../../services/form-processing.service';
 import { ILocationForm } from '../form-location/form-location.component';
 
 
@@ -27,22 +25,27 @@ export class FormSearchFlightComponent {
 
   searchForm: FormGroup;
   tripOption: string;
+  isReverse: boolean;
 
-  constructor(private fb: FormBuilder, private store: Store<IAppStore>) {
+  constructor(private fb: FormBuilder, private formProcessingService: FormProcessingService) {
     this.createForm();
   }
 
   private createForm() {
     this.searchForm = this.fb.group({
       type: ['Round', []],
-      startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
     });
+  }
+
+  changeType() {
+    this.tripOption === 'Round' ? this.tripOption = 'One' : this.tripOption = 'Round';
+    this.searchForm.removeControl('date');
   }
 
   reverseClick() {
     [this.locationForms[0].namelabel, this.locationForms[1].namelabel] = [this.locationForms[1].namelabel, this.locationForms[0].namelabel];
     this.locationForms.reverse();
+    this.isReverse ? this.isReverse = false : this.isReverse = true;
   }
 
   onSubmit() {
@@ -50,19 +53,7 @@ export class FormSearchFlightComponent {
       this.searchForm.markAllAsTouched()
       return;
     }
-    this.store.dispatch(new AddSearch(this.searchForm.value))
-    // const search: ISearchMain = {
-    // destination: this.searchForm.value
-    // }
-
+    this.formProcessingService.processingForm(this.searchForm.value, this.isReverse);
   }
 
-
-  get _startDate() {
-    return this.searchForm.get('startDate');
-  }
-
-  get _endDate() {
-    return this.searchForm.get('endDate');
-  }
 }

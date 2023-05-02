@@ -1,9 +1,10 @@
-import { IResponseApi } from "./responseApiFlightModel";
-import { ISearchMain } from "./searchMainModel";
+import { IOptionsSearch } from "./optionsSearch";
+import { IDateApi, IResponseApi } from "./responseApiFlightModel";
 
 export interface IState {
-    reponseApi: IResponseApi[];
-    searchMain: ISearchMain;
+    dateFlight: IDateApi[];
+    searchMain: IOptionsSearch;
+    errorLoading: boolean;
 }
 
 export interface IAppStore {
