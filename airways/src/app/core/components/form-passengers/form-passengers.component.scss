@@ -73,3 +73,9 @@
         width: 100%;
     }
 }
+
+.input-select-pass {
+    .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+    }
+}

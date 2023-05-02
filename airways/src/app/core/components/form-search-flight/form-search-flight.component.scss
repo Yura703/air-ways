@@ -1,4 +1,5 @@
 @import './../../../../styles.scss';
+@import './../../../../scss/abstracts/color-styles';
 
 .searchFlight-container {
     max-width: 580px;
@@ -6,7 +7,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    gap: 26px;
+    gap: 20px;
     padding: 24px;
     box-sizing: border-box;
     overflow: hidden;
@@ -56,27 +57,26 @@
     }
 }
 
-.input-select-date {
+::ng-deep .input-select-date {
     border-radius: 4px;
     border: 0.5px solid #CECECE;
+    position: relative;
 }
 
 .container-date-pass {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     position: relative;
     gap: 10px;
 }
 
-.error-text {
-    font-size: 10px;
-    color: red;
+.mdc-radio__outer-circle {
+    border-color: $color-primary  !important;
 }
 
-.date-error {
-    position: absolute;
-    bottom: -45px;
+.mdc-radio__inner-circle {
+    border-color: $color-primary  !important;
 }
 
 @media (max-width: 600px) {

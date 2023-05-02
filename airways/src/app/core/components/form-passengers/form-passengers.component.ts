@@ -1,16 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
-interface IPassengers {
-  name: string;
-  desc: string;
-  value: number;
-}
+import { IPassengers } from 'src/app/store/models/searchMainModel';
 
 @Component({
   selector: 'app-form-passengers',
   templateUrl: './form-passengers.component.html',
-  styleUrls: ['./form-passengers.component.scss']
+  styleUrls: ['./form-passengers.component.scss'],
+  encapsulation : ViewEncapsulation.None,
 })
 export class FormPassengersComponent {
 

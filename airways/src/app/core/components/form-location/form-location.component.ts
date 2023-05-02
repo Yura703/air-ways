@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, Observable, startWith, Subscription, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { IAirportResponse } from '../../../models/autocompleteModel';
@@ -12,7 +12,8 @@ export interface ILocationForm {
 @Component({
   selector: 'app-form-location',
   templateUrl: './form-location.component.html',
-  styleUrls: ['./form-location.component.scss']
+  styleUrls: ['./form-location.component.scss'],
+  encapsulation : ViewEncapsulation.None,
 })
 export class FormLocationComponent implements OnInit, OnDestroy {
 
