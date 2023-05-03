@@ -18,9 +18,7 @@ export class SelectMoneyFormatComponent {
   constructor(private store: Store<IAppStore>) { }
 
   changeMoney(option: IMoneyFormat) {
-    if (option !== "RUB") {
       this.store.dispatch(new MoneyChange(option));
-    }
   }
 }
 

@@ -35,9 +35,10 @@ export const Reducers = (
             };
         }
         case AppActionTypes.ExchangeChange: {
+            const exchange = Object.values(action.payload);
             return {
                 ...state,
-                exchangeRate: Number(Object.values(action.payload)[0]),
+                exchangeRate: exchange.length ? Number(exchange[0]) : 1,
             };
         }
         default:
