@@ -28,6 +28,18 @@ export const Reducers = (
                 errorLoading: true,
             };
         }
+        case AppActionTypes.MoneyChange: {
+            return {
+                ...state,
+                moneyFormat: action.payload,
+            };
+        }
+        case AppActionTypes.ExchangeChange: {
+            return {
+                ...state,
+                exchangeRate: Number(Object.values(action.payload)[0]),
+            };
+        }
         default:
             return state;
     }
