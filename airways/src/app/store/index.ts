@@ -7,6 +7,8 @@ export const stateApp: IState = {
     dateFlight: [],
     searchMain: {} as IOptionsSearch,
     errorLoading: false,
+    exchangeRate: 1,
+    moneyFormat: 'RUB',
 };
 
 export const initalState: IAppStore = {

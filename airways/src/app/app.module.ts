@@ -11,6 +11,7 @@ import { appReducers } from './store/index';
 import { EffectsModule } from '@ngrx/effects';
 import { FlightEffects } from './store/effects/effects';
 import { ApiInterceptor } from './services/api.interceptor';
+import { MoneyChangeEffects } from './store/effects/effectsMoney';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { ApiInterceptor } from './services/api.interceptor';
     MaterialModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([FlightEffects]),
+    EffectsModule.forRoot([FlightEffects, MoneyChangeEffects]),
   ],
   providers: [
     {

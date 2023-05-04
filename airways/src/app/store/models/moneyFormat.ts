@@ -1,0 +1,1 @@
+export type IMoneyFormat = 'EUR' | 'USD' | 'RUB' | 'BYN' | 'GBP';

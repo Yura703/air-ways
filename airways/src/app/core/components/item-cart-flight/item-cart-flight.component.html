@@ -4,6 +4,6 @@
     <p class="item-text">{{item.typeTrip}}</p>
     <p class="item-text">{{item.data}}</p>
     <p class="item-text">{{item.passengers}}</p>
-    <p class="item-text item-text-price">{{item.price}}</p>
+    <p class="item-text item-text-price">{{item.price | formatMoney | async}}</p>
     <app-basket-item-edit [item]="item"></app-basket-item-edit>
 </div>
