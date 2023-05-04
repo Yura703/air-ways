@@ -1,0 +1,56 @@
+<form class="card-passenger" id="form" [formGroup]="passengerForm" (ngSubmit)="onSubmit(passengerForm)">
+  <div class="card-passenger__title">{{countPassengers}} {{ageCategory}}</div>
+
+  <div class="card-passenger__data">
+    <mat-form-field appearance="outline" class="card-passenger__input">
+      <mat-label>First name</mat-label>
+      <input matInput type="text" formControlName="firstName" required
+      (change)="onSubmit(passengerForm)">
+      <mat-icon
+        class="card-passenger__input-icon color-red"
+        matSuffix
+        matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
+        matTooltipClass="example-tooltip-uppercase">
+        info
+      </mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="card-passenger__input">
+      <mat-label>Last name</mat-label>
+      <input matInput type="text" formControlName="lastName"  required
+      (change)="onSubmit(passengerForm)"/>
+      <mat-icon
+        class="card-passenger__input-icon"
+        matSuffix
+        matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
+        matTooltipClass="example-tooltip-uppercase">
+        info
+      </mat-icon>
+    </mat-form-field>
+
+    <mat-button-toggle-group formControlName="gender" class="card-passenger__gender"
+      (change)="onGenderChange($event)" (change)="onSubmit(passengerForm)">
+      <mat-button-toggle value="male" class="card-passenger__gender-btn">
+        <mat-icon *ngIf="displayGenderIcon === 1">check</mat-icon>
+        Male
+      </mat-button-toggle>
+      <mat-button-toggle value="female" class="card-passenger__gender-btn">
+        <mat-icon *ngIf="displayGenderIcon === 2">check</mat-icon>
+        Female
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+<!-- ? не всегда срабаьывает  -->
+    <mat-form-field appearance="outline" class="card-passenger__date" (change)="onSubmit(passengerForm)">
+      <mat-label>Date of birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="datepicker" placeholder="MM/DD/YYYY" required/>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+  <div class="card-passenger__assistance">
+    <mat-slide-toggle formControlName="assistance" (change)="onSubmit(passengerForm)"></mat-slide-toggle>
+    <img src="/assets/svg/assistent-icon.svg" alt="assist-icon">
+    <span>Need special assistance?</span>
+  </div>
+</form>

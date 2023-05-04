@@ -19,5 +19,5 @@ export interface IFlightInfo {
 })
 export class ItemCartFlightComponent {
   @Input() item: IFlightInfo;
- 
+
 }

@@ -1,0 +1,66 @@
+:host {
+  max-width: 1128px;
+  display: block;
+  margin: 0 auto;
+}
+
+.passengers-info {
+  width: 100%;
+  padding-top: 40px;
+
+  &__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #11397E;
+    display: flex;
+    gap: 12px;
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    color: #49454F;
+    padding-bottom: 20px;
+  }
+
+  &__contact {
+    padding-top: 40px;
+
+  }
+
+  &__contact-details {
+    display: flex;
+    gap: 20px;
+    padding: 32px 44px;
+    background: #FFFFFF;
+    width: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  &__contact-details-code {
+    background: #F4F6F9;
+    border-radius: 4px;
+    width: 255px;
+    height: 56px;
+  }
+
+  &__contact-details-phone {
+    background: #F4F6F9;
+    border-radius: 4px;
+    width: 255px;
+    height: 56px;
+  }
+
+  &__contact-details-email {
+    background: #F4F6F9;
+    border-radius: 4px;
+    margin-left: 20px;
+    width: 418px;
+    height: 56px;
+  }
+
+}

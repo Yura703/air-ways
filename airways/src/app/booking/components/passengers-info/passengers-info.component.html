@@ -1,0 +1,29 @@
+<div class="passengers-info">
+  <div class="passengers-info__title">
+    <img src="/assets/svg/person-icon.svg" alt="person-icon">
+    <span>Passengers</span>
+  </div>
+  <div class="passengers-info__text">Enter the passenger's names as they appear on document (passport or ID). </div>
+
+  <form id="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm)">
+    <app-card-passenger [(passengerData)]="adultData" [ageCategory]="ageCategory.adult"></app-card-passenger>
+    <app-card-passenger [(passengerData)]="childData" [ageCategory]="ageCategory.child"></app-card-passenger>
+    <app-card-passenger [(passengerData)]="infantData" [ageCategory]="ageCategory.infant"></app-card-passenger>
+
+    <div class="passengers-info__contact">
+      <div class="passengers-info__title">
+        <img src="/assets/svg/contact-icon.svg" alt="contact-icon">
+        <span>Contact details</span>
+      </div>
+      <div class="passengers-info__text">We need contact details to be able to deliver the latest information regarding your flight. </div>
+    </div>
+    <div class="passengers-info__contact-details">
+      <div class="passengers-info__contact-details-code"></div>
+      <div class="passengers-info__contact-details-phone"></div>
+      <div class="passengers-info__contact-details-email"></div>
+    </div>
+    <button type="submit">submit</button>
+  </form>
+
+
+</div>

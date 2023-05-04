@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReturnWayComponent } from './return-way.component';
+import { PassengersInfoComponent } from './passengers-info.component';
 
-describe('ReturnWayComponent', () => {
-  let component: ReturnWayComponent;
-  let fixture: ComponentFixture<ReturnWayComponent>;
+describe('PassengersInfoComponent', () => {
+  let component: PassengersInfoComponent;
+  let fixture: ComponentFixture<PassengersInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReturnWayComponent ]
+      declarations: [ PassengersInfoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ReturnWayComponent);
+    fixture = TestBed.createComponent(PassengersInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
