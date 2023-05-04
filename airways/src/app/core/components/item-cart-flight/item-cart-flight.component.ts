@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { Store } from '@ngrx/store';
+import { IAppStore } from 'src/app/store/models/stateModel';
+import { selectFormatMoney } from 'src/app/store/selectors/selectors';
 
 export interface IFlightInfo {
   item: string;
@@ -7,7 +10,7 @@ export interface IFlightInfo {
   typeTrip: string;
   data: string;
   passengers: string;
-  price: string;
+  price: number;
   completed: boolean;
   color: ThemePalette;
 }
@@ -19,5 +22,8 @@ export interface IFlightInfo {
 })
 export class ItemCartFlightComponent {
   @Input() item: IFlightInfo;
+  moneyFormat$ = this.store.select(selectFormatMoney);
+
+  constructor(private store: Store<IAppStore>){}
 
 }

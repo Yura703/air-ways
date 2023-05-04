@@ -19,7 +19,8 @@
     color: #74767A;
 }
 
-.error-text {
-    font-size: 10px;
-    color: red;
+.input-select-place {
+    .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+    }
 }

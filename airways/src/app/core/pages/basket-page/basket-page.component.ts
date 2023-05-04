@@ -18,7 +18,7 @@ const itemFlight: IFlightInfo = {
   typeTrip: 'Round trip',
   data: 'fsdfsdf',
   passengers: 'fdsfsdf',
-  price: '551',
+  price: 551,
   completed: false,
   color: 'warn',
 }
@@ -29,7 +29,7 @@ const itemFlight1: IFlightInfo = {
   typeTrip: 'Round trip',
   data: 'fsdf',
   passengers: 'fdsfsdf',
-  price: '$551',
+  price: 551,
   completed: false,
   color: 'warn',
 }
@@ -40,7 +40,7 @@ const itemFlight2: IFlightInfo = {
   typeTrip: 'Round trip',
   data: 'fsdf',
   passengers: 'fdsfsdf',
-  price: '$5345',
+  price: 5345,
   completed: false,
   color: 'warn',
 }

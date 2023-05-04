@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-select-date-format',
   templateUrl: './select-date-format.component.html',
   styleUrls: ['./select-date-format.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SelectDateFormatComponent {
   arrSelectFormatDate = [

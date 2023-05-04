@@ -21,6 +21,9 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { BasketPageComponent } from './pages/basket-page/basket-page.component';
 import { ItemCartFlightComponent } from './components/item-cart-flight/item-cart-flight.component';
 import { BasketItemEditComponent } from './components/basket-item-edit/basket-item-edit.component';
+import { FormDateInputSingleComponent } from './components/form-date-input-single/form-date-input-single.component';
+import { FormDateInputDoubleComponent } from './components/form-date-input-double/form-date-input-double.component';
+import { FormatMoneyPipe } from '../pipe/formatMoney.pipe';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,9 @@ import { BasketItemEditComponent } from './components/basket-item-edit/basket-it
     BasketPageComponent,
     ItemCartFlightComponent,
     BasketItemEditComponent,
+    FormDateInputSingleComponent,
+    FormDateInputDoubleComponent,
+    FormatMoneyPipe
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
   providers: [
