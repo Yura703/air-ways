@@ -1,0 +1,30 @@
+@import './../../../../scss/abstracts/color-styles';
+@import './../../../../scss/abstracts/typography-styles';
+@import './../../../../styles.scss';
+
+.item-text {
+    color: $color-black;
+    @include body-large;
+    font-weight: 700;
+}
+
+::ng-deep .item-cart-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 11% 17% 9% 28% 13% 7.5% 5%;
+    gap: 2%;
+}
+
+.item-cart-container_title {
+    padding: 15px 0px;
+    padding-left: 10px;
+}
+
+@media (max-width: 1150px) {
+
+    ::ng-deep .item-cart-container {
+        grid-template-columns: 11% 18% 10% 29% 13% 8% 5%;
+        gap: 5px;
+    }
+
+}

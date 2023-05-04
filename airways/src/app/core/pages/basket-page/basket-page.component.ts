@@ -1,48 +1,12 @@
-import { Component } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
-import { IFlightInfo } from '../../components/item-cart-flight/item-cart-flight.component';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { map, mergeMap, Observable, of } from 'rxjs';
+import { IFlightInfo } from 'src/app/store/models/flightInfo';
+import { IAppStore } from 'src/app/store/models/stateModel';
+import { selectFlightInfo } from 'src/app/store/selectors/selectors';
 
-
-export interface Task {
-  name: string;
+interface IFlightInfoCart extends IFlightInfo {
   completed: boolean;
-  color: ThemePalette;
-  subtasks?: IFlightInfo[];
-}
-
-
-
-const itemFlight: IFlightInfo = {
-  item: 'FR 1925',
-  flight: 'Dublin - Warshawa',
-  typeTrip: 'Round trip',
-  data: 'fsdfsdf',
-  passengers: 'fdsfsdf',
-  price: 551,
-  completed: false,
-  color: 'warn',
-}
-
-const itemFlight1: IFlightInfo = {
-  item: 'FR 192523',
-  flight: 'Dublin - Warshawa',
-  typeTrip: 'Round trip',
-  data: 'fsdf',
-  passengers: 'fdsfsdf',
-  price: 551,
-  completed: false,
-  color: 'warn',
-}
-
-const itemFlight2: IFlightInfo = {
-  item: 'FRff 192523',
-  flight: 'Dubliffn - Warshawa',
-  typeTrip: 'Round trip',
-  data: 'fsdf',
-  passengers: 'fdsfsdf',
-  price: 5345,
-  completed: false,
-  color: 'warn',
 }
 
 @Component({
@@ -50,37 +14,46 @@ const itemFlight2: IFlightInfo = {
   templateUrl: './basket-page.component.html',
   styleUrls: ['./basket-page.component.scss']
 })
-export class BasketPageComponent {
-  titleCartTable = ['№', 'Flight', 'Type trip', 'Data & Time', 'Passengers', 'Price'];
-  task: Task = {
-    name: 'All',
-    completed: false,
-    color: 'primary',
-    subtasks: [
-      itemFlight,
-      itemFlight1,
- 
-    ],
-  };
-
+export class BasketPageComponent implements OnInit {
+  flightInfoCart: IFlightInfoCart[];
   allComplete: boolean = false;
+  selectValue: number;
+  flightInfo$ = this.store.select(selectFlightInfo).pipe(
+    map(value => value.map(item => { return { ...item, 'completed': false } })));
+
+  constructor(private store: Store<IAppStore>) { }
+
+  ngOnInit(): void {
+    this.flightInfo$.subscribe(val => this.flightInfoCart = val);
+    this.updateSelect();
+  }
 
   updateAllComplete() {
-    this.allComplete = this.task.subtasks != null && this.task.subtasks.every(t => t.completed);
+    this.allComplete = this.flightInfoCart != null && this.flightInfoCart.every(t => t.completed);
+    this.updateSelect();
   }
 
   someComplete(): boolean {
-    if (this.task.subtasks == null) {
+    if (this.flightInfoCart == null) {
       return false;
     }
-    return this.task.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+    return this.flightInfoCart.filter(t => t.completed).length > 0 && !this.allComplete;
   }
 
   setAll(completed: boolean) {
+
     this.allComplete = completed;
-    if (this.task.subtasks == null) {
+    if (this.flightInfoCart == null) {
       return;
     }
-    this.task.subtasks.forEach(t => (t.completed = completed));
+    this.flightInfoCart.forEach(t => (t.completed = completed));
+    this.updateSelect();
+  }
+
+  private updateSelect() {
+    this.selectValue = 0;
+    this.flightInfoCart.map(item =>
+      item.completed ? this.selectValue++ : this.selectValue
+    )
   }
 }

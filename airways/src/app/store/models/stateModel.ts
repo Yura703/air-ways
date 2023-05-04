@@ -1,3 +1,4 @@
+import { IFlightInfo } from "./flightInfo";
 import { IMoneyFormat } from "./moneyFormat";
 import { IOptionsSearch } from "./optionsSearch";
 import { IDateApi, IResponseApi } from "./responseApiFlightModel";
@@ -8,6 +9,9 @@ export interface IState {
     errorLoading: boolean;
     exchangeRate: number;
     moneyFormat: IMoneyFormat;
+
+
+    tempFlight: IFlightInfo[]; //временно потом отредактировать
 }
 
 export interface IAppStore {

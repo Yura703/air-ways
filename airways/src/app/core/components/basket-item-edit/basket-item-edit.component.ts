@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IFlightInfo } from '../item-cart-flight/item-cart-flight.component';
+import { IFlightInfo } from 'src/app/store/models/flightInfo';
+
 
 @Component({
   selector: 'app-basket-item-edit',

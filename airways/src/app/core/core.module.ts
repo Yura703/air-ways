@@ -25,6 +25,7 @@ import { FormDateInputSingleComponent } from './components/form-date-input-singl
 import { FormDateInputDoubleComponent } from './components/form-date-input-double/form-date-input-double.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { FormatMoneyPipe } from '../pipe/formatMoney.pipe';
+import { TableHeaderCartComponent } from './components/table-header-cart/table-header-cart.component';
 
 @NgModule({
   declarations: [
@@ -51,8 +52,9 @@ import { FormatMoneyPipe } from '../pipe/formatMoney.pipe';
     BasketItemEditComponent,
     FormDateInputSingleComponent,
     FormDateInputDoubleComponent,
-    FormatMoneyPipe
+    FormatMoneyPipe,
     UserPageComponent,
+    TableHeaderCartComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
   providers: [

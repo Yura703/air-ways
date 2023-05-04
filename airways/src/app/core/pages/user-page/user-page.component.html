@@ -1,4 +1,13 @@
 <div class="user-page-container">
     <p class="user-page_title">User Account page</p>
+    <div class="header-table-user">
+        <app-table-header-cart></app-table-header-cart>
+    </div>
+    <ul *ngFor="let flight of flightInfo$ | async">
+        <li>
+            <app-item-cart-flight [item]="flight"></app-item-cart-flight>
+        </li>
 
+    </ul>
+    <button>Log out of profile</button>
 </div>

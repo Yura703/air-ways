@@ -9,6 +9,31 @@ export const stateApp: IState = {
     errorLoading: false,
     exchangeRate: 1,
     moneyFormat: 'RUB',
+
+    
+    tempFlight: [{
+        item: 'FR 1925',
+        flight: 'Dublin - Warshawa',
+        typeTrip: 'Round trip',
+        data: 'fsdfsdf',
+        passengers: 'fdsfsdf',
+        price: 551,
+      }, {
+        item: 'FR 192523',
+        flight: 'Dublin - Warshawa',
+        typeTrip: 'Round trip',
+        data: 'fsdf',
+        passengers: 'fdsfsdf',
+        price: 551,
+      }, {
+        item: 'FRff 192523',
+        flight: 'Dubliffn - Warshawa',
+        typeTrip: 'Round trip',
+        data: 'fsdf',
+        passengers: 'fdsfsdf',
+        price: 5345,
+      }
+      ],
 };
 
 export const initalState: IAppStore = {
