@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BasketPageComponent } from './core/pages/basket-page/basket-page.component';
 import { MainPageComponent } from './core/pages/main-page/main-page.component';
+import { UserPageComponent } from './core/pages/user-page/user-page.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'basket',
     component: BasketPageComponent,
+  },
+  {
+    path: 'user',
+    component: UserPageComponent,
   },
 ];
 
