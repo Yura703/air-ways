@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -9,6 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { fakeUser } from '../../../../constants/fake-user';
 import { AuthUserDataService } from '../../../services/auth-user-data.service';
 import { FormValidationService } from '../../../services/form-validation.service';
+import { GoogleAuthService } from '../../../services/google-auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,12 +19,20 @@ import { FormValidationService } from '../../../services/form-validation.service
 })
 export class SignUpComponent implements OnInit {
   @Input() parent: { childType: string };
+  @ViewChild('googleButton') googleButton: ElementRef;
   signUpForm!: FormGroup;
+
+  user: SocialUser | undefined;
+
+  loggedIn: boolean | undefined;
+  errorMessage: string;
 
   constructor(
     public dialogRef: MatDialogRef<SignUpComponent>,
     private formValidationService: FormValidationService,
-    private authUserDataService: AuthUserDataService
+    private authUserDataService: AuthUserDataService,
+    private authService: SocialAuthService,
+    private googleAuthService: GoogleAuthService
   ) {}
 
   ngOnInit() {
@@ -54,6 +64,7 @@ export class SignUpComponent implements OnInit {
       datepicker: new FormControl(),
       gender: new FormControl('male'),
     });
+    this.getGoogleUserData();
   }
 
   get email() {
@@ -103,8 +114,27 @@ export class SignUpComponent implements OnInit {
   }
   onSubmit(form: FormGroup) {
     if (form.valid) {
-      this.authUserDataService.authUserDataUp.next(this.signUpForm.value); // отправка данных на сервер
-      this.toggleChild();
+      this.googleAuthService
+        .createUser(
+          this.signUpForm.value.email,
+          this.signUpForm.value.password,
+          this.signUpForm.value.firstName,
+          this.signUpForm.value.lastName
+        )
+        .subscribe({
+          next: (response) => {
+            console.log(response);
+            this.authUserDataService.authUserDataUp.next(this.signUpForm.value);
+            this.toggleChild();
+          },
+          error: (err) => {
+            console.error(err.error);
+            if (err.error === 'Email already exists') {
+              this.errorMessage = err.error; // Вывести сообщение об ошибке
+            }
+          },
+        }); //------------------------------------------------------------------ отправка данных на сервер
+
       // this.dialogRef.close();
     } else {
       // Пользователю выводятся соответствующие предупреждения
@@ -141,5 +171,24 @@ export class SignUpComponent implements OnInit {
     this.signUpForm.get('lastName')?.setValue(fakeUser.lastName);
     this.signUpForm.get('email')?.setValue(fakeUser.email);
     this.signUpForm.get('phoneNumber')?.setValue(fakeUser.phoneNumber);
+  }
+
+  getGoogleUserData() {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.signUpForm.get('firstName')?.setValue(user.firstName);
+      this.signUpForm.get('lastName')?.setValue(user.lastName);
+
+      this.signUpForm.get('email')?.setValue(user.email);
+      this.loggedIn = true;
+      console.log(user);
+    });
+  }
+
+  continueWithGoogle() {
+    const element = this.googleButton?.nativeElement;
+    if (element) {
+      element.click();
+    }
   }
 }

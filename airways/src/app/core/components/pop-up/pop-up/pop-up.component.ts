@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./pop-up.component.scss'],
 })
 export class PopUpComponent {
-  childType = 'signUp';
+  childType = 'logIn';
 
   toggleChild() {
-    this.childType = this.childType === 'signUp' ? 'logIn' : 'signUp';
+    this.childType = this.childType === 'logIn' ? 'signUp' : 'logIn';
   }
 }
