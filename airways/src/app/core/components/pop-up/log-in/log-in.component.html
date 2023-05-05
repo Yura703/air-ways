@@ -55,6 +55,7 @@
         </mat-error>
       </mat-error>
     </mat-form-field>
+    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
     <button class="sign-up" mat-button type="submit">Log In</button>
   </form>
 </div>
