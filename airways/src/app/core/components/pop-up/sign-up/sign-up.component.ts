@@ -178,7 +178,6 @@ export class SignUpComponent implements OnInit {
       this.user = user;
       this.signUpForm.get('firstName')?.setValue(user.firstName);
       this.signUpForm.get('lastName')?.setValue(user.lastName);
-
       this.signUpForm.get('email')?.setValue(user.email);
       this.loggedIn = true;
       console.log(user);

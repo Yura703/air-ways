@@ -34,7 +34,7 @@ export class GoogleAuthService {
   }
   // Функция удаления юзеров по порядку
   removeUser() {
-    const url = `https://auth-new.herokuapp.com/users/${this.userId}`;
+    const url = `${this.apiUrl}/users/${this.userId}`;
     this.userId += 1;
     return this.http.delete(url);
   }

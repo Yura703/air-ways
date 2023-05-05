@@ -1,5 +1,5 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ServerDataInterface } from '../../../../shared/models/server-data.inerface';
@@ -14,11 +14,14 @@ import { GoogleAuthService } from '../../../services/google-auth.service';
 })
 export class LogInComponent implements OnInit {
   @Input() parent: { childType: string };
+  @ViewChild('googleButton') googleButton!: ElementRef;
   logInForm!: FormGroup;
 
   public authUserData: SignUpInterface | string;
 
   userName: string;
+
+  logIn: boolean;
 
   errorMessage: string;
 
@@ -36,6 +39,7 @@ export class LogInComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
     });
     this.fakeAuth();
+    // this.getGoogleUserData();
   }
 
   get email() {
@@ -51,7 +55,6 @@ export class LogInComponent implements OnInit {
         .logIn(this.logInForm.value.email, this.logInForm.value.password)
         .subscribe({
           next: (response: ServerDataInterface) => {
-            // const serverData = response as ServerDataInterface;
             console.log(response);
             if (typeof this.authUserData !== 'string') {
               this.logInForm.get('email')?.setValue(this.logInForm.value.email);
@@ -106,4 +109,19 @@ export class LogInComponent implements OnInit {
       },
     });
   }
+
+  continueWithGoogle() {
+    this.googleButton.nativeElement.querySelector('div[role="button"]').click();
+  }
+
+  // getGoogleUserData() {
+  //   this.authSubscription = this.authService.authState.subscribe((user) => {
+  //     this.logInForm.get('email')?.setValue(user.email);
+  //     this.logInForm.get('password')?.setValue('**************');
+  //     this.userName = `${user.firstName} ${user.lastName}`;
+  //     this.authUserDataService.userName.next(this.userName);
+  //     this.authUserDataService.logIn.next(true);
+  //     this.dialogRef.close();
+  //   });
+  // }
 }
