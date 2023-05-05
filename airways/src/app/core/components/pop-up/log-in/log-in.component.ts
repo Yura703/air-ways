@@ -96,4 +96,14 @@ export class LogInComponent implements OnInit {
       );
     }
   }
+  removeUser() {
+    this.googleAuthService.removeUser().subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (err) => {
+        console.error(err.error);
+      },
+    });
+  }
 }
