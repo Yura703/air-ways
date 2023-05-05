@@ -19,7 +19,7 @@ import { GoogleAuthService } from '../../../services/google-auth.service';
 })
 export class SignUpComponent implements OnInit {
   @Input() parent: { childType: string };
-  @ViewChild('googleButton') googleButton: ElementRef;
+  @ViewChild('googleButton') googleButton!: ElementRef;
   signUpForm!: FormGroup;
 
   user: SocialUser | undefined;
@@ -186,9 +186,6 @@ export class SignUpComponent implements OnInit {
   }
 
   continueWithGoogle() {
-    const element = this.googleButton?.nativeElement;
-    if (element) {
-      element.click();
-    }
+    this.googleButton.nativeElement.querySelector('div[role="button"]').click();
   }
 }

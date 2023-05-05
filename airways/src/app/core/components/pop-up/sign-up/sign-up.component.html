@@ -3,7 +3,7 @@
     <button mat-stroked-button (click)="continueWithGoogle()">
       <span class="google"></span> Continue with Google
     </button>
-    <asl-google-signin-button id="googleButton"  logo_alignment="center" type='standard' size='medium'  width="400" text="continue_with"></asl-google-signin-button>
+    <asl-google-signin-button #googleButton id="googleButton"  logo_alignment="center" type='standard' size='medium'  width="400" text="continue_with"></asl-google-signin-button>
 
     <button mat-stroked-button (click)="fakeAuth()">
       <span class="facebook"></span>Continue with Facebook
