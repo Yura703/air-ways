@@ -25,6 +25,7 @@ export class SignUpComponent implements OnInit {
   user: SocialUser | undefined;
 
   loggedIn: boolean | undefined;
+
   errorMessage: string;
 
   constructor(
@@ -124,16 +125,13 @@ export class SignUpComponent implements OnInit {
         .subscribe({
           next: (response) => {
             console.log(response);
-            this.authUserDataService.authUserDataUp.next(this.signUpForm.value);
+            this.authUserDataService.authUserDataUp.next(this.signUpForm.value); // отправка данных на сервер
             this.toggleChild();
           },
           error: (err) => {
-            console.error(err.error);
-            if (err.error === 'Email already exists') {
-              this.errorMessage = err.error; // Вывести сообщение об ошибке
-            }
+            this.errorMessage = err.error; // Вывести сообщение об ошибке
           },
-        }); //------------------------------------------------------------------ отправка данных на сервер
+        });
 
       // this.dialogRef.close();
     } else {

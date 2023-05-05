@@ -7,7 +7,7 @@ import { ServerDataInterface } from '../../shared/models/server-data.inerface';
   providedIn: 'root',
 })
 export class GoogleAuthService {
-  private apiUrl = 'https://auth-new.herokuapp.com/';
+  private apiUrl = 'https://auth-new.herokuapp.com';
   userId = 1;
 
   constructor(private http: HttpClient) {}
@@ -32,7 +32,16 @@ export class GoogleAuthService {
     console.log(body);
     return this.http.post<ServerDataInterface>(`${this.apiUrl}/signin`, body);
   }
-  // Функция удаления юзеров по порядку
+
+  // Длинна массва
+
+  lengthUsersArray() {
+    const url = `${this.apiUrl}/users`;
+    return this.http.get(url);
+  }
+
+  // Функция удаления юзеров начиная с последнего
+
   removeUser() {
     const url = `${this.apiUrl}/users/${this.userId}`;
     this.userId += 1;

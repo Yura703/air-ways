@@ -56,6 +56,7 @@ export class LogInComponent implements OnInit {
         .subscribe({
           next: (response: ServerDataInterface) => {
             console.log(response);
+
             if (typeof this.authUserData !== 'string') {
               this.logInForm.get('email')?.setValue(this.logInForm.value.email);
               this.logInForm
@@ -68,10 +69,7 @@ export class LogInComponent implements OnInit {
             this.dialogRef.close();
           },
           error: (err) => {
-            console.error(err.error);
-            if (err.error === 'Incorrect password') {
-              this.errorMessage = err.error;
-            }
+            this.errorMessage = err.error;
           },
         });
     } else {
@@ -100,6 +98,14 @@ export class LogInComponent implements OnInit {
     }
   }
   removeUser() {
+    this.googleAuthService.lengthUsersArray().subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (err) => {
+        console.error(err.error);
+      },
+    });
     this.googleAuthService.removeUser().subscribe({
       next: (response) => {
         console.log(response);
