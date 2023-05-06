@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPassengerData } from 'src/app/shared/models/models';
+import { IPassengers, ISearchMain } from 'src/app/store/models/searchMainModel';
 
 @Component({
   selector: 'app-passengers-info',
@@ -21,7 +22,26 @@ export class PassengersInfoComponent implements OnInit {
     infant: 'Infant'
   }
 
+  private mockPassengers: IPassengers[] = [{
+    name: ' Adult',
+    desc: '',
+    value: 2,
+  }, {
+    name: ' Child',
+    desc: '',
+    value: 2,
+  }, {
+    name: 'Infant',
+    desc: '',
+    value: 2,
+  }];
+
+  public passengers: string[];
+
   ngOnInit(): void {
+    this.passengers = this.mockPassengers.map((passenger) => [...Array(passenger.value).fill(passenger.name)]).flat(1);
+console.log(this.passengers);
+
     this.signUpForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
 
@@ -53,21 +73,12 @@ export class PassengersInfoComponent implements OnInit {
     return this.signUpForm.get('email');
   }
 
-  get firstName() {
-    return this.signUpForm.get('firstName');
-  }
-  get lastName() {
-    return this.signUpForm.get('lastName');
-  }
   get phoneNumber() {
     return this.signUpForm.get('phoneNumber');
   }
 
   get phoneCodeCountry() {
     return this.signUpForm.get('phoneCodeCountry');
-  }
-  get gender() {
-    return this.signUpForm.get('gender');
   }
 
   validateInput(key: AbstractControl | null) {

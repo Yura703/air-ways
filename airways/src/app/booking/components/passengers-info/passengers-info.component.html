@@ -6,9 +6,12 @@
   <div class="passengers-info__text">Enter the passenger's names as they appear on document (passport or ID). </div>
 
   <form id="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm)">
-    <app-card-passenger [(passengerData)]="adultData" [ageCategory]="ageCategory.adult"></app-card-passenger>
-    <app-card-passenger [(passengerData)]="childData" [ageCategory]="ageCategory.child"></app-card-passenger>
-    <app-card-passenger [(passengerData)]="infantData" [ageCategory]="ageCategory.infant"></app-card-passenger>
+    <div *ngFor="let passenger of passengers">
+      <app-card-passenger [(passengerData)]="adultData" [ageCategory]="passenger[0]"></app-card-passenger>
+      <!-- <app-card-passenger [(passengerData)]="childData" [ageCategory]="ageCategory.child"></app-card-passenger>
+      <app-card-passenger [(passengerData)]="infantData" [ageCategory]="ageCategory.infant"></app-card-passenger> -->
+    </div>
+
 
     <div class="passengers-info__contact">
       <div class="passengers-info__title">
@@ -24,6 +27,4 @@
     </div>
     <button type="submit">submit</button>
   </form>
-
-
 </div>

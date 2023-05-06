@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { FlightEffects } from './store/effects/effects';
 import { ApiInterceptor } from './services/api.interceptor';
 import { MoneyChangeEffects } from './store/effects/effectsMoney';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { MoneyChangeEffects } from './store/effects/effectsMoney';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([FlightEffects, MoneyChangeEffects]),
   ],

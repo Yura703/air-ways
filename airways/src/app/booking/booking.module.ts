@@ -10,6 +10,7 @@ import { MaterialModule } from '../material/material.module';
 import { CoreModule } from '../core/core.module';
 import { PassengersFormComponent } from './components/passengers-form/passengers-form.component';
 import QuantityPassengersPipe from './pipes/quantity-passengers.pipe';
+import FullSityNamePipe from './pipes/full-sity-name.pipe';
 import { PassengersInfoComponent } from './components/passengers-info/passengers-info.component';
 import { CardPassengerComponent } from './components/card-passenger/card-passenger.component';
 @NgModule({
@@ -21,6 +22,7 @@ import { CardPassengerComponent } from './components/card-passenger/card-passeng
     CardSliderComponent,
     PassengersFormComponent,
     QuantityPassengersPipe,
+    FullSityNamePipe,
     PassengersInfoComponent,
     CardPassengerComponent,
   ],

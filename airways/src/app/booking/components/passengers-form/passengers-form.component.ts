@@ -1,6 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ISearchData } from 'src/app/shared/models/models';
+import { Store, select } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { AddSearch } from 'src/app/store/actions/actions';
+import { takeUntil } from 'rxjs/operators';
+import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
+import { IAppStore } from 'src/app/store/models/stateModel';
+import { selectSearchMain } from 'src/app/store/selectors/selectors';
 import BookingService from '../../service/booking.service';
 
 @Component({
@@ -9,52 +15,79 @@ import BookingService from '../../service/booking.service';
   styleUrls: ['./passengers-form.component.scss']
 })
 export class PassengersFormComponent implements OnInit, OnDestroy {
-  @Input() passengers: ISearchData["passengers"];
+  public searchData: IOptionsSearch;
 
-  passengersForm: FormGroup;
+  public passengersForm: FormGroup;
 
-  optionPassenger: string;
+  public optionPassenger: string;
 
-  constructor(private fb: FormBuilder, private bookingService: BookingService) {}
+  public searchData$: Observable<IOptionsSearch>;
+
+  private ngUnsubscribe = new Subject<void>();
+
+  constructor(private fb: FormBuilder, private bookingService: BookingService, public store: Store<IAppStore>) {}
 
   ngOnInit(): void {
+    this.searchData$ = this.store.pipe(select(selectSearchMain));
+
+    this.searchData$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(searchData => this.searchData = searchData);
+
     this.passengersForm = this.fb.group({
-      value: [this.passengers],
+      value: [this.searchData],
     });
 
     this.updatePassengers();
   }
 
   ngOnDestroy(): void {
-    this.bookingService.editSearchData({
-      passengers: this.passengers,
-    })
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   private updatePassengers() {
-    this.optionPassenger = `${this.passengers.adult} Adult, ${this.passengers.child} Child, ${this.passengers.infant} Infant`;
+    this.optionPassenger = `${this.searchData.passengers[0].value} Adult, ${this.searchData.passengers[1].value} Child, ${this.searchData.passengers[2].value} Infant`;
   }
 
   clickPlus(event: Event, name: string) {
     event.stopPropagation();
-    let count = Number(this.passengers[name as keyof ISearchData["passengers"]]);
-    this.passengers = {
-      ...this.passengers,
-      [name]: count += 1,
-    }
+
+    const passengers = this.searchData.passengers.map(passenger => {
+      if (passenger.name === name) {
+        const count = passenger.value + 1;
+        return {
+          ...passenger,
+          value: count,
+        }
+      }
+      return passenger;
+    });
+
+    this.store.dispatch(new AddSearch({
+      ...this.searchData,
+      passengers: passengers,
+    }));
+
     this.updatePassengers();
   }
 
   clickMinus(event: Event, name: string) {
     event.stopPropagation();
-    let count = Number(this.passengers[name as keyof ISearchData["passengers"]]);
-    if (count) {
-      this.passengers = {
-        ...this.passengers,
-        [name]: count -= 1,
+    const passengers = this.searchData.passengers.map(passenger => {
+      if (passenger.name === name) {
+        const count = passenger.value - 1;
+        return {
+          ...passenger,
+          value: count,
+        }
       }
-      this.updatePassengers();
-    }
-  }
+      return passenger;
+    });
 
+    this.store.dispatch(new AddSearch({
+      ...this.searchData,
+      passengers: passengers,
+    }));
+
+    this.updatePassengers();
+  }
 }

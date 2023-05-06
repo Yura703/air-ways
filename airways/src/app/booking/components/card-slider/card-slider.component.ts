@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-card-slider',
@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./card-slider.component.scss']
 })
 export class CardSliderComponent {
+  @Input() idFlight: number;
+
+  @Output() idFlightChange = new EventEmitter<number>();
+
   public ticketInfo = {
     from: 'Dooblin',
     to: "Warsaw Modlin",
@@ -17,4 +21,6 @@ export class CardSliderComponent {
   public currentDate = new Date();
   public currency = "€";
   public cost = 146.7777777;
+
+  //this.passengerDataChange.emit({ ...form.value } as IPassengerData)
 }

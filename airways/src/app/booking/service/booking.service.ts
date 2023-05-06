@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ISearchData, ITicketData } from 'src/app/shared/models/models';
+import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
+import { IAppStore } from 'src/app/store/models/stateModel';
+import { selectSearchMain } from 'src/app/store/selectors/selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -86,7 +90,10 @@ export default class BookingService {
 
   public searchData$ = new BehaviorSubject(this.mockSearchData);
 
-  constructor() {
+  public optionsQuery$ = this.store.pipe(select(selectSearchMain));
+
+  constructor(private store: Store<IAppStore>) {
+
     this.searchData$.subscribe(data => this.searchData = data);
   }
 
@@ -103,4 +110,9 @@ export default class BookingService {
       }
     );
   }
+
+  // getSearchData(): Observable<IOptionsSearch> {
+  //   this.optionsQuery$.subscribe(param => this.optionsQuery = param);
+
+  // }
 }

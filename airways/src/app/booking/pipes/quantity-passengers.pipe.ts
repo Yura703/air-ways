@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ISearchData } from 'src/app/shared/models/models';
+import { IPassengers } from 'src/app/store/models/searchMainModel';
 @Pipe({
   name: 'quantityPassengers',
 })
 export default class QuantityPassengersPipe implements PipeTransform {
-  transform(passengers: ISearchData["passengers"]) {
+  transform(passengers: IPassengers[] | undefined) {
+    if (!passengers) return 0;
 
-    return +passengers.adult + +passengers.child + +passengers.infant;
+    return passengers.reduce((acc, cv)=> acc + cv.value, 0);
   }
 }

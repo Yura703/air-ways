@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPassengerData } from 'src/app/shared/models/models';
+import { FormErrorMessage } from '../../models/error-message';
 
 @Component({
   selector: 'app-card-passenger',
@@ -14,11 +15,17 @@ export class CardPassengerComponent implements OnInit {
 
   public passengerForm!: FormGroup;
 
+  public errors: { [key: string]: string } = {};
+
   public displayGenderIcon = 0;
 
   public countPassengers = 1;
 
+  public maxDatePicker: Date;
+
   ngOnInit(): void {
+    this.maxDatePicker = new Date();
+
     this.passengerForm = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
@@ -30,37 +37,18 @@ export class CardPassengerComponent implements OnInit {
         Validators.minLength(2),
         Validators.pattern('[A-Za-z]+'),
       ]),
-      gender: new FormControl(),
-      datepicker: new FormControl(),
+      gender: new FormControl('', [
+        Validators.required,
+      ]),
+      datepicker: new FormControl('', [
+        Validators.required,
+        Validators.max(Number(new Date())),
+      ]),
       assistance: new FormControl(),
     });
+
+    this.passengerForm.statusChanges.subscribe(() => this.updateErrorMessages());
   }
-
-  // get email() {
-  //   return this.signUpForm.get('email');
-  // }
-
-  // get firstName() {
-  //   return this.signUpForm.get('firstName');
-  // }
-  // get lastName() {
-  //   return this.signUpForm.get('lastName');
-  // }
-  // get phoneNumber() {
-  //   return this.signUpForm.get('phoneNumber');
-  // }
-
-  // get phoneCodeCountry() {
-  //   return this.signUpForm.get('phoneCodeCountry');
-  // }
-  // get gender() {
-  //   return this.signUpForm.get('gender');
-  // // }
-
-  // validateInput(key: AbstractControl | null) {
-  //   key?.markAsTouched();
-  //   key?.updateValueAndValidity();
-  // }
 
   onGenderChange(event: { source: unknown; value: string }) {
     if (event.value === 'male') this.displayGenderIcon = 1;
@@ -72,5 +60,21 @@ export class CardPassengerComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.passengerDataChange.emit({ ...form.value } as IPassengerData)
+  }
+
+  updateErrorMessages() {
+    this.errors = {};
+    for (const message of FormErrorMessage) {
+      const control = this.passengerForm.get(message.forControl);
+      if (
+        control &&
+        control.dirty &&
+        control.invalid &&
+        control.errors?.[message.forValidator] &&
+        !this.errors[message.forControl]
+      ) {
+        this.errors[message.forControl] = message.text;
+      }
+    }
   }
 }

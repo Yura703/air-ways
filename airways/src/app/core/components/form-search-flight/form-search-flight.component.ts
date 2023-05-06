@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormProcessingService } from '../../services/form-processing.service';
 import { ILocationForm } from '../form-location/form-location.component';
 
@@ -28,7 +29,7 @@ export class FormSearchFlightComponent {
   tripOption: string;
   isReverse: boolean;
 
-  constructor(private fb: FormBuilder, private formProcessingService: FormProcessingService) {
+  constructor(private fb: FormBuilder, private formProcessingService: FormProcessingService, private router: Router) {
     this.createForm();
   }
 
@@ -55,6 +56,7 @@ export class FormSearchFlightComponent {
       return;
     }
     this.formProcessingService.processingForm(this.searchForm.value, this.isReverse);
+    this.router.navigate(['flight-booking']);
   }
 
 }
