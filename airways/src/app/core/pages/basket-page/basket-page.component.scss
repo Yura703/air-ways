@@ -30,18 +30,12 @@
     width: 100%;
 }
 
-::ng-deep .mat-mdc-checkbox label {
-    width: 100%;
-}
 
-::ng-deep .mat-mdc-checkbox .mdc-form-field {
-    width: 100%;
-}
 
 .cart-li {
     list-style: none;
     margin-left: -40px;
-    position: relative;
+
     height: 80px;
     border-bottom: solid 1px $color-secondary-50;
     align-items: center;

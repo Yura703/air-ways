@@ -11,8 +11,17 @@
 ::ng-deep .item-cart-container {
     width: 100%;
     display: grid;
-    grid-template-columns: 11% 17% 9% 28% 13% 7.5% 5%;
+    grid-template-columns: 11% 17% 9% 28% 13% 7.5%;
     gap: 2%;
+    align-items: center;
+}
+
+::ng-deep .mat-mdc-checkbox label {
+    width: 100%;
+}
+
+::ng-deep .mat-mdc-checkbox .mdc-form-field {
+    width: 100%;
 }
 
 .item-cart-container_title {
@@ -23,7 +32,7 @@
 @media (max-width: 1150px) {
 
     ::ng-deep .item-cart-container {
-        grid-template-columns: 11% 18% 10% 29% 13% 8% 5%;
+        grid-template-columns: 11% 18% 10% 29% 13% 8%;
         gap: 5px;
     }
 

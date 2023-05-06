@@ -1,7 +1,8 @@
 import { IFlightInfo } from "./flightInfo";
 import { IMoneyFormat } from "./moneyFormat";
 import { IOptionsSearch } from "./optionsSearch";
-import { IDateApi, IResponseApi } from "./responseApiFlightModel";
+import { IDateApi } from "./responseApiFlightModel";
+
 
 export interface IState {
     dateFlight: IDateApi[];

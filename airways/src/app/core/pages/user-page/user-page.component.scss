@@ -27,3 +27,25 @@
     background: $color-neutral-80;
     border: 0.5px solid $color-secondary-60;
 }
+
+.user-page-li {
+    height: 60px;
+    list-style: none;
+    border-bottom: solid 1px $color-secondary-50;
+}
+
+.user-page-button {
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    border-radius: 4px;
+    background: $color-primary;
+    @include button-medium;
+    font-weight: 500;
+    color: $color-neutral-100;
+    border: none;
+
+    &:hover {
+        background: #1562e7;
+    }
+}

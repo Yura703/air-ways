@@ -3,7 +3,11 @@
     <p class="item-text">{{item.flight}}</p>
     <p class="item-text">{{item.typeTrip}}</p>
     <p class="item-text">{{item.data}}</p>
-    <p class="item-text">{{item.passengers}}</p>
+    <div>
+        <div *ngFor="let pass of item.passengers">
+            <span class="item-text">{{pass.value}} x </span>
+            <span class="item-text">{{pass.name}}</span>
+        </div>
+    </div>
     <p class="item-text item-text-price">{{item.price | formatMoney | async}}</p>
-    <app-basket-item-edit [item]="item"></app-basket-item-edit>
 </div>
