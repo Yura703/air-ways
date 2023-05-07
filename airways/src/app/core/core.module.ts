@@ -65,6 +65,7 @@ import { FormatMoneyPipe } from '../pipe/formatMoney.pipe';
   exports: [
     HeaderComponent,
     FooterComponent,
+    FormatMoneyPipe
   ]
 })
 export class CoreModule {}

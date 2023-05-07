@@ -1,10 +1,10 @@
 <div class="one-way__title">
   <img src="assets/fly.svg" alt="fly">
-  <span>{{ direction ? ((dateFlight$ | async)![0].origin | fullSityName | async)
-    : ((dateFlight$ | async)![0].destination | fullSityName | async) }}
+  <span>{{ direction ? ((dateFlight$ | async)![0]?.origin | fullSityName | async)
+    : ((dateFlight$ | async)![0]?.destination | fullSityName | async) }}
     to
-    {{ direction ? ((dateFlight$ | async)![0].destination | fullSityName | async)
-    : ((dateFlight$ | async)![0].origin | fullSityName | async) }}</span>
+    {{ direction ? ((dateFlight$ | async)![0]?.destination | fullSityName | async)
+    : ((dateFlight$ | async)![0]?.origin | fullSityName | async) }}</span>
 </div>
 
 <app-card-slider [(idFlight)]="idFlight" *ngIf="isAvailablePrice"></app-card-slider>

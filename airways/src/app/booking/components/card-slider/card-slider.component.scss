@@ -17,6 +17,8 @@ p {
   height: 83px;
   position: relative;
 
+
+
   &__card {
     width: 20%;
     height: 70px;
@@ -81,33 +83,62 @@ p {
     background: #E9EDF1;
     color: black;
   }
+
+  :nth-child(5) {
+    height: 83px;
+    border-bottom: 4px solid #F1C933 ;
+    box-sizing: border-box;
+
+    .card__future-date {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 20px;
+      color: #11397E;
+      padding-top: 4px;
+    }
+
+    .card__day {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.25px;
+      color: #74767A;
+      padding-bottom: 4px;
+    }
+
+    .card__cost {
+      font-weight: 700;
+      font-size: 30px;
+      color: #11397E;
+    }
+  }
 }
 
-.card-slider__card.active {
-  height: 83px;
-  border-bottom: 4px solid #F1C933 ;
-  box-sizing: border-box;
+// .card-slider__card.active {
+//   height: 83px;
+//   border-bottom: 4px solid #F1C933 ;
+//   box-sizing: border-box;
 
-  .card__date {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 20px;
-    color: #11397E;
-    padding-top: 4px;
-  }
+//   .card__date {
+//     font-weight: 700;
+//     font-size: 20px;
+//     line-height: 20px;
+//     color: #11397E;
+//     padding-top: 4px;
+//   }
 
-  .card__day {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.25px;
-    color: #74767A;
-    padding-bottom: 4px;
-  }
+//   .card__day {
+//     font-weight: 400;
+//     font-size: 14px;
+//     line-height: 20px;
+//     letter-spacing: 0.25px;
+//     color: #74767A;
+//     padding-bottom: 4px;
+//   }
 
-  .card__cost {
-    font-weight: 700;
-    font-size: 30px;
-    color: #11397E;
-  }
-}
+//   .card__cost {
+//     font-weight: 700;
+//     font-size: 30px;
+//     color: #11397E;
+//   }
+//}

@@ -1,26 +1,47 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { IDateApi } from 'src/app/store/models/responseApiFlightModel';
+import { IAppStore } from 'src/app/store/models/stateModel';
+import { selectAllFlight } from 'src/app/store/selectors/selectors';
+import BookingService from '../../service/booking.service';
 
 @Component({
   selector: 'app-card-slider',
   templateUrl: './card-slider.component.html',
   styleUrls: ['./card-slider.component.scss']
 })
-export class CardSliderComponent {
+
+export class CardSliderComponent implements OnInit {
   @Input() idFlight: number;
 
   @Output() idFlightChange = new EventEmitter<number>();
 
-  public ticketInfo = {
-    from: 'Dooblin',
-    to: "Warsaw Modlin",
-    dateFrom: '1Mar',
-    dateTo: '18Mar',
-    person: '3',
+  public dateFlight$: Observable<IDateApi[]>;
+
+  public previousDay = new Date();
+  public futureDay = new Date();
+
+  public idFlightStart = 0;
+  public idFlightEnd = 3;
+
+  constructor(public bookingService: BookingService, public store: Store<IAppStore>) {}
+
+  ngOnInit(): void {
+    this.dateFlight$ = this.store.pipe(select(selectAllFlight));
   }
 
-  public currentDate = new Date();
-  public currency = "€";
-  public cost = 146.7777777;
+  moveSlider(direction: string): void {
+    if (direction === 'left' && this.idFlight) {
+      this. idFlightChange.emit(this.idFlight -= 1);
+    } else if (direction === 'right' && this.idFlight < 9) {
+      this. idFlightChange.emit(this.idFlight += 1);
+    }
 
-  //this.passengerDataChange.emit({ ...form.value } as IPassengerData)
+    if (this.idFlight < 3) this.idFlightStart = 0;
+    else this.idFlightStart = this.idFlight - 2;
+
+    if (this.idFlight < 7) this.idFlightEnd = this.idFlight + 3;
+    else this.idFlightEnd = 10;
+  }
 }

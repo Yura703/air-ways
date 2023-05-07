@@ -13,6 +13,9 @@ import QuantityPassengersPipe from './pipes/quantity-passengers.pipe';
 import FullSityNamePipe from './pipes/full-sity-name.pipe';
 import { PassengersInfoComponent } from './components/passengers-info/passengers-info.component';
 import { CardPassengerComponent } from './components/card-passenger/card-passenger.component';
+import { NgxFlickingModule } from '@egjs/ngx-flicking';
+import ChangeDayToDatePipe from './pipes/change-day-to-date.pipe';
+
 @NgModule({
   declarations: [
     SecondMenuComponent,
@@ -23,6 +26,7 @@ import { CardPassengerComponent } from './components/card-passenger/card-passeng
     PassengersFormComponent,
     QuantityPassengersPipe,
     FullSityNamePipe,
+    ChangeDayToDatePipe,
     PassengersInfoComponent,
     CardPassengerComponent,
   ],
@@ -30,7 +34,8 @@ import { CardPassengerComponent } from './components/card-passenger/card-passeng
     CommonModule,
     BookingRoutingModule,
     MaterialModule,
-    CoreModule
+    CoreModule,
+    NgxFlickingModule
   ],
   exports: [BookingPageComponent]
 })
