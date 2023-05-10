@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ServerDataInterface } from '../../shared/models/server-data.inerface';
+import { UserInterface } from '../../shared/models/server-user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -35,16 +36,17 @@ export class GoogleAuthService {
 
   // Длинна массва
 
-  lengthUsersArray() {
+  lengthUsersArray(): Observable<UserInterface[]> {
     const url = `${this.apiUrl}/users`;
-    return this.http.get(url);
+    const users = this.http.get(url);
+    console.log(users);
+    return this.http.get<UserInterface[]>(url);
   }
 
-  // Функция удаления юзеров начиная с последнего
+  // Функция удаления всех юзеров
 
-  removeUser() {
-    const url = `${this.apiUrl}/users/${this.userId}`;
-    this.userId += 1;
+  removeUser(id: number) {
+    const url = `${this.apiUrl}/users/${id}`;
     return this.http.delete(url);
   }
 }

@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { fakeUser } from '../../../../constants/fake-user';
 import { ServerDataInterface } from '../../../../shared/models/server-data.inerface';
+import { UserInterface } from '../../../../shared/models/server-user.interface';
 import { SignUpInterface } from '../../../../shared/models/sign-up-interface';
 import { AuthUserDataService } from '../../../services/auth-user-data.service';
 import { GoogleAuthService } from '../../../services/google-auth.service';
@@ -103,16 +104,10 @@ export class LogInComponent implements OnInit {
   }
   removeUser() {
     this.googleAuthService.lengthUsersArray().subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: (err) => {
-        console.error(err.error);
-      },
-    });
-    this.googleAuthService.removeUser().subscribe({
-      next: (response) => {
-        console.log(response);
+      next: (response: UserInterface[]) => {
+        response.forEach((el: UserInterface) => {
+          this.googleAuthService.removeUser(el.id);
+        });
       },
       error: (err) => {
         console.error(err.error);
