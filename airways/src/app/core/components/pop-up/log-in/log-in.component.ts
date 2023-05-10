@@ -2,6 +2,7 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { fakeUser } from '../../../../constants/fake-user';
 import { ServerDataInterface } from '../../../../shared/models/server-data.inerface';
 import { SignUpInterface } from '../../../../shared/models/sign-up-interface';
 import { AuthUserDataService } from '../../../services/auth-user-data.service';
@@ -97,6 +98,9 @@ export class LogInComponent implements OnInit {
       );
     }
   }
+  fakeAuthLogIn() {
+    this.logInForm.get('email')?.setValue(fakeUser.email);
+  }
   removeUser() {
     this.googleAuthService.lengthUsersArray().subscribe({
       next: (response) => {
@@ -118,6 +122,9 @@ export class LogInComponent implements OnInit {
 
   continueWithGoogle() {
     this.googleButton.nativeElement.querySelector('div[role="button"]').click();
+    this.authService.authState.subscribe((user) => {
+      this.logInForm.get('email')?.setValue(user.email);
+    });
   }
 
   // getGoogleUserData() {
