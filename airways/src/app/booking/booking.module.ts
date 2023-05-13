@@ -15,6 +15,7 @@ import { PassengersInfoComponent } from './components/passengers-info/passengers
 import { CardPassengerComponent } from './components/card-passenger/card-passenger.component';
 import { NgxFlickingModule } from '@egjs/ngx-flicking';
 import ChangeDayToDatePipe from './pipes/change-day-to-date.pipe';
+import { ColorBgByCountDirective } from './directives/color-bg-by-count.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import ChangeDayToDatePipe from './pipes/change-day-to-date.pipe';
     ChangeDayToDatePipe,
     PassengersInfoComponent,
     CardPassengerComponent,
+    ColorBgByCountDirective,
   ],
   imports: [
     CommonModule,

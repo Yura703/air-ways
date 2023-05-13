@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { IPassengerData } from 'src/app/shared/models/models';
 import { FormErrorMessage } from '../../models/error-message';
 
@@ -8,18 +9,21 @@ import { FormErrorMessage } from '../../models/error-message';
   templateUrl: './card-passenger.component.html',
   styleUrls: ['./card-passenger.component.scss']
 })
-export class CardPassengerComponent implements OnInit {
-  @Input()  passengerData!: IPassengerData;
+export class CardPassengerComponent implements OnInit, OnDestroy {
+
+  @Input()  passengerData!: IPassengerData[];
+
   @Input()  ageCategory!: string;
-  @Output() passengerDataChange = new EventEmitter<IPassengerData>();
+
+  @Output() passengerDataChange = new EventEmitter<IPassengerData[]>();
+
+  private ngUnsubscribe = new Subject<void>();
 
   public passengerForm!: FormGroup;
 
   public errors: { [key: string]: string } = {};
 
   public displayGenderIcon = 0;
-
-  public countPassengers = 1;
 
   public maxDatePicker: Date;
 
@@ -47,7 +51,12 @@ export class CardPassengerComponent implements OnInit {
       assistance: new FormControl(),
     });
 
-    this.passengerForm.statusChanges.subscribe(() => this.updateErrorMessages());
+    this.passengerForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   onGenderChange(event: { source: unknown; value: string }) {
@@ -57,9 +66,11 @@ export class CardPassengerComponent implements OnInit {
       this.passengerForm.get('gender')?.setValue(event.value);
     }
   }
-
+//! создает много обьектов. Вызфывктся при каждом изменении
   onSubmit(form: FormGroup) {
-    this.passengerDataChange.emit({ ...form.value } as IPassengerData)
+  if(!this.passengerData) {
+      this.passengerDataChange.emit([{ ...form.value } as IPassengerData])
+    } else this.passengerDataChange.emit([...this.passengerData, { ...form.value } as IPassengerData])
   }
 
   updateErrorMessages() {
@@ -76,5 +87,9 @@ export class CardPassengerComponent implements OnInit {
         this.errors[message.forControl] = message.text;
       }
     }
+  }
+
+  isNotInfant(): boolean {
+    return !this.ageCategory.includes('Infant');
   }
 }

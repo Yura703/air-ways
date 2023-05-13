@@ -15,6 +15,8 @@ import BookingService from '../../service/booking.service';
 export class CardSliderComponent implements OnInit {
   @Input() idFlight: number;
 
+  @Input() direction: boolean;
+
   @Output() idFlightChange = new EventEmitter<number>();
 
   public dateFlight$: Observable<IDateApi[]>;
@@ -28,7 +30,7 @@ export class CardSliderComponent implements OnInit {
   constructor(public bookingService: BookingService, public store: Store<IAppStore>) {}
 
   ngOnInit(): void {
-    this.dateFlight$ = this.store.pipe(select(selectAllFlight));
+    this.dateFlight$ = this.bookingService.getFlightDate(this.direction);
   }
 
   moveSlider(direction: string): void {

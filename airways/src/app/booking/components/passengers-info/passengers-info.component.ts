@@ -1,84 +1,138 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { IPassengerData } from 'src/app/shared/models/models';
-import { IPassengers, ISearchMain } from 'src/app/store/models/searchMainModel';
+import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
+import { IAppStore } from 'src/app/store/models/stateModel';
+import { selectSearchMain } from 'src/app/store/selectors/selectors';
+import { FormErrorMessage } from '../../models/error-message';
 
 @Component({
   selector: 'app-passengers-info',
   templateUrl: './passengers-info.component.html',
   styleUrls: ['./passengers-info.component.scss']
 })
-export class PassengersInfoComponent implements OnInit {
+export class PassengersInfoComponent implements OnInit, OnDestroy {
 
-  signUpForm!: FormGroup;
+  private ngUnsubscribe = new Subject<void>();
 
-  public adultData: IPassengerData;
-  public childData: IPassengerData;
-  public infantData: IPassengerData;
+  public passengerInfoForm!: FormGroup;
+
+  public adultData: IPassengerData[];
+  public childData: IPassengerData[];
+  public infantData: IPassengerData[];
+
+  public searchData$: Observable<IOptionsSearch>;
 
   public ageCategory = {
-    adult: 'Adult',
-    child: 'Child',
-    infant: 'Infant'
+    adult: ' Adult',
+    child: ' Child',
+    infant: ' Infant'
   }
 
-  private mockPassengers: IPassengers[] = [{
-    name: ' Adult',
-    desc: '',
-    value: 2,
-  }, {
-    name: ' Child',
-    desc: '',
-    value: 2,
-  }, {
-    name: 'Infant',
-    desc: '',
-    value: 2,
-  }];
+  public errors: { [key: string]: string } = {};
 
   public passengers: string[];
 
-  ngOnInit(): void {
-    this.passengers = this.mockPassengers.map((passenger) => [...Array(passenger.value).fill(passenger.name)]).flat(1);
-console.log(this.passengers);
+  public searchData: IOptionsSearch;
 
-    this.signUpForm = new FormGroup({
+  constructor(public store: Store<IAppStore>) {}
+
+  ngOnInit(): void {
+    this.searchData$ = this.store.pipe(select(selectSearchMain));
+
+    this.searchData$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (searchData) => this.searchData = searchData
+    );
+
+    this.passengers = this.searchData.passengers.map((passenger) => [...Array(passenger.value).fill(passenger.name)]).flat(1);
+
+    this.passengerInfoForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
 
-      firstName: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern('[A-Za-z]+'),
-      ]),
-      lastName: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern('[A-Za-z]+'),
-      ]),
       phoneNumber: new FormControl('', [
         Validators.required,
         Validators.maxLength(12),
         Validators.minLength(12),
         Validators.pattern('[0-9-]*'),
       ]),
-      termsAndConditions: new FormControl('', Validators.required),
-      citizenship: new FormControl('', Validators.required),
+
       phoneCodeCountry: new FormControl('', Validators.required),
-      datepicker: new FormControl(),
-      gender: new FormControl('male'),
+
+      adult: new FormControl(),
+      child: new FormControl(),
+      infant: new FormControl(),
     });
+
+    this.passengerInfoForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  updateErrorMessages() {
+    this.errors = {};
+    for (const message of FormErrorMessage) {
+      const control = this.passengerInfoForm.get(message.forControl);
+      if (
+        control &&
+        control.dirty &&
+        control.invalid &&
+        control.errors?.[message.forValidator] &&
+        !this.errors[message.forControl]
+      ) {
+        this.errors[message.forControl] = message.text;
+      }
+    }
   }
 
   get email() {
-    return this.signUpForm.get('email');
+    return this.passengerInfoForm.get('email');
   }
 
   get phoneNumber() {
-    return this.signUpForm.get('phoneNumber');
+    return this.passengerInfoForm.get('phoneNumber');
   }
 
   get phoneCodeCountry() {
-    return this.signUpForm.get('phoneCodeCountry');
+    return this.passengerInfoForm.get('phoneCodeCountry');
+  }
+
+  get adult() {
+    return this.passengerInfoForm.get('adult');
+  }
+
+  get child() {
+    return this.passengerInfoForm.get('child');
+  }
+
+  get infant() {
+    return this.passengerInfoForm.get('infant');
+  }
+
+  onGenderChange(event: { source: unknown; value: string }) {
+    if (this.passengerInfoForm) {
+      this.passengerInfoForm.get('gender')?.setValue(event.value);
+    }
+  }
+
+  handlePhoneCodeCountryChange(value: string) {
+    this.phoneCodeCountry?.setValue(value);
+  }
+
+  onInput(event: any) {
+    let value = event.target.value;
+    value = value.replace(/-/g, '');
+    if (value.length > 3) {
+      value = value.slice(0, 3) + '-' + value.slice(3);
+    }
+    if (value.length > 7) {
+      value = value.slice(0, 7) + '-' + value.slice(7);
+    }
+    event.target.value = value;
   }
 
   validateInput(key: AbstractControl | null) {
@@ -86,13 +140,16 @@ console.log(this.passengers);
     key?.updateValueAndValidity();
   }
 
-  onGenderChange(event: { source: unknown; value: string }) {
-    if (this.signUpForm) {
-      this.signUpForm.get('gender')?.setValue(event.value);
-    }
-  }
-
   onSubmit(form: FormGroup) {
-    console.log(this.adultData);
+    if (this.passengerInfoForm) {
+      this.passengerInfoForm.get('adult')?.setValue(this.adultData);
+      this.passengerInfoForm.get('child')?.setValue(this.childData);
+      this.passengerInfoForm.get('infant')?.setValue(this.infantData);
+    }
+    console.log('adultData=', this.adultData);
+    console.log('childData=', this.childData);
+    console.log('infantData=', this.infantData);
+
+    console.log('form=',form.value);
   }
 }

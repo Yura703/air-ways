@@ -1,4 +1,4 @@
 <app-one-way [direction]="true"></app-one-way>
-<app-one-way [direction]="false"></app-one-way>
+<app-one-way *ngIf="typeFlyRoundOrOneWay$ | async" [direction]="false"></app-one-way>
 
 

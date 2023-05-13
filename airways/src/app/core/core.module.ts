@@ -52,7 +52,12 @@ import { FormatMoneyPipe } from '../pipe/formatMoney.pipe';
     FormDateInputDoubleComponent,
     FormatMoneyPipe
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   providers: [
     MatDatepickerModule,
     [
@@ -65,7 +70,8 @@ import { FormatMoneyPipe } from '../pipe/formatMoney.pipe';
   exports: [
     HeaderComponent,
     FooterComponent,
-    FormatMoneyPipe
+    FormatMoneyPipe,
+    PhoneCodeCountryComponent
   ]
 })
 export class CoreModule {}

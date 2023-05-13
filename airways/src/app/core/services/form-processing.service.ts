@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { from } from 'rxjs';
 import { AddSearch } from 'src/app/store/actions/actions';
 import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
-import { ISearchMain } from 'src/app/store/models/searchMainModel';
+import { IPassengers, ISearchMain } from 'src/app/store/models/searchMainModel';
 import { IAppStore } from 'src/app/store/models/stateModel';
 
 @Injectable({
@@ -12,12 +12,12 @@ import { IAppStore } from 'src/app/store/models/stateModel';
 export class FormProcessingService {
   constructor(private store: Store<IAppStore>) { }
 
-  processingForm(form: ISearchMain, reverse: boolean) {
+  processingForm(form: Omit<ISearchMain, 'passengers'> & {passengers: {value: IPassengers[]}} , reverse: boolean) {
     const optionSearch: IOptionsSearch = {
       type: form.type,
       origin: this.changeLocation(form.origin.location),
       destination: this.changeLocation(form.destination.location),
-      passengers: form.passengers,
+      passengers: form.passengers.value,
       startDate: this.formatDate(form.date.startDate),
       returnDate: form.date.returnDate ? this.formatDate(form.date.returnDate) : undefined,
     }

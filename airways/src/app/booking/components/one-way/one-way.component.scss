@@ -60,7 +60,7 @@ p {
 
     &__text-date {
       font-weight: 400;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 16px;
       color: $color-neutral-30;
     }
@@ -111,8 +111,8 @@ p {
   }
 
   &__price {
-    padding: 0 0 0 27px;
-    max-width: 210px;
+    // padding: 0 0 0 27px;
+    // max-width: 210px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -120,7 +120,6 @@ p {
 
   &__price-seats {
     height: 40px;
-    background: red;
   }
 
   &__price-text {

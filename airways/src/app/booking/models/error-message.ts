@@ -12,6 +12,14 @@ const FormErrorMessage = [
   new ErrorMessage('gender', 'required', 'Please enter a gender'),
   new ErrorMessage('datepicker', 'required', 'Please enter a date'),
   new ErrorMessage('datepicker', 'max', 'Please enter a date from the past'),
+
+  new ErrorMessage('phoneNumber', 'required', 'Please enter a phone number'),
+  new ErrorMessage('phoneNumber', 'minlength', 'The phone number is too short'),
+  new ErrorMessage('phoneNumber', 'maxlength', 'The phone number is too long'),
+  new ErrorMessage('phoneNumber', 'pattern', 'Invalid character'),
+
+  new ErrorMessage('email', 'required', 'Please enter a email'),
+  new ErrorMessage('email', 'email', 'The email is invalid'),
 ];
 
 export  {
