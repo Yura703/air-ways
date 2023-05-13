@@ -1,8 +1,10 @@
 <div mat-dialog-content>
   <div class="button-column">
-    <button mat-stroked-button (click)="fakeAuth()">
+    <button mat-stroked-button (click)="continueWithGoogle()">
       <span class="google"></span> Continue with Google
     </button>
+    <asl-google-signin-button #googleButton id="googleButton"  logo_alignment="center" type='standard' size='medium'  width="400" text="continue_with"></asl-google-signin-button>
+
     <button mat-stroked-button (click)="fakeAuth()">
       <span class="facebook"></span>Continue with Facebook
     </button>
@@ -193,6 +195,7 @@
         >You must agree to the terms and conditions</mat-error
       >
     </mat-error>
+    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
     <button class="sign-up" mat-button type="submit">Sign Up</button>
   </form>
 </div>

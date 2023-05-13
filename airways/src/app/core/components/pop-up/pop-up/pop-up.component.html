@@ -14,5 +14,5 @@
     Sign Up
   </button>
 </div>
+<app-log-in *ngIf="childType === 'logIn'" [parent]="this"></app-log-in>
 <app-sign-up *ngIf="childType === 'signUp'" [parent]="this"></app-sign-up>
-<app-log-in *ngIf="childType === 'logIn'"></app-log-in>

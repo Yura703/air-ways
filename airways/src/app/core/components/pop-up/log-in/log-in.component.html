@@ -1,9 +1,19 @@
 <div mat-dialog-content>
   <div class="button-column">
-    <button mat-stroked-button (click)="fakeAuth()" >
+    <button mat-stroked-button (click)="continueWithGoogle()">
       <span class="google"></span> Continue with Google
     </button>
-    <button mat-stroked-button>
+    <asl-google-signin-button
+      #googleButton
+      id="googleButton"
+      logo_alignment="center"
+      type="standard"
+      size="medium"
+      width="400"
+      text="continue_with"
+    ></asl-google-signin-button>
+
+    <button mat-stroked-button (click)="fakeAuthLogIn()">
       <span class="facebook"></span>Continue with Facebook
     </button>
   </div>
@@ -55,6 +65,8 @@
         </mat-error>
       </mat-error>
     </mat-form-field>
+    <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
     <button class="sign-up" mat-button type="submit">Log In</button>
+    <button mat-stroked-button (click)="removeUser()">Remove all users</button>
   </form>
 </div>

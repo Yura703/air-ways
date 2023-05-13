@@ -14,7 +14,7 @@ mat-dialog-content {
   justify-content: space-between;
   height: 128px;
   margin-bottom: 32px;
-  button {
+  button{
     height: 56px;
     span {
       position: absolute;
@@ -32,6 +32,10 @@ mat-dialog-content {
   .facebook {
     background-image: url("../../../../../assets/svg/facebook.svg");
   }
+}
+
+#googleButton{
+  display: none;
 }
 
 .line-container {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { SignUpInterface } from '../../../shared/models/sign-up-interface';
 import { AuthUserDataService } from '../../services/auth-user-data.service';
 import { PopUpComponent } from '../pop-up/pop-up/pop-up.component';
 
@@ -11,23 +10,24 @@ import { PopUpComponent } from '../pop-up/pop-up/pop-up.component';
 })
 export class LoginComponentComponent implements OnInit {
   private dialogRef!: MatDialogRef<PopUpComponent>;
+
   logIn = false;
+
   userName = 'Sign in';
+
   constructor(
     private dialog: MatDialog,
     private authUserDataService: AuthUserDataService
   ) {}
 
   ngOnInit(): void {
-    this.authUserDataService.authUserDataIn.subscribe(
-      (value: string | SignUpInterface) => {
-        if (typeof value !== 'string') {
-          this.userName = `${value.firstName} ${value.lastName}`;
-        }
-      }
-    );
     this.authUserDataService.logIn.subscribe((value: boolean) => {
       this.logIn = value;
+    });
+    this.authUserDataService.userName.subscribe((value: string) => {
+      if (value) {
+        this.userName = value;
+      }
     });
   }
   openDialog() {
@@ -36,7 +36,9 @@ export class LoginComponentComponent implements OnInit {
     });
   }
   clearLocalStorage() {
-    this.authUserDataService.logIn.next(false);
     this.userName = 'Sign in';
+    this.logIn = false;
+    this.authUserDataService.logIn.next(this.logIn);
+    this.authUserDataService.userName.next(this.userName);
   }
 }
