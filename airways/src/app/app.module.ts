@@ -1,10 +1,11 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import BookingModule from './booking/booking.module';
 import { MaterialModule } from './material/material.module';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/index';
@@ -12,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { FlightEffects } from './store/effects/effects';
 import { ApiInterceptor } from './services/api.interceptor';
 import { MoneyChangeEffects } from './store/effects/effectsMoney';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,7 @@ import { MoneyChangeEffects } from './store/effects/effectsMoney';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([FlightEffects, MoneyChangeEffects]),
   ],

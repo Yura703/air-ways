@@ -1,0 +1,58 @@
+<div class="passengers-info">
+  <div class="passengers-info__title">
+    <img src="/assets/svg/person-icon.svg" alt="person-icon">
+    <span>Passengers</span>
+  </div>
+  <div class="passengers-info__text">Enter the passenger's names as they appear on document (passport or ID). </div>
+
+  <form id="form" [formGroup]="passengerInfoForm" (ngSubmit)="onSubmit(passengerInfoForm)">
+    <div *ngFor="let passenger of passengers; let index = index">
+      <app-card-passenger *ngIf="passenger === 'Adults'" [(passengerData)]="adultData" [ageCategory]="index + 1 + ageCategory.adult"></app-card-passenger>
+      <app-card-passenger *ngIf="passenger === 'Child'" [(passengerData)]="childData" [ageCategory]="index + 1 + ageCategory.child"></app-card-passenger>
+      <app-card-passenger *ngIf="passenger === 'Infant'" [(passengerData)]="infantData" [ageCategory]="index + 1 + ageCategory.infant"></app-card-passenger>
+    </div>
+
+    <div class="passengers-info__contact">
+      <div class="passengers-info__title">
+        <img src="/assets/svg/contact-icon.svg" alt="contact-icon">
+        <span>Contact details</span>
+      </div>
+      <div class="passengers-info__text">We need contact details to be able to deliver the latest information regarding your flight. </div>
+    </div>
+    <div class="passengers-info__contact-details">
+      <div class="passengers-info__contact-details-code">
+        <app-phone-code-country (phoneCodeCountryChange)="handlePhoneCodeCountryChange($event)" style="width: 100%;"></app-phone-code-country>
+      </div>
+      <div class="passengers-info__contact-details-phone">
+        <mat-form-field appearance="outline"
+          [class.has-error]="errors['phoneNumber']"
+          [class.has-success]="!errors['phoneNumber'] && passengerInfoForm.controls['phoneNumber'].value">
+          <mat-label>Mobile phone number</mat-label>
+          <input
+            matInput type="tel" placeholder="e.g. 111-111-1111"
+            formControlName="phoneNumber" required
+            (input)="onInput($event)"
+            (keyup)="validateInput(phoneNumber)"
+          />
+          <mat-error *ngIf="errors['phoneNumber']">{{ errors['phoneNumber'] }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="passengers-info__contact-details-email">
+        <mat-form-field appearance="outline"
+          [class.has-error]="errors['email']"
+          [class.has-success]="!errors['email'] && passengerInfoForm.controls['email'].value">
+          <mat-label>Email</mat-label>
+          <input
+            matInput placeholder="e.g. example@email.com"
+            formControlName="email" autocomplete="username"
+            required
+          />
+          <mat-error *ngIf="errors['email']">{{ errors['email'] }}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+     <!-- ! удалить -->
+    <button type="submit">submit</button>
+    <!-- ! удалить -->
+  </form>
+</div>

@@ -20,3 +20,14 @@ export interface IDateApi {
     trip_class: number;
     value: number;
 }
+
+export interface IMissingData {
+  utc: string, //'UTC +0',
+  type: 'Direct' | 'Non-stop',
+  tymeFly: string,//'2h 50m',
+  flightNo: string,//'FR 1925',
+  countSeatsAvailable: number,//'100',
+  dateFlightTo: string,
+}
+
+export interface IFlightData extends IDateApi, IMissingData {}

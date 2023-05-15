@@ -90,6 +90,11 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
       } as SocialAuthServiceConfig,
     },
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    FormatMoneyPipe,
+    PhoneCodeCountryComponent
+  ]
 })
 export class CoreModule {}

@@ -1,0 +1,40 @@
+<div class="card-slider">
+
+  <button mat-mini-fab matTooltip="Later" class="card-slider__btn-right"
+    (click)="moveSlider('right')">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+  <button mat-mini-fab matTooltip="Befor" class="card-slider__btn-left"
+  (click)="moveSlider('left')">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+
+  <div *ngIf="!idFlight" class="card-slider__card">
+    <p class="card__date">{{((dateFlight$ | async)![0]?.depart_date) | changeDayToDate:'sub':2 | date:'dd LLL' }}</p>
+    <p class="card__day">{{((dateFlight$ | async)![0]?.depart_date) | changeDayToDate:'sub':2 | date:'cccc'}}</p>
+    <img src="assets/not-fly.svg" alt="no fly" class="card__icon">
+  </div>
+  <div *ngIf="idFlight < 2" class="card-slider__card">
+    <p class="card__date">{{((dateFlight$ | async)![0]?.depart_date) | changeDayToDate:'sub':1 | date:'dd LLL'}}</p>
+    <p class="card__day">{{((dateFlight$ | async)![0]?.depart_date) | changeDayToDate:'sub':1| date:'cccc'}}</p>
+    <img src="assets/not-fly.svg" alt="no fly" class="card__icon">
+  </div>
+
+  <div flicking-panel class="card-panel card-slider__card"
+    *ngFor="let date of dateFlight$ | async | slice:idFlightStart:idFlightEnd">
+    <p class="card__future-date">{{(date.depart_date) | date:'dd LLL' }}</p>
+    <p class="card__day">{{date.depart_date | date:'cccc'}}</p>
+    <p class="card__cost">{{ date.value | formatMoney | async }}</p>
+  </div>
+
+  <div *ngIf="idFlight > 7 " class="card-slider__card">
+    <p class="card__date">{{((dateFlight$ | async)![9]?.depart_date) | changeDayToDate:'add':1 | date:'dd LLL' }}</p>
+    <p class="card__day">{{((dateFlight$ | async)![9]?.depart_date) | changeDayToDate:'add':1 | date:'cccc'}}</p>
+    <img src="assets/not-fly.svg" alt="no fly" class="card__icon">
+  </div>
+  <div *ngIf="idFlight > 8" class="card-slider__card">
+    <p class="card__date">{{((dateFlight$ | async)![9]?.depart_date) | changeDayToDate:'add':2 | date:'dd LLL'}}</p>
+    <p class="card__day">{{((dateFlight$ | async)![9]?.depart_date) | changeDayToDate:'add':2 | date:'cccc'}}</p>
+    <img src="assets/not-fly.svg" alt="no fly" class="card__icon">
+  </div>
+</div>

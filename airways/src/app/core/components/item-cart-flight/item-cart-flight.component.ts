@@ -25,5 +25,5 @@ export class ItemCartFlightComponent {
   moneyFormat$ = this.store.select(selectFormatMoney);
 
   constructor(private store: Store<IAppStore>){}
- 
+
 }

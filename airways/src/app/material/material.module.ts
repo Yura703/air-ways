@@ -14,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -34,6 +35,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCheckboxModule,
     MatTooltipModule,
     MatMenuModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatCommonModule,
@@ -52,6 +54,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCheckboxModule,
     MatTooltipModule,
     MatMenuModule,
+    MatSlideToggleModule
   ],
 })
 export class MaterialModule {}
