@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IPassengers } from 'src/app/store/models/searchMainModel';
 
@@ -6,25 +6,26 @@ import { IPassengers } from 'src/app/store/models/searchMainModel';
   selector: 'app-form-passengers',
   templateUrl: './form-passengers.component.html',
   styleUrls: ['./form-passengers.component.scss'],
-  encapsulation : ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,
 })
-export class FormPassengersComponent {
-
-  passengers: IPassengers[] = [{
-    name: 'Adults',
-    desc: '14+ years',
-    value: 0
-  },
-  {
-    name: 'Child',
-    desc: '2-14 years',
-    value: 0
-  },
-  {
-    name: 'Infant',
-    desc: '0-2 years',
-    value: 0
-  }]
+export class FormPassengersComponent implements OnInit {
+  passengers: IPassengers[] = [
+    {
+      name: 'Adults',
+      desc: '14+ years',
+      value: 0,
+    },
+    {
+      name: 'Child',
+      desc: '2-14 years',
+      value: 0,
+    },
+    {
+      name: 'Infant',
+      desc: '0-2 years',
+      value: 0,
+    },
+  ];
 
   @Input() parentForm: FormGroup;
   passengersForm: FormGroup;
@@ -51,29 +52,24 @@ export class FormPassengersComponent {
 
   clickPlus(event: Event, name: string) {
     event.stopPropagation();
-    this.passengers.map(item => {
+    this.passengers.map((item) => {
       if (item.name === name) {
         item.value += 1;
       }
-    })
+    });
     this.updatePassengers();
   }
 
   clickMinus(event: Event, name: string) {
     event.stopPropagation();
-    this.passengers.map(item => {
+    this.passengers.map((item) => {
       if (item.name === name) {
         item.value -= 1;
         if (item.value < 0) {
           item.value = 0;
         }
       }
-    })
+    });
     this.updatePassengers();
   }
-
-
 }
-
-
-

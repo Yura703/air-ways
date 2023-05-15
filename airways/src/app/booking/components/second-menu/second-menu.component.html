@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div class="second-menu">
-<!--    <div class="second-menu__title">{{ (searchData$ | async)?.origin | fullSityName | async }}</div>-->
+    <div class="second-menu__title">{{ (searchData$ | async)?.origin | fullSityName | async }}</div>
     <img src="assets/flys.svg" alt="to" class="second-menu__icon">
-<!--    <div class="second-menu__title">{{ (searchData$ | async)?.destination | fullSityName | async }}</div>-->
+    <div class="second-menu__title">{{ (searchData$ | async)?.destination | fullSityName | async }}</div>
     <div class="second-menu__return" >{{ (searchData$ | async)?.type }}</div>
     <div class="second-menu__dot"></div>
     <div>
@@ -22,14 +22,14 @@
   <div class="edit__sity">
     <p class="edit__title">From</p>
     <p class="edit__content">
-<!--      <span>{{ (searchData$ | async)?.origin | fullSityName | async }} </span>-->
+      <span>{{ (searchData$ | async)?.origin | fullSityName | async }} </span>
       <span style="color:#74767A">{{ (searchData$ | async)?.origin }}</span>
     </p>
   </div>
   <div class="edit__sity">
     <p class="edit__title">Destination</p>
     <p class="edit__content">
-<!--      <span>{{ (searchData$ | async)?.destination | fullSityName | async }} </span>-->
+      <span>{{ (searchData$ | async)?.destination | fullSityName | async }} </span>
       <span style="color:#74767A">{{ (searchData$ | async)?.destination }}</span>
     </p>
   </div>

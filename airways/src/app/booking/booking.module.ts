@@ -14,7 +14,7 @@ import TicketSectionComponent from './components/ticket-section/ticket-section.c
 import { ColorBgByCountDirective } from './directives/color-bg-by-count.directive';
 import BookingPageComponent from './pages/booking-page/booking-page.component';
 import ChangeDayToDatePipe from './pipes/change-day-to-date.pipe';
-// import FullSityNamePipe from './pipes/full-sity-name.pipe';
+import FullSityNamePipe from './pipes/full-sity-name.pipe';
 import QuantityPassengersPipe from './pipes/quantity-passengers.pipe';
 
 @NgModule({
@@ -26,7 +26,7 @@ import QuantityPassengersPipe from './pipes/quantity-passengers.pipe';
     CardSliderComponent,
     PassengersFormComponent,
     QuantityPassengersPipe,
-    // FullSityNamePipe,
+    FullSityNamePipe,
     ChangeDayToDatePipe,
     PassengersInfoComponent,
     CardPassengerComponent,

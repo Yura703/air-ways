@@ -1,9 +1,9 @@
 <div class="one-way__title">
   <img src="assets/fly.svg" alt="fly">
   <span>
-<!--    {{ ((dateFlight$ | async)![idFlight].origin | fullSityName | async) }}-->
+    {{ ((dateFlight$ | async)![idFlight].origin | fullSityName | async) }}
     to
-<!--    {{ ((dateFlight$ | async)![idFlight].destination | fullSityName | async) }}-->
+    {{ ((dateFlight$ | async)![idFlight].destination | fullSityName | async) }}
   </span>
 </div>
 
@@ -17,7 +17,7 @@
         <span class="date-time">{{ (dateFlight$ | async)![idFlight].depart_date | date:'H:mm' }} </span>
         <span class="date-utc">{{ (dateFlight$ | async)![idFlight].utc }}</span>
       </div>
-<!--      <div class="flight-list-info__text-sity">{{ (dateFlight$ | async)![idFlight].origin | fullSityName | async }}</div>-->
+      <div class="flight-list-info__text-sity">{{ (dateFlight$ | async)![idFlight].origin | fullSityName | async }}</div>
     </div>
     <div class="flight-list-info__central-content">
       <div class="flight-list__central-content-tyme">{{ (dateFlight$ | async)![idFlight].tymeFly | date:'H'}}h {{ (dateFlight$ | async)![idFlight].tymeFly | date:'mm' }}m</div>
@@ -34,7 +34,7 @@
         <span class="date-utc">{{ (dateFlight$ | async)![idFlight].utc }}</span>
         <span class="date-time">{{ (dateFlight$ | async)![idFlight].dateFlightTo | date:'H:mm' }}</span>
       </div>
-<!--      <div class="flight-list-info__text-sity">{{ (dateFlight$ | async)![idFlight].destination | fullSityName | async }}</div>-->
+      <div class="flight-list-info__text-sity">{{ (dateFlight$ | async)![idFlight].destination | fullSityName | async }}</div>
     </div>
     <div class="flight-list-info__flight-no">
       <span style="color: #74767A;">Flight no. </span>

@@ -1,9 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormProcessingService } from '../../services/form-processing.service';
 import { ILocationForm } from '../form-location/form-location.component';
-
 
 @Component({
   selector: 'app-form-search-flight',
@@ -11,25 +10,27 @@ import { ILocationForm } from '../form-location/form-location.component';
   styleUrls: ['./form-search-flight.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-
 export class FormSearchFlightComponent {
-
   locationForms: ILocationForm[] = [
     {
       nameForm: 'origin',
-      namelabel: 'From'
+      namelabel: 'From',
     },
     {
       nameForm: 'destination',
-      namelabel: 'Destination'
-    }
-  ]
+      namelabel: 'Destination',
+    },
+  ];
 
   searchForm: FormGroup;
   tripOption: string;
   isReverse: boolean;
 
-  constructor(private fb: FormBuilder, private formProcessingService: FormProcessingService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private formProcessingService: FormProcessingService,
+    private router: Router
+  ) {
     this.createForm();
   }
 
@@ -40,23 +41,30 @@ export class FormSearchFlightComponent {
   }
 
   changeType() {
-    this.tripOption === 'Round' ? this.tripOption = 'One' : this.tripOption = 'Round';
+    this.tripOption === 'Round'
+      ? (this.tripOption = 'One')
+      : (this.tripOption = 'Round');
     this.searchForm.removeControl('date');
   }
 
   reverseClick() {
-    [this.locationForms[0].namelabel, this.locationForms[1].namelabel] = [this.locationForms[1].namelabel, this.locationForms[0].namelabel];
+    [this.locationForms[0].namelabel, this.locationForms[1].namelabel] = [
+      this.locationForms[1].namelabel,
+      this.locationForms[0].namelabel,
+    ];
     this.locationForms.reverse();
-    this.isReverse ? this.isReverse = false : this.isReverse = true;
+    this.isReverse ? (this.isReverse = false) : (this.isReverse = true);
   }
 
   onSubmit() {
     if (this.searchForm.invalid) {
-      this.searchForm.markAllAsTouched()
+      this.searchForm.markAllAsTouched();
       return;
     }
-    this.formProcessingService.processingForm(this.searchForm.value, this.isReverse);
+    this.formProcessingService.processingForm(
+      this.searchForm.value,
+      this.isReverse
+    );
     this.router.navigate(['flight-booking']);
   }
-
 }

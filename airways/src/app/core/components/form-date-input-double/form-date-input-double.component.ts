@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,9 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form-date-input-double.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class FormDateInputDoubleComponent {
-
-
+export class FormDateInputDoubleComponent implements OnInit {
   @Input() parentForm: FormGroup;
   dateForm: FormGroup;
 
@@ -35,5 +33,4 @@ export class FormDateInputDoubleComponent {
   get _returnDate() {
     return this.dateForm.get('returnDate');
   }
-
 }
