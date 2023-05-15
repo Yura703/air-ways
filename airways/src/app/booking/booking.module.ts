@@ -13,9 +13,9 @@ import SecondMenuComponent from './components/second-menu/second-menu.component'
 import TicketSectionComponent from './components/ticket-section/ticket-section.component';
 import { ColorBgByCountDirective } from './directives/color-bg-by-count.directive';
 import BookingPageComponent from './pages/booking-page/booking-page.component';
-import ChangeDayToDatePipe from './pipes/change-day-to-date.pipe';
-import FullSityNamePipe from './pipes/full-sity-name.pipe';
-import QuantityPassengersPipe from './pipes/quantity-passengers.pipe';
+import { ChangeDayToDatePipe } from './pipes/change-day-to-date.pipe';
+import { FullCityNamePipe } from './pipes/full-city-name.pipe';
+import { QuantityPassengersPipe } from './pipes/quantity-passengers.pipe';
 
 @NgModule({
   declarations: [
@@ -25,9 +25,9 @@ import QuantityPassengersPipe from './pipes/quantity-passengers.pipe';
     TicketSectionComponent,
     CardSliderComponent,
     PassengersFormComponent,
-    QuantityPassengersPipe,
-    FullSityNamePipe,
     ChangeDayToDatePipe,
+    QuantityPassengersPipe,
+    FullCityNamePipe,
     PassengersInfoComponent,
     CardPassengerComponent,
     ColorBgByCountDirective,

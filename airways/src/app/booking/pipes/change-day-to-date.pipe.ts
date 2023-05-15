@@ -1,8 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
+
 @Pipe({
   name: 'changeDayToDate',
 })
-export default class ChangeDayToDatePipe implements PipeTransform {
+export class ChangeDayToDatePipe implements PipeTransform {
   transform(dateString: string | undefined, type?: string, count?: number) {
     if (!dateString) return 0;
 

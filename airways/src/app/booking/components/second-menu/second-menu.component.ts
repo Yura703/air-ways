@@ -11,7 +11,7 @@ import BookingService from '../../service/booking.service';
 @Component({
   selector: 'app-second-menu',
   templateUrl: './second-menu.component.html',
-  styleUrls: ['./second-menu.component.scss']
+  styleUrls: ['./second-menu.component.scss'],
 })
 export default class SecondMenuComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject<void>();
@@ -30,20 +30,25 @@ export default class SecondMenuComponent implements OnInit, OnDestroy {
 
   public startDate = new FormControl(new Date());
 
-  constructor(public bookingService: BookingService, public store: Store<IAppStore>) {}
+  constructor(
+    public bookingService: BookingService,
+    public store: Store<IAppStore>
+  ) {}
 
   ngOnInit(): void {
     this.searchData$ = this.bookingService.getSearchData();
 
-    this.searchData$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      (searchData) => this.searchData = searchData
-    );
+    this.searchData$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((searchData) => (this.searchData = searchData));
 
-    this.bookingService.typeFlyRoundOrOneWay$.next(this.searchData.type === 'Round');
+    this.bookingService.typeFlyRoundOrOneWay$.next(
+      this.searchData.type === 'Round'
+    );
 
     this.formDate = new FormGroup({
       start: new FormControl(new Date(this.searchData.startDate)),
-      end: new FormControl(new Date(this.searchData.returnDate!)),
+      end: new FormControl(new Date(this.searchData.returnDate ?? '')),
     });
   }
 
@@ -54,19 +59,21 @@ export default class SecondMenuComponent implements OnInit, OnDestroy {
 
   public onChangeDate(type: string) {
     if (type === 'round') {
-      this.store.dispatch(new AddSearch({
-        ...this.searchData,
-        startDate: this.formDate.value.start?.toString() as string,
-        returnDate: this.formDate.value.end?.toString() as string,
-      }));
+      this.store.dispatch(
+        new AddSearch({
+          ...this.searchData,
+          startDate: this.formDate.value.start?.toString() as string,
+          returnDate: this.formDate.value.end?.toString() as string,
+        })
+      );
     } else {
-
-      this.store.dispatch(new AddSearch({
-        ...this.searchData,
-        startDate: this.startDate.value?.toString() as string,
-      }));
+      this.store.dispatch(
+        new AddSearch({
+          ...this.searchData,
+          startDate: this.startDate.value?.toString() as string,
+        })
+      );
     }
-
   }
 
   public editSearchData(): void {

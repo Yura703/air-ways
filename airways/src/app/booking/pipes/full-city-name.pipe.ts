@@ -3,9 +3,9 @@ import { map, of } from 'rxjs';
 import { AutocompleteHttpService } from 'src/app/services/autocomplete-http.service';
 
 @Pipe({
-  name: 'fullSityName',
+  name: 'fullCityName',
 })
-export default class FullSityNamePipe implements PipeTransform {
+export class FullCityNamePipe implements PipeTransform {
   constructor(private autoCompleteHttpService: AutocompleteHttpService) {}
   transform(abbr: string | undefined) {
     if (!abbr) return of(abbr);

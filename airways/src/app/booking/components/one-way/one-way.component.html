@@ -7,10 +7,10 @@
         (dateFlight$ | async)![idFlight]?.destination
       "
     >
-      {{ (dateFlight$ | async)![idFlight].origin | fullSityName | async }}
+      {{ (dateFlight$ | async)![idFlight].origin | fullCityName | async }}
       to
       {{
-        (dateFlight$ | async)![idFlight].destination | fullSityName | async
+        (dateFlight$ | async)![idFlight].destination | fullCityName | async
       }}</ng-container
     >
   </span>
@@ -47,7 +47,7 @@
       </div>
       <div class="flight-list-info__text-sity">
         <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.origin">
-          {{ (dateFlight$ | async)![idFlight].origin | fullSityName | async }}
+          {{ (dateFlight$ | async)![idFlight].origin | fullCityName | async }}
         </ng-container>
       </div>
     </div>
@@ -91,7 +91,7 @@
       <div class="flight-list-info__text-sity">
         <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.destination">
           {{
-            (dateFlight$ | async)![idFlight].destination | fullSityName | async
+            (dateFlight$ | async)![idFlight].destination | fullCityName | async
           }}
         </ng-container>
       </div>
