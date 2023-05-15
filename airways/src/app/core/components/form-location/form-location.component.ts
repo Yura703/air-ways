@@ -51,12 +51,13 @@ export class FormLocationComponent implements OnInit, OnDestroy {
       distinctUntilChanged()
     );
 
-    this.subscription$ = input$.subscribe(
-      (value) =>
-        (this.locationOptions = this.autoCompleteHttpService.getAirport(
+    this.subscription$ = input$.subscribe((value) => {
+      if (value) {
+        this.locationOptions = this.autoCompleteHttpService.getAirport(
           value.location
-        ))
-    );
+        );
+      }
+    });
   }
 
   private createForm() {
