@@ -9,7 +9,6 @@ export default class FullSityNamePipe implements PipeTransform {
   constructor(private autoCompleteHttpService: AutocompleteHttpService) {}
   transform(abbr: string | undefined) {
     if (!abbr) return of(abbr);
-    console.log(abbr);
     return this.autoCompleteHttpService
       .getAirport(abbr)
       .pipe(map((airport) => airport[0].name));
