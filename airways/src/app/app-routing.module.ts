@@ -14,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'flight-booking',
-    loadChildren: () => import('./booking/booking-routing.module').then((m) => m.default),
+    loadChildren: () =>
+      import('./booking/booking.module').then((m) => m.BookingModule),
   },
   {
     path: 'cart',
