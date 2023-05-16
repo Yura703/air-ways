@@ -27,6 +27,7 @@ export class LogInComponent implements OnInit {
   logIn: boolean;
 
   errorMessage: string;
+  selectedOption: string | undefined;
 
   constructor(
     public dialogRef: MatDialogRef<LogInComponent>,
@@ -34,7 +35,14 @@ export class LogInComponent implements OnInit {
     private authService: SocialAuthService,
     private googleAuthService: GoogleAuthService
   ) {}
-  selectedOption: string | undefined;
+
+  get email() {
+    return this.logInForm.get('email');
+  }
+
+  get password() {
+    return this.logInForm.get('password');
+  }
 
   ngOnInit() {
     this.logInForm = new FormGroup({
@@ -42,14 +50,6 @@ export class LogInComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
     });
     this.fakeAuth();
-    // this.getGoogleUserData();
-  }
-
-  get email() {
-    return this.logInForm.get('email');
-  }
-  get password() {
-    return this.logInForm.get('password');
   }
 
   onSubmit(form: FormGroup) {
@@ -100,9 +100,11 @@ export class LogInComponent implements OnInit {
       );
     }
   }
+
   fakeAuthLogIn() {
     this.logInForm.get('email')?.setValue(fakeUser.email);
   }
+
   removeUser() {
     this.googleAuthService.lengthUsersArray().subscribe({
       next: (response: UserInterface[]) => {
@@ -137,15 +139,4 @@ export class LogInComponent implements OnInit {
       this.logInForm.get('email')?.setValue(user.email);
     });
   }
-
-  // getGoogleUserData() {
-  //   this.authSubscription = this.authService.authState.subscribe((user) => {
-  //     this.logInForm.get('email')?.setValue(user.email);
-  //     this.logInForm.get('password')?.setValue('**************');
-  //     this.userName = `${user.firstName} ${user.lastName}`;
-  //     this.authUserDataService.userName.next(this.userName);
-  //     this.authUserDataService.logIn.next(true);
-  //     this.dialogRef.close();
-  //   });
-  // }
 }
