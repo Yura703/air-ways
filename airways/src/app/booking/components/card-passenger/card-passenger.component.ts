@@ -11,11 +11,9 @@ import { FormErrorMessage } from '../../models/error-message';
 })
 export class CardPassengerComponent implements OnInit, OnDestroy {
 
-  @Input()  passengerData!: IPassengerData[];
+  @Input() parentForm!: FormGroup;
 
   @Input()  ageCategory!: string;
-
-  @Output() passengerDataChange = new EventEmitter<IPassengerData[]>();
 
   private ngUnsubscribe = new Subject<void>();
 
@@ -52,6 +50,8 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
     });
 
     this.passengerForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
+
+    this.parentForm.addControl(this.ageCategory, this.passengerForm);
   }
 
   ngOnDestroy(): void {
@@ -66,12 +66,10 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
       this.passengerForm.get('gender')?.setValue(event.value);
     }
   }
-//! создает много обьектов. Вызфывктся при каждом изменении
-  onSubmit(form: FormGroup) {
-  if(!this.passengerData) {
-      this.passengerDataChange.emit([{ ...form.value } as IPassengerData])
-    } else this.passengerDataChange.emit([...this.passengerData, { ...form.value } as IPassengerData])
-  }
+
+  // onSubmit(form: FormGroup) {
+
+  // }
 
   updateErrorMessages() {
     this.errors = {};

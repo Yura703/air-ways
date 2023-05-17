@@ -7,9 +7,18 @@
 
   <form id="form" [formGroup]="passengerInfoForm" (ngSubmit)="onSubmit(passengerInfoForm)">
     <div *ngFor="let passenger of passengers; let index = index">
-      <app-card-passenger *ngIf="passenger === 'Adults'" [(passengerData)]="adultData" [ageCategory]="index + 1 + ageCategory.adult"></app-card-passenger>
-      <app-card-passenger *ngIf="passenger === 'Child'" [(passengerData)]="childData" [ageCategory]="index + 1 + ageCategory.child"></app-card-passenger>
-      <app-card-passenger *ngIf="passenger === 'Infant'" [(passengerData)]="infantData" [ageCategory]="index + 1 + ageCategory.infant"></app-card-passenger>
+      <app-card-passenger *ngIf="passenger === 'Adults'"
+        [ageCategory]="index + 1 + ageCategory.adult"
+        [parentForm]="passengerInfoForm">
+      </app-card-passenger>
+      <app-card-passenger *ngIf="passenger === 'Child'"
+        [ageCategory]="index + 1 + ageCategory.child"
+        [parentForm]="passengerInfoForm">
+      </app-card-passenger>
+      <app-card-passenger *ngIf="passenger === 'Infant'"
+        [ageCategory]="index + 1 + ageCategory.infant"
+        [parentForm]="passengerInfoForm">
+      </app-card-passenger>
     </div>
 
     <div class="passengers-info__contact">

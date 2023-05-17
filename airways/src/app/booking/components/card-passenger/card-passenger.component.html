@@ -1,5 +1,4 @@
-<form class="card-passenger" id="form" [formGroup]="passengerForm" (ngSubmit)="onSubmit(passengerForm)">
-  <!-- ! сделать запрет на сабмит невалидной формы  -->
+<form class="card-passenger" id="form" [formGroup]="passengerForm">
   <div class="card-passenger__title">{{ageCategory}}</div>
 
   <div class="card-passenger__data">
@@ -49,7 +48,7 @@
       </mat-button-toggle>
       <mat-error *ngIf="errors['gender']">{{ errors['gender'] }}</mat-error>
     </mat-button-toggle-group>
-<!-- ? не всегда срабаьывает  -->
+
     <mat-form-field appearance="outline" class="card-passenger__date"
     [class.has-error]="errors['datepicker']"
     [class.has-success]="!errors['datepicker'] && passengerForm.controls['datepicker'].value">
@@ -66,5 +65,4 @@
     <img src="/assets/svg/assistent-icon.svg" alt="assist-icon">
     <span>Need special assistance?</span>
   </div>
-  <button type="submit">sub</button>
 </form>

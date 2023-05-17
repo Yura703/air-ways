@@ -60,9 +60,6 @@ export class PassengersInfoComponent implements OnInit, OnDestroy {
 
       phoneCodeCountry: new FormControl('', Validators.required),
 
-      adult: new FormControl(),
-      child: new FormControl(),
-      infant: new FormControl(),
     });
 
     this.passengerInfoForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
@@ -101,18 +98,6 @@ export class PassengersInfoComponent implements OnInit, OnDestroy {
     return this.passengerInfoForm.get('phoneCodeCountry');
   }
 
-  get adult() {
-    return this.passengerInfoForm.get('adult');
-  }
-
-  get child() {
-    return this.passengerInfoForm.get('child');
-  }
-
-  get infant() {
-    return this.passengerInfoForm.get('infant');
-  }
-
   onGenderChange(event: { source: unknown; value: string }) {
     if (this.passengerInfoForm) {
       this.passengerInfoForm.get('gender')?.setValue(event.value);
@@ -141,15 +126,10 @@ export class PassengersInfoComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: FormGroup) {
-    if (this.passengerInfoForm) {
-      this.passengerInfoForm.get('adult')?.setValue(this.adultData);
-      this.passengerInfoForm.get('child')?.setValue(this.childData);
-      this.passengerInfoForm.get('infant')?.setValue(this.infantData);
-    }
-    console.log('adultData=', this.adultData);
-    console.log('childData=', this.childData);
-    console.log('infantData=', this.infantData);
+    if(form.status === "VALID") {
+      console.log('form=', form);
 
-    console.log('form=',form.value);
+    }
+
   }
 }
