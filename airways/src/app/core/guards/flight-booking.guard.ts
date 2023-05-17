@@ -1,36 +1,20 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  CanLoad,
-  Route,
-  Router,
-  RouterStateSnapshot,
-  UrlSegment,
-  UrlTree,
-} from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { AuthUserDataService } from '../services/auth-user-data.service';
 import { FormProcessingService } from '../services/form-processing.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FlightBookingGuard implements CanActivate, CanLoad {
+export class FlightBookingGuard implements CanActivate {
   constructor(
     private userService: AuthUserDataService,
     private router: Router,
     private formProcessingService: FormProcessingService
   ) {}
 
-  canActivate(
-    _route: ActivatedRouteSnapshot,
-    _state: RouterStateSnapshot
-  ): boolean | UrlTree {
+  canActivate(): boolean | UrlTree {
     return this.doesUserExist();
-  }
-
-  canLoad(_route: Route, _segments: UrlSegment[]): boolean | UrlTree {
-    return true;
   }
 
   private doesUserExist(): boolean | UrlTree {
