@@ -1,6 +1,18 @@
-import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map, Observable, startWith, Subscription, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  Observable,
+  startWith,
+  Subscription,
+} from 'rxjs';
 import { IAirportResponse } from '../../../models/autocompleteModel';
 import { AutocompleteHttpService } from '../../../services/autocomplete-http.service';
 
@@ -13,10 +25,9 @@ export interface ILocationForm {
   selector: 'app-form-location',
   templateUrl: './form-location.component.html',
   styleUrls: ['./form-location.component.scss'],
-  encapsulation : ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,
 })
 export class FormLocationComponent implements OnInit, OnDestroy {
-
   @Input() optionForm: ILocationForm;
   @Input() parentForm: FormGroup;
 
@@ -24,7 +35,10 @@ export class FormLocationComponent implements OnInit, OnDestroy {
   locationOptions: Observable<IAirportResponse[]>;
   subscription$: Subscription;
 
-  constructor(private fb: FormBuilder, private autoCompleteHttpService: AutocompleteHttpService,) {
+  constructor(
+    private fb: FormBuilder,
+    private autoCompleteHttpService: AutocompleteHttpService
+  ) {
     this.createForm();
   }
 
@@ -34,11 +48,16 @@ export class FormLocationComponent implements OnInit, OnDestroy {
     const input$ = this.locationForm.valueChanges.pipe(
       startWith(''),
       debounceTime(1000),
-      distinctUntilChanged(),
+      distinctUntilChanged()
     );
 
-    this.subscription$ = input$.subscribe(
-      value => this.locationOptions = this.autoCompleteHttpService.getAirport(value.location))
+    this.subscription$ = input$.subscribe((value) => {
+      if (value) {
+        this.locationOptions = this.autoCompleteHttpService.getAirport(
+          value.location
+        );
+      }
+    });
   }
 
   private createForm() {
@@ -54,5 +73,4 @@ export class FormLocationComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription$.unsubscribe();
   }
-
 }

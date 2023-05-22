@@ -1,19 +1,18 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import BookingModule from './booking/booking.module';
 import { MaterialModule } from './material/material.module';
-import { StoreModule } from '@ngrx/store';
-import { appReducers } from './store/index';
-import { EffectsModule } from '@ngrx/effects';
-import { FlightEffects } from './store/effects/effects';
 import { ApiInterceptor } from './services/api.interceptor';
+import { appReducers } from './store';
+import { FlightEffects } from './store/effects/effects';
 import { MoneyChangeEffects } from './store/effects/effectsMoney';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,8 +31,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,
-      multi: true
-    }],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

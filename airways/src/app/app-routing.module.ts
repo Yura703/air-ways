@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FlightBookingGuard } from './core/guards/flight-booking.guard';
 import { BasketPageComponent } from './core/pages/basket-page/basket-page.component';
 import { MainPageComponent } from './core/pages/main-page/main-page.component';
 
@@ -14,7 +15,9 @@ const routes: Routes = [
   },
   {
     path: 'flight-booking',
-    loadChildren: () => import('./booking/booking-routing.module').then((m) => m.default),
+    loadChildren: () =>
+      import('./booking/booking.module').then((m) => m.BookingModule),
+    canActivate: [FlightBookingGuard],
   },
   {
     path: 'cart',

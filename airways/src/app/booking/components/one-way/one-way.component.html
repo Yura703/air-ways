@@ -1,63 +1,153 @@
 <div class="one-way__title">
-  <img src="assets/fly.svg" alt="fly">
+  <img src="assets/fly.svg" alt="fly" />
   <span>
-    {{ ((dateFlight$ | async)![idFlight]?.origin | fullSityName | async) }}
-    to
-    {{ ((dateFlight$ | async)![idFlight]?.destination | fullSityName | async) }}
+    <ng-container
+      *ngIf="
+        (dateFlight$ | async)![idFlight]?.origin &&
+        (dateFlight$ | async)![idFlight]?.destination
+      "
+    >
+      {{ (dateFlight$ | async)![idFlight].origin | fullCityName | async }}
+      to
+      {{
+        (dateFlight$ | async)![idFlight].destination | fullCityName | async
+      }}</ng-container
+    >
   </span>
 </div>
 
-<app-card-slider [direction]="direction" [(idFlight)]="idFlight" *ngIf="isAvailablePrice"></app-card-slider>
+<app-card-slider
+  [direction]="direction"
+  [(idFlight)]="idFlight"
+  *ngIf="isAvailablePrice"
+></app-card-slider>
 
 <div class="flight-list">
   <div class="flight-list-info">
     <div class="flight-list-info__left-text">
-      <div class="flight-list-info__text-date">{{ (dateFlight$ | async)![idFlight]?.depart_date | date:'EEE, d LLL yyyy' }}</div>
-      <div class="date">
-        <span class="date-time">{{ (dateFlight$ | async)![idFlight]?.depart_date | date:'H:mm' }} </span>
-        <span class="date-utc">{{ (dateFlight$ | async)![idFlight]?.utc }}</span>
+      <div class="flight-list-info__text-date">
+        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.depart_date">
+          {{
+            (dateFlight$ | async)![idFlight].depart_date
+              | date : "EEE, d LLL yyyy"
+          }}
+        </ng-container>
       </div>
-      <div class="flight-list-info__text-sity">{{ (dateFlight$ | async)![idFlight]?.origin | fullSityName | async }}</div>
+      <div class="date">
+        <span class="date-time">
+          <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.depart_date">
+            {{ (dateFlight$ | async)![idFlight].depart_date | date : "H:mm" }}
+          </ng-container>
+        </span>
+        <span class="date-utc">
+          <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.utc">
+            {{ (dateFlight$ | async)![idFlight].utc }}
+          </ng-container></span
+        >
+      </div>
+      <div class="flight-list-info__text-sity">
+        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.origin">
+          {{ (dateFlight$ | async)![idFlight].origin | fullCityName | async }}
+        </ng-container>
+      </div>
     </div>
     <div class="flight-list-info__central-content">
-      <div class="flight-list__central-content-tyme">{{ (dateFlight$ | async)![idFlight]?.tymeFly | date:'H'}}h {{ (dateFlight$ | async)![idFlight]?.tymeFly | date:'mm' }}m</div>
+      <div class="flight-list__central-content-tyme">
+        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.tymeFly">
+          {{ (dateFlight$ | async)![idFlight].tymeFly | date : "H" }}h
+          {{ (dateFlight$ | async)![idFlight].tymeFly | date : "mm" }}m
+        </ng-container>
+      </div>
       <div class="flight-list__central-content-icon">
         <div class="bottom-padding"></div>
-        <img src="/assets/svg/blue-fly.svg" alt="fly">
+        <img src="/assets/svg/blue-fly.svg" alt="fly" />
         <div class="bottom-padding"></div>
       </div>
-      <div class="flight-list__central-content-type">{{ (dateFlight$ | async)![idFlight]?.type }}</div>
+      <div class="flight-list__central-content-type">
+        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.type">
+          {{ (dateFlight$ | async)![idFlight].type }}
+        </ng-container>
+      </div>
     </div>
     <div class="flight-list-info__right-text">
-      <div class="flight-list-info__text-date">{{ (dateFlight$ | async)![idFlight]?.dateFlightTo | date:'EEE, d LLL yyyy' }}</div>
-      <div class="date">
-        <span class="date-utc">{{ (dateFlight$ | async)![idFlight]?.utc }}</span>
-        <span class="date-time">{{ (dateFlight$ | async)![idFlight]?.dateFlightTo | date:'H:mm' }}</span>
+      <div class="flight-list-info__text-date">
+        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.dateFlightTo">
+          {{
+            (dateFlight$ | async)![idFlight].dateFlightTo
+              | date : "EEE, d LLL yyyy"
+          }}
+        </ng-container>
       </div>
-      <div class="flight-list-info__text-sity">{{ (dateFlight$ | async)![idFlight]?.destination | fullSityName | async }}</div>
+      <div class="date">
+        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.utc">
+          <span class="date-utc">{{
+            (dateFlight$ | async)![idFlight].utc
+          }}</span>
+          <span class="date-time">{{
+            (dateFlight$ | async)![idFlight].dateFlightTo | date : "H:mm"
+          }}</span>
+        </ng-container>
+      </div>
+      <div class="flight-list-info__text-sity">
+        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.destination">
+          {{
+            (dateFlight$ | async)![idFlight].destination | fullCityName | async
+          }}
+        </ng-container>
+      </div>
     </div>
     <div class="flight-list-info__flight-no">
-      <span style="color: #74767A;">Flight no. </span>
-      <span>{{ (dateFlight$ | async)![idFlight]?.flightNo }}</span>
+      <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.flightNo">
+        <span style="color: #74767a">Flight no. </span>
+        <span>{{ (dateFlight$ | async)![idFlight].flightNo }}</span>
+      </ng-container>
     </div>
   </div>
 
-  <div class="flight-list__price-section" *ngIf="isAvailablePrice; else elseBlock">
-    <div class="flight-list__select-price" >
-      <div class="flight-list__price-seats"
-      [appColorBgByCount]="(dateFlight$ | async)![idFlight]?.countSeatsAvailable"
-      >{{ (dateFlight$ | async)![idFlight]?.countSeatsAvailable }} seats available</div>
+  <div
+    class="flight-list__price-section"
+    *ngIf="isAvailablePrice; else elseBlock"
+  >
+    <div class="flight-list__select-price">
+      <ng-container
+        *ngIf="(dateFlight$ | async)![idFlight]?.countSeatsAvailable"
+      >
+        <div
+          class="flight-list__price-seats"
+          [appColorBgByCount]="
+            (dateFlight$ | async)![idFlight].countSeatsAvailable
+          "
+        >
+          {{ (dateFlight$ | async)![idFlight].countSeatsAvailable }} seats
+          available
+        </div>
+      </ng-container>
+
       <div class="flight-list__price-text">Price</div>
-      <div class="flight-list__price-cost">{{ (dateFlight$ | async)![idFlight]?.value | formatMoney | async }}</div>
+      <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.value">
+        <div class="flight-list__price-cost">
+          {{ (dateFlight$ | async)![idFlight].value | formatMoney | async }}
+        </div>
+      </ng-container>
     </div>
-    <button mat-button class="flight-list__btn-select" (click)='changeAvailablePrice()'>
+    <button
+      mat-button
+      class="flight-list__btn-select"
+      (click)="changeAvailablePrice()"
+    >
       Select
     </button>
   </div>
   <ng-template #elseBlock>
-    <div class="flight-list__price" >
-      <div class="flight-list__price-cost" style="color:black">{{ (dateFlight$ | async)![idFlight]?.value | formatMoney | async }}</div>
-      <button mat-button class="flight-list__btn-edit" (click)='changeAvailablePrice()'>
+    <div class="flight-list__price">
+      <div class="flight-list__price-cost" style="color: black">
+        {{ (dateFlight$ | async)![idFlight].value | formatMoney | async }}
+      </div>
+      <button
+        mat-button
+        class="flight-list__btn-edit"
+        (click)="changeAvailablePrice()"
+      >
         Edit
       </button>
     </div>

@@ -2,6 +2,7 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { catchError, tap } from 'rxjs';
 import { fakeUser } from '../../../../constants/fake-user';
 import { ServerDataInterface } from '../../../../shared/models/server-data.inerface';
 import { UserInterface } from '../../../../shared/models/server-user.interface';
@@ -26,6 +27,7 @@ export class LogInComponent implements OnInit {
   logIn: boolean;
 
   errorMessage: string;
+  selectedOption: string | undefined;
 
   constructor(
     public dialogRef: MatDialogRef<LogInComponent>,
@@ -33,7 +35,14 @@ export class LogInComponent implements OnInit {
     private authService: SocialAuthService,
     private googleAuthService: GoogleAuthService
   ) {}
-  selectedOption: string | undefined;
+
+  get email() {
+    return this.logInForm.get('email');
+  }
+
+  get password() {
+    return this.logInForm.get('password');
+  }
 
   ngOnInit() {
     this.logInForm = new FormGroup({
@@ -41,14 +50,6 @@ export class LogInComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
     });
     this.fakeAuth();
-    // this.getGoogleUserData();
-  }
-
-  get email() {
-    return this.logInForm.get('email');
-  }
-  get password() {
-    return this.logInForm.get('password');
   }
 
   onSubmit(form: FormGroup) {
@@ -99,14 +100,31 @@ export class LogInComponent implements OnInit {
       );
     }
   }
+
   fakeAuthLogIn() {
     this.logInForm.get('email')?.setValue(fakeUser.email);
   }
+
   removeUser() {
     this.googleAuthService.lengthUsersArray().subscribe({
       next: (response: UserInterface[]) => {
         response.forEach((el: UserInterface) => {
-          this.googleAuthService.removeUser(el.id);
+          this.googleAuthService
+            .removeUser(el.id)
+            .pipe(
+              tap(() => {
+                console.log(
+                  `User with ID ${el.id} has been successfully removed.`
+                );
+              }),
+              catchError((error) => {
+                console.error(
+                  `Failed to remove user with ID ${el.id}. Error: ${error}`
+                );
+                return []; // Returning an empty observable to continue the stream
+              })
+            )
+            .subscribe();
         });
       },
       error: (err) => {
@@ -121,15 +139,4 @@ export class LogInComponent implements OnInit {
       this.logInForm.get('email')?.setValue(user.email);
     });
   }
-
-  // getGoogleUserData() {
-  //   this.authSubscription = this.authService.authState.subscribe((user) => {
-  //     this.logInForm.get('email')?.setValue(user.email);
-  //     this.logInForm.get('password')?.setValue('**************');
-  //     this.userName = `${user.firstName} ${user.lastName}`;
-  //     this.authUserDataService.userName.next(this.userName);
-  //     this.authUserDataService.logIn.next(true);
-  //     this.dialogRef.close();
-  //   });
-  // }
 }
