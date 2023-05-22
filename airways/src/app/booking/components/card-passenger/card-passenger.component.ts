@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { IPassengerData } from 'src/app/shared/models/models';
 import { FormErrorMessage } from '../../models/error-message';
 
 @Component({
@@ -25,6 +24,8 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
 
   public maxDatePicker: Date;
 
+  public presencyOfError = { firstName: false, lastName: false };
+
   ngOnInit(): void {
     this.maxDatePicker = new Date();
 
@@ -47,6 +48,7 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
         Validators.max(Number(new Date())),
       ]),
       assistance: new FormControl(),
+      luggage: new FormControl(),
     });
 
     this.passengerForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
@@ -67,10 +69,6 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
     }
   }
 
-  // onSubmit(form: FormGroup) {
-
-  // }
-
   updateErrorMessages() {
     this.errors = {};
     for (const message of FormErrorMessage) {
@@ -85,6 +83,12 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
         this.errors[message.forControl] = message.text;
       }
     }
+
+    if (this.errors.firstName) {
+      this.presencyOfError.firstName = true;
+    } else if (this.errors.lastName) {
+      this.presencyOfError.lastName = true;
+    } else this.presencyOfError = { firstName: false, lastName: false };
   }
 
   isNotInfant(): boolean {

@@ -5,7 +5,8 @@
   </div>
   <div class="passengers-info__text">Enter the passenger's names as they appear on document (passport or ID). </div>
 
-  <form id="form" [formGroup]="passengerInfoForm" (ngSubmit)="onSubmit(passengerInfoForm)">
+  <form id="form" [formGroup]="passengerInfoForm"
+  (ngSubmit)="passengerInfoForm.valid && onSubmit(passengerInfoForm)">
     <div *ngFor="let passenger of passengers; let index = index">
       <app-card-passenger *ngIf="passenger === 'Adults'"
         [ageCategory]="index + 1 + ageCategory.adult"

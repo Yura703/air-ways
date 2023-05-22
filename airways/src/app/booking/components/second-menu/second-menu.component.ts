@@ -36,6 +36,40 @@ export default class SecondMenuComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    //! delete
+    const dataSearch1: IOptionsSearch = {
+      'destination': "WAS",
+      'origin': "NYC",
+      'passengers':
+      [
+        {name: 'Adults', desc: '14+ years', value: 1},
+        {name: 'Child', desc: '2-14 years', value: 1},
+        {name: 'Infant', desc: '0-2 years', value: 1},
+      ],
+      'returnDate': "2023-05-12",
+      'startDate': "2023-05-05",
+      'type': "Round",
+    }
+    const dataSearch2: IOptionsSearch = {
+      'destination': "WAS",
+      'origin': "NYC",
+      'passengers':
+      [
+        {name: 'Adults', desc: '14+ years', value: 1},
+        {name: 'Child', desc: '2-14 years', value: 1},
+        {name: 'Infant', desc: '0-2 years', value: 1},
+      ],
+      'returnDate': undefined,
+      'startDate': "2023-05-05",
+      'type': "One",
+    }
+    this.store.dispatch(new AddSearch(dataSearch1));
+//! delete
+
+
+
+
+
     this.searchData$ = this.bookingService.getSearchData();
 
     this.searchData$

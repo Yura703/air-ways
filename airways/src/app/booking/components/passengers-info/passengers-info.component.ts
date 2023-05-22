@@ -127,7 +127,7 @@ export class PassengersInfoComponent implements OnInit, OnDestroy {
 
   onSubmit(form: FormGroup) {
     if(form.status === "VALID") {
-      console.log('form=', form);
+      console.log('form=', form.value);
 
     }
 

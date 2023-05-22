@@ -9,7 +9,8 @@
       <input matInput type="text" formControlName="firstName" required
      />
       <mat-icon
-        class="card-passenger__input-icon color-red"
+        class="card-passenger__input-icon"
+        [ngClass]="{colorRed:presencyOfError.firstName}"
         matSuffix
         matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
         matTooltipClass="example-tooltip-uppercase">
@@ -26,6 +27,7 @@
       />
       <mat-icon
         class="card-passenger__input-icon"
+        [ngClass]="{colorRed:presencyOfError.lastName}"
         matSuffix
         matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
         matTooltipClass="example-tooltip-uppercase">
@@ -60,9 +62,16 @@
     </mat-form-field>
 
   </div>
-  <div class="card-passenger__assistance" *ngIf="isNotInfant()">
-    <mat-slide-toggle formControlName="assistance" ></mat-slide-toggle>
-    <img src="/assets/svg/assistent-icon.svg" alt="assist-icon">
-    <span>Need special assistance?</span>
+  <div class="card-passenger__addition" *ngIf="isNotInfant()">
+    <div class="card-passenger__assistance">
+      <mat-slide-toggle formControlName="assistance" ></mat-slide-toggle>
+      <img src="/assets/svg/assistent-icon.svg" alt="assist-icon" class="img">
+      <span>Need special assistance?</span>
+    </div>
+    <div class="card-passenger__luggage">
+      <mat-slide-toggle formControlName="luggage"></mat-slide-toggle>
+      <mat-icon class="img"> local_mall</mat-icon>
+      <span>Luggage</span>
+    </div>
   </div>
 </form>
