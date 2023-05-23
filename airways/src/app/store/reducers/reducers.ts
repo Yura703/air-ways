@@ -41,6 +41,12 @@ export const Reducers = (
                 exchangeRate: exchange.length ? Number(exchange[0]) : 1,
             };
         }
+        case AppActionTypes.AddTicketsData: {
+            return {
+                ...state,
+                ticketsData: action.payload,
+            };
+        }
         default:
             return state;
     }

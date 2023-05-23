@@ -1,11 +1,13 @@
 import { ActionReducerMap } from "@ngrx/store";
 import { IOptionsSearch } from "./models/optionsSearch";
 import { IAppStore, IState } from "./models/stateModel";
+import { ITicketsData } from "./models/ticketsData";
 import { Reducers } from "./reducers/reducers";
 
 export const stateApp: IState = {
     dateFlight: [],
     searchMain: {} as IOptionsSearch,
+    ticketsData: {} as ITicketsData,
     errorLoading: false,
     exchangeRate: 1,
     moneyFormat: 'RUB',

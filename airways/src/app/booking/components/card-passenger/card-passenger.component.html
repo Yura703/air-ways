@@ -10,7 +10,7 @@
      />
       <mat-icon
         class="card-passenger__input-icon"
-        [ngClass]="{colorRed:presencyOfError.firstName}"
+        [ngClass]="{colorRed:errors.firstName}"
         matSuffix
         matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
         matTooltipClass="example-tooltip-uppercase">
@@ -27,7 +27,7 @@
       />
       <mat-icon
         class="card-passenger__input-icon"
-        [ngClass]="{colorRed:presencyOfError.lastName}"
+        [ngClass]="{colorRed:errors.lastName}"
         matSuffix
         matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
         matTooltipClass="example-tooltip-uppercase">

@@ -7,3 +7,4 @@ export const selectAllFlight = createSelector(select, (state: IState) => state.d
 export const selectSearchMain = createSelector(select, (state: IState) => state.searchMain);
 export const selectFormatMoney = createSelector(select, (state: IState) => state.moneyFormat);
 export const selectExchangeRate = createSelector(select, (state: IState) => state.exchangeRate);
+export const selectTicketsData = createSelector(select, (state: IState) => state.ticketsData);

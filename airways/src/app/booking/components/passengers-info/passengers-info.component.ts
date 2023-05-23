@@ -1,23 +1,29 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { IPassengerData } from 'src/app/shared/models/models';
+import { AddTicketsData } from 'src/app/store/actions/actions';
 import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
 import { IAppStore } from 'src/app/store/models/stateModel';
+import { ITicketsData } from 'src/app/store/models/ticketsData';
 import { selectSearchMain } from 'src/app/store/selectors/selectors';
 import { FormErrorMessage } from '../../models/error-message';
+import BookingService from '../../service/booking.service';
 
 @Component({
   selector: 'app-passengers-info',
   templateUrl: './passengers-info.component.html',
   styleUrls: ['./passengers-info.component.scss']
 })
-export class PassengersInfoComponent implements OnInit, OnDestroy {
+export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() continueBtnChange: boolean;
 
   private ngUnsubscribe = new Subject<void>();
 
   public passengerInfoForm!: FormGroup;
+
+  public ticketsData$: Observable<ITicketsData>;
 
   public adultData: IPassengerData[];
   public childData: IPassengerData[];
@@ -37,9 +43,17 @@ export class PassengersInfoComponent implements OnInit, OnDestroy {
 
   public searchData: IOptionsSearch;
 
-  constructor(public store: Store<IAppStore>) {}
+  public btnContinueIsDisabled$: BehaviorSubject<boolean>;
+
+  constructor(public store: Store<IAppStore>, private bookingService: BookingService) {}
+
+  ngOnChanges() {
+    this.onSubmit(this.passengerInfoForm);
+  }
 
   ngOnInit(): void {
+    this.bookingService.btnContinueIsDisabled$.next(false);
+
     this.searchData$ = this.store.pipe(select(selectSearchMain));
 
     this.searchData$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
@@ -108,7 +122,7 @@ export class PassengersInfoComponent implements OnInit, OnDestroy {
     this.phoneCodeCountry?.setValue(value);
   }
 
-  onInput(event: any) {
+  onInput(event:any ) {
     let value = event.target.value;
     value = value.replace(/-/g, '');
     if (value.length > 3) {
@@ -126,10 +140,20 @@ export class PassengersInfoComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: FormGroup) {
-    if(form.status === "VALID") {
-      console.log('form=', form.value);
+    if( form && form.status === "VALID") {
+      const ticketsData = form.value;
+
+      const changeTicketData = this.bookingService.changeTicketsData(ticketsData);
+
+
+      this.store.dispatch(new AddTicketsData({
+        ...changeTicketData,
+      }));
 
     }
-
+    // this.ticketsData$ = this.store.pipe(select(selectTicketsData));
+    // this.ticketsData$.subscribe((data) => {
+    //   console.log(data);
+    // });
   }
 }

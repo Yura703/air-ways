@@ -24,8 +24,6 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
 
   public maxDatePicker: Date;
 
-  public presencyOfError = { firstName: false, lastName: false };
-
   ngOnInit(): void {
     this.maxDatePicker = new Date();
 
@@ -83,12 +81,6 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
         this.errors[message.forControl] = message.text;
       }
     }
-
-    if (this.errors.firstName) {
-      this.presencyOfError.firstName = true;
-    } else if (this.errors.lastName) {
-      this.presencyOfError.lastName = true;
-    } else this.presencyOfError = { firstName: false, lastName: false };
   }
 
   isNotInfant(): boolean {

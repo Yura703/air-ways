@@ -15,6 +15,8 @@ import BookingService from '../../service/booking.service';
 export default class BookingPageComponent implements OnInit {
   public isAvailableTicketsOrPassengers = true;
 
+  public continueChange = false;
+
   public btnContinueIsDisabled$: BehaviorSubject<boolean>;
 
   constructor(
@@ -37,9 +39,9 @@ export default class BookingPageComponent implements OnInit {
 
   public continue(): void {
     if (!this.isAvailableTicketsOrPassengers) {
-      //this.router.navigate(['']);//! переход к старанице билетов
-    }
+      this.continueChange = !this.continueChange;
 
-    this.isAvailableTicketsOrPassengers = !this.isAvailableTicketsOrPassengers;
+      //this.router.navigate(['']);//! переход к старанице билетов
+    } else this.isAvailableTicketsOrPassengers = !this.isAvailableTicketsOrPassengers;
   }
 }

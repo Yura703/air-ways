@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
-// import { AddSearch } from 'src/app/store/actions/actions';
-// import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
 import {
   IDateApi,
   IFlightData,
@@ -10,6 +8,7 @@ import {
 } from 'src/app/store/models/responseApiFlightModel';
 import { ISelectedTickets } from 'src/app/store/models/selectedTickets';
 import { IAppStore } from 'src/app/store/models/stateModel';
+import { ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
 import {
   selectAllFlight,
   selectSearchMain,
@@ -121,4 +120,53 @@ export default class BookingService {
       tymeFly,
     };
   }
+
+  public changeTicketsData(ticketsData: Partial<ITicketsData>) {
+    let returnTicketsData = {} as ITicketsData;
+
+    Object.keys(ticketsData).map((key) => {
+      if (key.includes('Adult')) {
+        const adultData: ITicketPerson = ticketsData[key as keyof ITicketsData] as unknown as ITicketPerson;
+        const adult: ITicketPerson[] = returnTicketsData?.adult
+          ? [...(returnTicketsData.adult), adultData]
+          : [adultData];
+
+          returnTicketsData = {
+            ...returnTicketsData,
+            adult,
+          }
+      } else if (key.includes('Child')) {
+        const childData: ITicketPerson = ticketsData[key as keyof ITicketsData] as unknown as ITicketPerson;
+        const child =returnTicketsData?.child
+          ? [...(returnTicketsData.child), childData]
+          : [childData];
+
+        returnTicketsData = {
+          ...returnTicketsData,
+          child,
+        }
+      } else if (key.includes('Infant')) {
+        const infantData: ITicketPerson = ticketsData[key as keyof ITicketsData] as unknown as ITicketPerson;
+        const infant = returnTicketsData?.infant
+          ? [...(returnTicketsData.infant), infantData]
+          : [infantData];
+
+          returnTicketsData = {
+          ...returnTicketsData,
+          infant,
+        }
+      } else {
+        const value = ticketsData[key as keyof ITicketsData];
+
+        returnTicketsData =  {
+          ...returnTicketsData,
+         [key]:value,
+        }
+      }
+    });
+
+    return returnTicketsData;
+  }
 }
+
+
