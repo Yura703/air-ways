@@ -50,7 +50,7 @@ export default class OneWayComponent implements OnInit, OnDestroy {
     const selectedTicket = {
       [direction]: this.dateFlight[this.idFlight],
     }
-    this.bookingService.selectedTickets$.next({
+    this.bookingService.selectedTickets$.next({//! данные по рейсам
       ...this.selectedTickets,
       ...selectedTicket,
     });

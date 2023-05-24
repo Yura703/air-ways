@@ -46,6 +46,5 @@ export class TravelpayoutsService {
     ).pipe(scan((to, from) =>{
       return { ...to, data: [...to.data, ...from.data]}
     }));
-
   }
 }
