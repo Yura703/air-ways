@@ -16,7 +16,8 @@ import BookingPageComponent from './pages/booking-page/booking-page.component';
 import { ChangeDayToDatePipe } from './pipes/change-day-to-date.pipe';
 import { FullCityNamePipe } from './pipes/full-city-name.pipe';
 import { QuantityPassengersPipe } from './pipes/quantity-passengers.pipe';
-import { SummaryComponent } from './components/summary/summary.component';
+import { SummaryPageComponent } from './pages/summary-page/summary.component';
+import { PassengersPageComponent } from './pages/passengers-page/passengers-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SummaryComponent } from './components/summary/summary.component';
     PassengersInfoComponent,
     CardPassengerComponent,
     ColorBgByCountDirective,
-    SummaryComponent,
+    SummaryPageComponent,
+    PassengersPageComponent,
   ],
   imports: [
     CommonModule,

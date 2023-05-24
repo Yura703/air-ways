@@ -12,7 +12,7 @@ import BookingService from '../../service/booking.service';
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryPageComponent implements OnInit {
 
   //public selectedTickets$ = new Subject<ISelectedTickets>();
 
