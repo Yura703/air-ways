@@ -35,8 +35,5 @@ export class PassengersPageComponent implements OnInit {
 
   public continue(): void {
       this.continueChange = !this.continueChange;
-
-      this.router.navigate(['flight-booking/summary']);
-
   }
 }

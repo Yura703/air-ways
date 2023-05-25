@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import {
   IDateApi,
   IFlightData,
   IMissingData,
 } from 'src/app/store/models/responseApiFlightModel';
-import { ISelectedTickets } from 'src/app/store/models/selectedTickets';
 import { IAppStore } from 'src/app/store/models/stateModel';
-import { ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
+import { ICostTickets, ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
 import {
   selectAllFlight,
   selectSearchMain,
@@ -21,8 +20,6 @@ export default class BookingService {
   public btnContinueIsDisabled$ = new BehaviorSubject(true);
 
   public typeFlyRoundOrOneWay$ = new BehaviorSubject(true);
-
-  public selectedTickets$ = new Subject<ISelectedTickets>();
 
   private selectTicketIsOpen = { to: false, from: false };
 
@@ -89,14 +86,6 @@ export default class BookingService {
     };
   }
 
-  // private getFlightNamber() {
-  //   const abc = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
-  //   const str =
-  //     abc[Math.floor(Math.random() * abc.length)] +
-  //     abc[Math.floor(Math.random() * abc.length)];
-  //   return str + ' ' + Math.ceil(Math.random() * 899 + 999);
-  // }
-
   private getTypeFly() {
     return Math.ceil(Math.random() * 100) % 2 === 1 ? 'Direct' : 'Non-stop';
   }
@@ -154,6 +143,19 @@ export default class BookingService {
 
     return returnTicketsData;
   }
+
+  public getCostTickets(costTickets: ICostTickets) {
+    const childFare = costTickets.adultFare / 2;
+    const infantFare = costTickets.adultFare / 10;
+
+    return {
+      ...costTickets,
+      adultTax: costTickets.adultFare / 10,
+      childTax: childFare / 10,
+      infantTax: infantFare / 10,
+      childFare: childFare,
+      infantFare: infantFare,
+      total: costTickets.adultFare + childFare + infantFare,
+    };
+  }
 }
-
-

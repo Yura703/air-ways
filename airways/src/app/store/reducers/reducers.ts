@@ -47,6 +47,12 @@ export const Reducers = (
                 ticketsData: action.payload,
             };
         }
+        case AppActionTypes.AddSelectedTickets: {
+          return {
+              ...state,
+              selectedTickets: action.payload,
+          };
+      }
         default:
             return state;
     }

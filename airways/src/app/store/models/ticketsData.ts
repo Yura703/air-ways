@@ -20,3 +20,17 @@ export interface ITicketPerson {
   luggage?: boolean;
 }
 
+export interface ICostTickets {
+  adult: number;
+  child: number;
+  infant: number;
+  adultTax: number;
+  childTax: number;
+  infantTax: number;
+  adultFare: number;
+  childFare: number;
+  infantFare: number;
+  total: number;
+}
+
+

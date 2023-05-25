@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { IPassengerData } from 'src/app/shared/models/models';
@@ -45,7 +46,7 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
 
   public btnContinueIsDisabled$: BehaviorSubject<boolean>;
 
-  constructor(public store: Store<IAppStore>, private bookingService: BookingService) {}
+  constructor(public store: Store<IAppStore>, private bookingService: BookingService, private router: Router,) {}
 
   ngOnChanges() {
     this.onSubmit(this.passengerInfoForm);
@@ -145,15 +146,11 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
 
       const changeTicketData = this.bookingService.changeTicketsData(ticketsData);
 
-
       this.store.dispatch(new AddTicketsData({
         ...changeTicketData,
       }));
 
+      this.router.navigate(['flight-booking/summary']);
     }
-    // this.ticketsData$ = this.store.pipe(select(selectTicketsData));
-    // this.ticketsData$.subscribe((data) => {
-    //   console.log(data);
-    // });
   }
 }

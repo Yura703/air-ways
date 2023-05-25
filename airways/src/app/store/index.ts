@@ -1,5 +1,6 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { IOptionsSearch } from './models/optionsSearch';
+import { ISelectedTickets } from './models/selectedTickets';
 import { IAppStore, IState } from './models/stateModel';
 import { ITicketsData } from "./models/ticketsData";
 import { Reducers } from './reducers/reducers';
@@ -7,7 +8,8 @@ import { Reducers } from './reducers/reducers';
 export const stateApp: IState = {
   dateFlight: [],
   searchMain: {} as IOptionsSearch,
-    ticketsData: {} as ITicketsData,
+  ticketsData: {} as ITicketsData,
+  selectedTickets: {} as ISelectedTickets,
   errorLoading: false,
   exchangeRate: 1,
   moneyFormat: 'RUB',

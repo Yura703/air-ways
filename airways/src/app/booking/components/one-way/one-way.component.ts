@@ -1,8 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { AddSelectedTickets } from 'src/app/store/actions/actions';
 import { IFlightData } from 'src/app/store/models/responseApiFlightModel';
 import { ISelectedTickets } from 'src/app/store/models/selectedTickets';
+import { IAppStore } from 'src/app/store/models/stateModel';
 import BookingService from '../../service/booking.service';
+import { selectSelectedTickets } from 'src/app/store/selectors/selectors';
 
 @Component({
   selector: 'app-one-way',
@@ -25,14 +29,14 @@ export default class OneWayComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe = new Subject<void>();
 
-  constructor(public bookingService: BookingService) {}
+  constructor(public bookingService: BookingService, public store: Store<IAppStore>,) {}
 
   ngOnInit(): void {
     this.dateFlight$ = this.bookingService.getFlightDate(this.direction);
     this.dateFlight$.pipe(takeUntil(this.ngUnsubscribe))
     .subscribe(data => this.dateFlight = data);
 
-    this.bookingService.selectedTickets$.pipe(takeUntil(this.ngUnsubscribe))
+    this.store.pipe(select(selectSelectedTickets)).pipe(takeUntil(this.ngUnsubscribe))
     .subscribe(data => this.selectedTickets = data);
   }
 
@@ -50,10 +54,11 @@ export default class OneWayComponent implements OnInit, OnDestroy {
     const selectedTicket = {
       [direction]: this.dateFlight[this.idFlight],
     }
-    this.bookingService.selectedTickets$.next({//! данные по рейсам
+
+    this.store.dispatch(new AddSelectedTickets({
       ...this.selectedTickets,
       ...selectedTicket,
-    });
+    }));
 
     this.isAvailablePrice = !this.isAvailablePrice;
   }

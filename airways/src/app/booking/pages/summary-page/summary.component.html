@@ -7,16 +7,16 @@
     <div class="summary__travel-info">
       <div class="summary__travel-header">
         <div class="info-cities">
-          <span style="color: #11397E;">{{selectedTickets$.to.flightNo}}</span>
-          <span>{{selectedTickets$.to.origin | fullCityName | async}} - {{selectedTickets$.to.destination | fullCityName | async}}</span>
+          <span style="color: #11397E;">{{(selectedTickets$ | async)?.to?.airline}} {{(selectedTickets$ | async)?.to?.flight_number}}</span>
+          <span>{{(selectedTickets$ | async)?.to?.origin | fullCityName | async}} - {{(selectedTickets$ | async)?.to?.destination | fullCityName | async}}</span>
         </div>
         <div class="info-text info-date">
-          <div >{{selectedTickets$.to.depart_date | date:'EEEE, d MMMM, y'}}</div>
-          <div>{{selectedTickets$.to.depart_date | date:'h:mm'}} - {{selectedTickets$.to.dateFlightTo | date:'h:mm'}}</div>
+          <div >{{(selectedTickets$ | async)?.to?.departure_at | date:'EEEE, d MMMM, y'}}</div>
+          <div>{{(selectedTickets$ | async)?.to?.departure_at | date:'h:mm'}} - {{(selectedTickets$ | async)?.to?.dateFlightTo | date:'h:mm'}}</div>
         </div>
       </div>
 
-      <div *ngFor="let adult of ticketData$.adult" >
+      <div *ngFor="let adult of (ticketData$ | async)?.adult" >
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{adult.firstName | uppercase}} {{adult.lastName | uppercase}}</div>
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div *ngFor="let child of ticketData$.child">
+      <div *ngFor="let child of (ticketData$ | async)?.child">
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{child.firstName | uppercase}} {{child.lastName | uppercase}}</div>
@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <div *ngFor="let infant of ticketData$.infant">
+      <div *ngFor="let infant of (ticketData$ | async)?.infant">
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{infant.firstName | uppercase}} {{infant.lastName | uppercase}}</div>
@@ -51,21 +51,21 @@
           </div>
         </div>
       </div>
-
     </div>
+
     <div class="summary__travel-info">
       <div class="summary__travel-header">
         <div class="info-cities">
-          <span style="color: #11397E;">{{selectedTickets$.from.flightNo}}</span>
-          <span>{{selectedTickets$.from.origin | fullCityName | async}} - {{selectedTickets$.from.destination | fullCityName | async}}</span>
+          <span style="color: #11397E;">{{(selectedTickets$ | async)?.to?.airline}} {{(selectedTickets$ | async)?.to?.flight_number}}</span>
+          <span>{{(selectedTickets$ | async)?.from?.origin | fullCityName | async}} - {{(selectedTickets$ | async)?.from?.destination | fullCityName | async}}</span>
         </div>
         <div class="info-text info-date">
-          <div >{{selectedTickets$.from.depart_date | date:'EEEE, d MMMM, y'}}</div>
-          <div>{{selectedTickets$.from.depart_date | date:'h:mm'}} - {{selectedTickets$.from.dateFlightTo | date:'h:mm'}}</div>
+          <div >{{(selectedTickets$ | async)?.from?.departure_at | date:'EEEE, d MMMM, y'}}</div>
+          <div>{{(selectedTickets$ | async)?.from?.departure_at | date:'h:mm'}} - {{(selectedTickets$ | async)?.from?.dateFlightTo | date:'h:mm'}}</div>
         </div>
       </div>
 
-      <div *ngFor="let adult of ticketData$.adult" >
+      <div *ngFor="let adult of (ticketData$ | async)?.adult" >
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{adult.firstName | uppercase}} {{adult.lastName | uppercase}}</div>
@@ -77,7 +77,7 @@
         </div>
       </div>
 
-      <div *ngFor="let child of ticketData$.child">
+      <div *ngFor="let child of (ticketData$ | async)?.child">
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{child.firstName | uppercase}} {{child.lastName | uppercase}}</div>
@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <div *ngFor="let infant of ticketData$.infant">
+      <div *ngFor="let infant of (ticketData$ | async)?.infant">
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{infant.firstName | uppercase}} {{infant.lastName | uppercase}}</div>
