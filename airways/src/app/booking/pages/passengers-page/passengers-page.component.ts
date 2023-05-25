@@ -30,18 +30,13 @@ export class PassengersPageComponent implements OnInit {
   }
 
   public goBack(): void {
-    if (this.isAvailableTicketsOrPassengers) {
-      this.router.navigate(['']);
-    }
-
-    this.isAvailableTicketsOrPassengers = !this.isAvailableTicketsOrPassengers;
+      this.router.navigate(['flight-booking']);
   }
 
   public continue(): void {
-    if (!this.isAvailableTicketsOrPassengers) {
       this.continueChange = !this.continueChange;
 
-      //this.router.navigate(['']);//! переход к старанице билетов
-    } else this.isAvailableTicketsOrPassengers = !this.isAvailableTicketsOrPassengers;
+      this.router.navigate(['flight-booking/summary']);
+
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { ISelectedTickets } from 'src/app/store/models/selectedTickets';
@@ -31,7 +32,11 @@ export class SummaryPageComponent implements OnInit {
     total: 1600,
   };
 
-  constructor(public store: Store<IAppStore>, private bookingService: BookingService) {}
+  constructor(
+    public store: Store<IAppStore>,
+    private bookingService: BookingService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
      //this.selectedTickets$ = this.bookingService.selectedTickets$;
@@ -40,7 +45,9 @@ export class SummaryPageComponent implements OnInit {
 
   }
 
-  public goBack() {}
+  public goBack() {
+    this.router.navigate(['flight-booking/passengers']);
+  }
 
   public goOrderCard() {}
 
