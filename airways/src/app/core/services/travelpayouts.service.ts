@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { merge, Observable, scan } from 'rxjs';
+import { merge, Observable, scan, tap } from 'rxjs';
 import { BASIC_URL_TRAVELPAYOUTS } from 'src/app/constants/const';
 import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
 import { IResponseApi } from 'src/app/store/models/responseApiFlightModel';

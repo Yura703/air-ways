@@ -50,8 +50,8 @@ export default class BookingService {
       map((data: IDateApi[]) => {
         const _data = [...data];
         _data.sort((a: IDateApi, b: IDateApi) => {
-          return Number(new Date(a.depart_date)) <
-            Number(new Date(b.depart_date))
+          return Number(new Date(a.departure_at)) <
+            Number(new Date(b.departure_at))
             ? -1
             : 1;
         });
@@ -82,43 +82,30 @@ export default class BookingService {
     return {
       utc: 'UTC+0',
       type: this.getTypeFly(),
-      tymeFly: this.getDateFlightTo(
-        data.distance,
-        data.depart_date
-      ).tymeFly.toString(), //'2h 50m',
-      flightNo: this.getFlightNamber(),
+      tymeFly: this.getDateFlightTo(data).tymeFly.toString(), //'2h 50m',
+      //flightNo: this.getFlightNamber(),
       countSeatsAvailable: Math.ceil(Math.random() * 200),
-      dateFlightTo: this.getDateFlightTo(
-        data.distance,
-        data.depart_date
-      ).dateFlightTo.toString(),
+      dateFlightTo: this.getDateFlightTo(data).dateFlightTo.toString(),
     };
   }
 
-  private getFlightNamber() {
-    const abc = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
-    const str =
-      abc[Math.floor(Math.random() * abc.length)] +
-      abc[Math.floor(Math.random() * abc.length)];
-    return str + ' ' + Math.ceil(Math.random() * 899 + 999);
-  }
+  // private getFlightNamber() {
+  //   const abc = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
+  //   const str =
+  //     abc[Math.floor(Math.random() * abc.length)] +
+  //     abc[Math.floor(Math.random() * abc.length)];
+  //   return str + ' ' + Math.ceil(Math.random() * 899 + 999);
+  // }
 
   private getTypeFly() {
     return Math.ceil(Math.random() * 100) % 2 === 1 ? 'Direct' : 'Non-stop';
   }
 
-  private getDateFlightTo(distance: number, departureDate: string) {
-    const tymeFly = new Date(
-      Number(new Date(distance * Math.random() * 10000))
-    );
-    const dateFlightTo = new Date(
-      Number(tymeFly) + Number(new Date(departureDate))
-    );
-
+  private getDateFlightTo(data: IDateApi) {
     return {
-      dateFlightTo,
-      tymeFly,
-    };
+      tymeFly: new Date(data.duration_to * 60000),
+      dateFlightTo: new Date(+new Date(data.departure_at) + +new Date(data.duration_to * 60000)),
+    }
   }
 
   public changeTicketsData(ticketsData: Partial<ITicketsData>) {
