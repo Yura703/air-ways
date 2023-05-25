@@ -29,15 +29,25 @@ export default class BookingService {
     return this.store.pipe(select(selectSearchMain));
   }
 
-  public changeDisabledBtnContinue(value: { [x: string]: boolean }) {
+  public changeDisabledBtnContinue(value: { [x: string]: boolean }, oneOrRound: boolean) {
     this.selectTicketIsOpen = {
       ...this.selectTicketIsOpen,
       ...value,
     };
+console.log('selectTicketIsOpen=', this.selectTicketIsOpen);
 
-    const isDisabled = !(
-      this.selectTicketIsOpen.to && this.selectTicketIsOpen.from
-    );
+    let isDisabled = false;
+
+    if (oneOrRound) {
+      isDisabled = !(
+        this.selectTicketIsOpen.to && this.selectTicketIsOpen.from
+      );
+    } else {
+      isDisabled = !(
+        this.selectTicketIsOpen.to || this.selectTicketIsOpen.from
+      );
+    }
+
     this.btnContinueIsDisabled$.next(isDisabled);
   }
 
@@ -155,7 +165,7 @@ export default class BookingService {
       infantTax: infantFare / 10,
       childFare: childFare,
       infantFare: infantFare,
-      total: costTickets.adultFare + childFare + infantFare,
+      total: costTickets.adultFare * costTickets.adult + childFare * costTickets.child + infantFare * costTickets.infant,
     };
   }
 }

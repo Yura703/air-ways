@@ -6,7 +6,8 @@ import { IFlightData } from 'src/app/store/models/responseApiFlightModel';
 import { ISelectedTickets } from 'src/app/store/models/selectedTickets';
 import { IAppStore } from 'src/app/store/models/stateModel';
 import BookingService from '../../service/booking.service';
-import { selectSelectedTickets } from 'src/app/store/selectors/selectors';
+import { selectSearchMain, selectSelectedTickets } from 'src/app/store/selectors/selectors';
+import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
 
 @Component({
   selector: 'app-one-way',
@@ -23,6 +24,8 @@ export default class OneWayComponent implements OnInit, OnDestroy {
 
   public selectedTickets: ISelectedTickets;
 
+  public searchData: IOptionsSearch;
+
   public idFlight = 0;
 
   public isAvailablePrice = true;
@@ -38,6 +41,9 @@ export default class OneWayComponent implements OnInit, OnDestroy {
 
     this.store.pipe(select(selectSelectedTickets)).pipe(takeUntil(this.ngUnsubscribe))
     .subscribe(data => this.selectedTickets = data);
+
+    this.store.pipe(select(selectSearchMain)).pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe(data => this.searchData = data);
   }
 
   ngOnDestroy(): void {
@@ -46,10 +52,12 @@ export default class OneWayComponent implements OnInit, OnDestroy {
   }
 
   public changeAvailablePrice(): void {
+    this.dateFlight.length
+
     const direction = this.direction ? 'to' : 'from' ;
     this.bookingService.changeDisabledBtnContinue({
       [direction]: this.isAvailablePrice,
-    })
+    }, !!this.searchData.returnDate)
 
     const selectedTicket = {
       [direction]: this.dateFlight[this.idFlight],
