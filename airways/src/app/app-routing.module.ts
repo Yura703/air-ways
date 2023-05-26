@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FlightBookingGuard } from './core/guards/flight-booking.guard';
+import { UserAccountGuard } from './core/guards/user-account.guard';
 import { BasketPageComponent } from './core/pages/basket-page/basket-page.component';
 import { MainPageComponent } from './core/pages/main-page/main-page.component';
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    canActivate: [UserAccountGuard],
   },
   {
     path: 'flight-booking',
