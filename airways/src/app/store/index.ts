@@ -1,27 +1,28 @@
-import { ActionReducerMap } from "@ngrx/store";
-import { IOptionsSearch } from "./models/optionsSearch";
-import { IAppStore, IState } from "./models/stateModel";
+import { ActionReducerMap } from '@ngrx/store';
+import { IOptionsSearch } from './models/optionsSearch';
+import { ISelectedTickets } from './models/selectedTickets';
+import { IAppStore, IState } from './models/stateModel';
 import { ITicketsData } from "./models/ticketsData";
-import { Reducers } from "./reducers/reducers";
+import { Reducers } from './reducers/reducers';
 
 export const stateApp: IState = {
-    dateFlight: [],
-    searchMain: {} as IOptionsSearch,
-    ticketsData: {} as ITicketsData,
-    errorLoading: false,
-    exchangeRate: 1,
-    moneyFormat: 'RUB',
+  dateFlight: [],
+  searchMain: {} as IOptionsSearch,
+  ticketsData: {} as ITicketsData,
+  selectedTickets: {} as ISelectedTickets,
+  errorLoading: false,
+  exchangeRate: 1,
+  moneyFormat: 'RUB',
 };
 
 export const initalState: IAppStore = {
-    state: stateApp,
+  state: stateApp,
 };
-
+//у меня проверка пишет, что не использвется эта функция
 export function getInitalState(): IAppStore {
-    return initalState;
+  return initalState;
 }
 
 export const appReducers: ActionReducerMap<IAppStore, any> = {
-    state: Reducers,
+  state: Reducers,
 };
-

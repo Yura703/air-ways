@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AuthUserDataService } from '../../services/auth-user-data.service';
-import { PopUpComponent } from '../pop-up/pop-up/pop-up.component';
+import { OpenDialogService } from '../../services/open-dialog.service';
 
 @Component({
   selector: 'app-login-component',
@@ -9,15 +8,13 @@ import { PopUpComponent } from '../pop-up/pop-up/pop-up.component';
   styleUrls: ['./login-component.component.scss'],
 })
 export class LoginComponentComponent implements OnInit {
-  private dialogRef!: MatDialogRef<PopUpComponent>;
-
   logIn = false;
 
   userName = 'Sign in';
 
   constructor(
-    private dialog: MatDialog,
-    private authUserDataService: AuthUserDataService
+    private authUserDataService: AuthUserDataService,
+    private openDialogService: OpenDialogService
   ) {}
 
   ngOnInit(): void {
@@ -31,9 +28,7 @@ export class LoginComponentComponent implements OnInit {
     });
   }
   openDialog() {
-    this.dialogRef = this.dialog.open(PopUpComponent, {
-      width: '494px',
-    });
+    this.openDialogService.openDialog();
   }
   clearLocalStorage() {
     this.userName = 'Sign in';

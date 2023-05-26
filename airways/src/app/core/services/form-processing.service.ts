@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
 // import { from } from 'rxjs';
 import { AddSearch } from 'src/app/store/actions/actions';
 import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
@@ -11,6 +12,8 @@ import { IAppStore } from 'src/app/store/models/stateModel';
 })
 export class FormProcessingService {
   constructor(private store: Store<IAppStore>) {}
+
+  public isData = new BehaviorSubject<boolean>(false);
 
   processingForm(
     form: Omit<ISearchMain, 'passengers'> & {

@@ -11,6 +11,8 @@ import { ILocationForm } from '../form-location/form-location.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class FormSearchFlightComponent {
+  isData = false;
+
   locationForms: ILocationForm[] = [
     {
       nameForm: 'origin',
@@ -24,7 +26,7 @@ export class FormSearchFlightComponent {
 
   searchForm: FormGroup;
   tripOption: string;
-  isReverse: boolean;
+  isReverse = false; //если не нажимать на кнопку реверс, то без этого значения оно будет андефайнд
 
   constructor(
     private fb: FormBuilder,
@@ -65,6 +67,8 @@ export class FormSearchFlightComponent {
       this.searchForm.value,
       this.isReverse
     );
+    this.isData = true;
+    this.formProcessingService.isData.next(this.isData);
     this.router.navigate(['flight-booking']);
   }
 }

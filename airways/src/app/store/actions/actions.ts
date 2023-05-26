@@ -3,6 +3,7 @@ import { IMoneyFormat } from '../models/moneyFormat';
 import { IOptionsSearch } from '../models/optionsSearch';
 import { IDateExchange } from '../models/responseApiCurrate';
 import { IDateApi } from '../models/responseApiFlightModel';
+import { ISelectedTickets } from '../models/selectedTickets';
 import { ITicketsData } from '../models/ticketsData';
 
 export enum AppActionTypes {
@@ -12,6 +13,7 @@ export enum AppActionTypes {
   MoneyChange = '[MONEY CHANGE] MoneyChange',
   ExchangeChange = '[EXCHANGE CHANGE] ExchangeChange',
   AddTicketsData = '[ADD TICKETS DATA] AddTicketsData',
+  AddSelectedTickets = '[ADD SELECTED TICKETS] AddSelectedTickets',
 }
 
 export class AddSearch implements Action {
@@ -43,10 +45,16 @@ export class AddTicketsData implements Action {
   constructor(public payload: ITicketsData) {}
 }
 
+export class AddSelectedTickets implements Action {
+  readonly type = AppActionTypes.AddSelectedTickets;
+  constructor(public payload: ISelectedTickets) {}
+}
+
 export type ActionUnion =
   | AddSearch
   | AddInfoFlight
   | FlightsLoadedError
   | MoneyChange
   | ExchangeChange
-  | AddTicketsData;
+  | AddTicketsData
+  | AddSelectedTickets;

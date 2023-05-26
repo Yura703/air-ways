@@ -26,17 +26,17 @@
   <div class="flight-list-info">
     <div class="flight-list-info__left-text">
       <div class="flight-list-info__text-date">
-        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.depart_date">
+        <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.departure_at">
           {{
-            (dateFlight$ | async)![idFlight].depart_date
+            (dateFlight$ | async)![idFlight].departure_at
               | date : "EEE, d LLL yyyy"
           }}
         </ng-container>
       </div>
       <div class="date">
         <span class="date-time">
-          <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.depart_date">
-            {{ (dateFlight$ | async)![idFlight].depart_date | date : "H:mm" }}
+          <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.departure_at">
+            {{ (dateFlight$ | async)![idFlight].departure_at | date : "H:mm" }}
           </ng-container>
         </span>
         <span class="date-utc">
@@ -97,9 +97,9 @@
       </div>
     </div>
     <div class="flight-list-info__flight-no">
-      <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.flightNo">
+      <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.airline">
         <span style="color: #74767a">Flight no. </span>
-        <span>{{ (dateFlight$ | async)![idFlight].flightNo }}</span>
+        <span>{{ (dateFlight$ | async)![idFlight].airline }} {{ (dateFlight$ | async)![idFlight].flight_number }}</span>
       </ng-container>
     </div>
   </div>
@@ -124,9 +124,9 @@
       </ng-container>
 
       <div class="flight-list__price-text">Price</div>
-      <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.value">
+      <ng-container *ngIf="(dateFlight$ | async)![idFlight]?.price">
         <div class="flight-list__price-cost">
-          {{ (dateFlight$ | async)![idFlight].value | formatMoney | async }}
+          {{ (dateFlight$ | async)![idFlight].price | formatMoney | async }}
         </div>
       </ng-container>
     </div>
@@ -141,7 +141,7 @@
   <ng-template #elseBlock>
     <div class="flight-list__price">
       <div class="flight-list__price-cost" style="color: black">
-        {{ (dateFlight$ | async)![idFlight].value | formatMoney | async }}
+        {{ (dateFlight$ | async)![idFlight].price | formatMoney | async }}
       </div>
       <button
         mat-button
