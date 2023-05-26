@@ -1,4 +1,4 @@
-<div class="one-way__title">
+<div class="one-way__title" *ngIf="(dateFlight$ | async)![idFlight]?.origin">
   <img src="assets/fly.svg" alt="fly" />
   <span>
     <ng-container
@@ -19,10 +19,10 @@
 <app-card-slider
   [direction]="direction"
   [(idFlight)]="idFlight"
-  *ngIf="isAvailablePrice"
+  *ngIf="isAvailablePrice && (dateFlight$ | async)![idFlight]?.origin"
 ></app-card-slider>
 
-<div class="flight-list">
+<div class="flight-list" *ngIf="(dateFlight$ | async)![idFlight]?.origin">
   <div class="flight-list-info">
     <div class="flight-list-info__left-text">
       <div class="flight-list-info__text-date">

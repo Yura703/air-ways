@@ -31,14 +31,14 @@ export class SummaryPageComponent implements OnInit {
     total: 0,
   };
 
-  constructor(public store: Store<IAppStore>, private router: Router, private bookingService: BookingService) {}
+  constructor(public store: Store<IAppStore>, private router: Router, public bookingService: BookingService) {}
 
   ngOnInit(): void {
      this.selectedTickets$ = this.store.pipe(select(selectSelectedTickets));
      this.ticketData$ = this.store.pipe(select(selectTicketsData));
 
      this.selectedTickets$.subscribe(data => {
-      this.costTickets.adultFare = data?.to?.price ? data.to.price : 0;
+      this.costTickets.adultFare = data?.from?.price ? data.from.price : 0;
      });
 
      this.ticketData$.subscribe(data => {
@@ -48,6 +48,8 @@ export class SummaryPageComponent implements OnInit {
     });
 
     this.costTickets = this.bookingService.getCostTickets(this.costTickets);
+  console.log(this.costTickets);
+
   }
 
   public goBack() {

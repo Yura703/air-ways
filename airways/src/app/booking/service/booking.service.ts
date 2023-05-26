@@ -23,6 +23,8 @@ export default class BookingService {
 
   private selectTicketIsOpen = { to: false, from: false };
 
+  private numberSeat = 0;
+
   constructor(private store: Store<IAppStore>) {}
 
   public getSearchData() {
@@ -167,5 +169,9 @@ console.log('selectTicketIsOpen=', this.selectTicketIsOpen);
       infantFare: infantFare,
       total: costTickets.adultFare * costTickets.adult + childFare * costTickets.child + infantFare * costTickets.infant,
     };
+  }
+
+  public getSeat() {
+    return ++this.numberSeat;
   }
 }
