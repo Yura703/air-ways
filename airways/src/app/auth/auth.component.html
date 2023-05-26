@@ -1,1 +1,27 @@
-<p>auth works!</p>
+<div class="user-container">
+  <div>
+    <p class="user-title">User Account</p>
+    <span class="example-list-section">
+                <div class="item-user-container item-user-container_title ">
+                    <span class="item-text" *ngFor="let item of titleUserTable">{{item}}</span>
+                </div>
+        </span>
+  </div>
+  <div>
+        <span class="item-user">
+            <ul>
+                <li class="user-li" *ngFor="let subtask of task.subtasks" (click)="description(subtask.item)">
+                    <app-item-cart-flight [item]="subtask"></app-item-cart-flight>
+                </li>
+            </ul>
+        </span>
+  </div>
+  <div>
+    <div class="user-summary-container">
+      <div class="user-total-container">
+        <span class="user-total_title">Total</span>
+        <span class="user-total_price">536.32</span>
+      </div>
+    </div>
+  </div>
+</div>
