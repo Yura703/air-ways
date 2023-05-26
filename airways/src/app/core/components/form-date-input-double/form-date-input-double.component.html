@@ -8,8 +8,13 @@
         <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
     <div
-        *ngIf="_startDate?.invalid && (_startDate?.touched || _startDate?.dirty) || _returnDate?.invalid && (_returnDate?.touched || _returnDate?.dirty)">
-        <p class="error-text" *ngIf="_startDate?.errors?.required">Field start date is required</p>
-        <p class="error-text" *ngIf="_returnDate?.errors?.required">Field end date is required</p>
+        *ngIf="_startDate?.invalid && (_startDate?.touched || _startDate?.dirty)">
+      <p class="error-text" *ngIf="_startDate?.errors?.required">Field start date is required</p>
+      <p class="error-text" *ngIf="_startDate?.errors?.pastDate">Past dates are not allowed</p>
     </div>
+  <div
+    *ngIf="_returnDate?.invalid && (_returnDate?.touched || _returnDate?.dirty)">
+    <p class="error-text" *ngIf="_returnDate?.errors?.required">Field end date is required</p>
+    <p class="error-text" *ngIf="_returnDate?.errors?.pastDate">Past dates are not allowed</p>
+  </div>
 </form>
