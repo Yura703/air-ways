@@ -11,6 +11,9 @@
       <p class="logIn-text">{{ userName }}</p>
     </div>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="goToUserAccount()">
+        <span>User Account</span>
+      </button>
       <button mat-menu-item (click)="clearLocalStorage()">
         <span>Sign Out</span>
       </button>
