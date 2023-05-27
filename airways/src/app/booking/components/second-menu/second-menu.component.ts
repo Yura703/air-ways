@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -30,9 +31,12 @@ export default class SecondMenuComponent implements OnInit, OnDestroy {
 
   public startDate = new FormControl(new Date());
 
+  public editBtnIsVisible = true;
+
   constructor(
     public bookingService: BookingService,
-    public store: Store<IAppStore>
+    public store: Store<IAppStore>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +54,9 @@ export default class SecondMenuComponent implements OnInit, OnDestroy {
       start: new FormControl(new Date(this.searchData.startDate)),
       end: new FormControl(new Date(this.searchData.returnDate ?? '')),
     });
+
+    this.editBtnIsVisible = !(this.router.url.includes('passengers')
+      || this.router.url.includes('summary'));
   }
 
   ngOnDestroy(): void {
@@ -59,18 +66,21 @@ export default class SecondMenuComponent implements OnInit, OnDestroy {
 
   public onChangeDate(type: string) {
     if (type === 'round') {
+      console.log({startDate: this.formDate.value.start?.toString() as string,
+        returnDate: this.formDate.value.end?.toString() as string,});
+
       this.store.dispatch(
         new AddSearch({
           ...this.searchData,
-          startDate: this.formDate.value.start?.toString() as string,
-          returnDate: this.formDate.value.end?.toString() as string,
+          startDate: this.formDate.value.start?.toISOString().slice(0,10) as string,
+          returnDate: this.formDate.value.end?.toISOString().slice(0,10) as string,
         })
       );
     } else {
       this.store.dispatch(
         new AddSearch({
           ...this.searchData,
-          startDate: this.startDate.value?.toString() as string,
+          startDate: this.startDate.value?.toISOString().slice(0,10) as string,
         })
       );
     }

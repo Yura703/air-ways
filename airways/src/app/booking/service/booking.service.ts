@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
-// import { AddSearch } from 'src/app/store/actions/actions';
-// import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import {
   IDateApi,
   IFlightData,
   IMissingData,
 } from 'src/app/store/models/responseApiFlightModel';
-import { ISelectedTickets } from 'src/app/store/models/selectedTickets';
 import { IAppStore } from 'src/app/store/models/stateModel';
+import { ICostTickets, ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
 import {
   selectAllFlight,
   selectSearchMain,
@@ -23,9 +21,9 @@ export default class BookingService {
 
   public typeFlyRoundOrOneWay$ = new BehaviorSubject(true);
 
-  public selectedTickets$ = new Subject<ISelectedTickets>();
-
   private selectTicketIsOpen = { to: false, from: false };
+
+  private numberSeat = 0;
 
   constructor(private store: Store<IAppStore>) {}
 
@@ -33,15 +31,25 @@ export default class BookingService {
     return this.store.pipe(select(selectSearchMain));
   }
 
-  public changeDisabledBtnContinue(value: { [x: string]: boolean }) {
+  public changeDisabledBtnContinue(value: { [x: string]: boolean }, oneOrRound: boolean) {
     this.selectTicketIsOpen = {
       ...this.selectTicketIsOpen,
       ...value,
     };
+console.log('selectTicketIsOpen=', this.selectTicketIsOpen);
 
-    const isDisabled = !(
-      this.selectTicketIsOpen.to && this.selectTicketIsOpen.from
-    );
+    let isDisabled = false;
+
+    if (oneOrRound) {
+      isDisabled = !(
+        this.selectTicketIsOpen.to && this.selectTicketIsOpen.from
+      );
+    } else {
+      isDisabled = !(
+        this.selectTicketIsOpen.to || this.selectTicketIsOpen.from
+      );
+    }
+
     this.btnContinueIsDisabled$.next(isDisabled);
   }
 
@@ -51,8 +59,8 @@ export default class BookingService {
       map((data: IDateApi[]) => {
         const _data = [...data];
         _data.sort((a: IDateApi, b: IDateApi) => {
-          return Number(new Date(a.depart_date)) <
-            Number(new Date(b.depart_date))
+          return Number(new Date(a.departure_at)) <
+            Number(new Date(b.departure_at))
             ? -1
             : 1;
         });
@@ -83,42 +91,87 @@ export default class BookingService {
     return {
       utc: 'UTC+0',
       type: this.getTypeFly(),
-      tymeFly: this.getDateFlightTo(
-        data.distance,
-        data.depart_date
-      ).tymeFly.toString(), //'2h 50m',
-      flightNo: this.getFlightNamber(),
+      tymeFly: this.getDateFlightTo(data).tymeFly.toString(), //'2h 50m',
+      //flightNo: this.getFlightNamber(),
       countSeatsAvailable: Math.ceil(Math.random() * 200),
-      dateFlightTo: this.getDateFlightTo(
-        data.distance,
-        data.depart_date
-      ).dateFlightTo.toString(),
+      dateFlightTo: this.getDateFlightTo(data).dateFlightTo.toString(),
     };
-  }
-
-  private getFlightNamber() {
-    const abc = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
-    const str =
-      abc[Math.floor(Math.random() * abc.length)] +
-      abc[Math.floor(Math.random() * abc.length)];
-    return str + ' ' + Math.ceil(Math.random() * 899 + 999);
   }
 
   private getTypeFly() {
     return Math.ceil(Math.random() * 100) % 2 === 1 ? 'Direct' : 'Non-stop';
   }
 
-  private getDateFlightTo(distance: number, departureDate: string) {
-    const tymeFly = new Date(
-      Number(new Date(distance * Math.random() * 10000))
-    );
-    const dateFlightTo = new Date(
-      Number(tymeFly) + Number(new Date(departureDate))
-    );
+  private getDateFlightTo(data: IDateApi) {
+    return {
+      tymeFly: new Date(data.duration_to * 60000),
+      dateFlightTo: new Date(+new Date(data.departure_at) + +new Date(data.duration_to * 60000)),
+    }
+  }
+
+  public changeTicketsData(ticketsData: Partial<ITicketsData>) {
+    let returnTicketsData = {} as ITicketsData;
+
+    Object.keys(ticketsData).map((key) => {
+      if (key.includes('Adult')) {
+        const adultData: ITicketPerson = ticketsData[key as keyof ITicketsData] as unknown as ITicketPerson;
+        const adult: ITicketPerson[] = returnTicketsData?.adult
+          ? [...(returnTicketsData.adult), adultData]
+          : [adultData];
+
+          returnTicketsData = {
+            ...returnTicketsData,
+            adult,
+          }
+      } else if (key.includes('Child')) {
+        const childData: ITicketPerson = ticketsData[key as keyof ITicketsData] as unknown as ITicketPerson;
+        const child =returnTicketsData?.child
+          ? [...(returnTicketsData.child), childData]
+          : [childData];
+
+        returnTicketsData = {
+          ...returnTicketsData,
+          child,
+        }
+      } else if (key.includes('Infant')) {
+        const infantData: ITicketPerson = ticketsData[key as keyof ITicketsData] as unknown as ITicketPerson;
+        const infant = returnTicketsData?.infant
+          ? [...(returnTicketsData.infant), infantData]
+          : [infantData];
+
+          returnTicketsData = {
+          ...returnTicketsData,
+          infant,
+        }
+      } else {
+        const value = ticketsData[key as keyof ITicketsData];
+
+        returnTicketsData =  {
+          ...returnTicketsData,
+         [key]:value,
+        }
+      }
+    });
+
+    return returnTicketsData;
+  }
+
+  public getCostTickets(costTickets: ICostTickets) {
+    const childFare = costTickets.adultFare / 2;
+    const infantFare = costTickets.adultFare / 10;
 
     return {
-      dateFlightTo,
-      tymeFly,
+      ...costTickets,
+      adultTax: costTickets.adultFare / 10,
+      childTax: childFare / 10,
+      infantTax: infantFare / 10,
+      childFare: childFare,
+      infantFare: infantFare,
+      total: costTickets.adultFare * costTickets.adult + childFare * costTickets.child + infantFare * costTickets.infant,
     };
+  }
+
+  public getSeat() {
+    return ++this.numberSeat;
   }
 }

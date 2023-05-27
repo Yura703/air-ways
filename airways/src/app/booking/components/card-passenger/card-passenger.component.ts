@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { IPassengerData } from 'src/app/shared/models/models';
 import { FormErrorMessage } from '../../models/error-message';
 
 @Component({
@@ -11,11 +10,9 @@ import { FormErrorMessage } from '../../models/error-message';
 })
 export class CardPassengerComponent implements OnInit, OnDestroy {
 
-  @Input()  passengerData!: IPassengerData[];
+  @Input() parentForm!: FormGroup;
 
   @Input()  ageCategory!: string;
-
-  @Output() passengerDataChange = new EventEmitter<IPassengerData[]>();
 
   private ngUnsubscribe = new Subject<void>();
 
@@ -49,9 +46,12 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
         Validators.max(Number(new Date())),
       ]),
       assistance: new FormControl(),
+      luggage: new FormControl(),
     });
 
     this.passengerForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
+
+    this.parentForm.addControl(this.ageCategory, this.passengerForm);
   }
 
   ngOnDestroy(): void {
@@ -65,12 +65,6 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
     if (this.passengerForm) {
       this.passengerForm.get('gender')?.setValue(event.value);
     }
-  }
-//! создает много обьектов. Вызфывктся при каждом изменении
-  onSubmit(form: FormGroup) {
-  if(!this.passengerData) {
-      this.passengerDataChange.emit([{ ...form.value } as IPassengerData])
-    } else this.passengerDataChange.emit([...this.passengerData, { ...form.value } as IPassengerData])
   }
 
   updateErrorMessages() {

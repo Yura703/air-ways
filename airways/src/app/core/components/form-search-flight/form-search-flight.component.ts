@@ -26,7 +26,7 @@ export class FormSearchFlightComponent {
 
   searchForm: FormGroup;
   tripOption: string;
-  isReverse: boolean;
+  isReverse = false; //если не нажимать на кнопку реверс, то без этого значения оно будет андефайнд
 
   constructor(
     private fb: FormBuilder,

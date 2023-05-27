@@ -1,5 +1,4 @@
-<form class="card-passenger" id="form" [formGroup]="passengerForm" (ngSubmit)="onSubmit(passengerForm)">
-  <!-- ! сделать запрет на сабмит невалидной формы  -->
+<form class="card-passenger" id="form" [formGroup]="passengerForm">
   <div class="card-passenger__title">{{ageCategory}}</div>
 
   <div class="card-passenger__data">
@@ -10,7 +9,8 @@
       <input matInput type="text" formControlName="firstName" required
      />
       <mat-icon
-        class="card-passenger__input-icon color-red"
+        class="card-passenger__input-icon"
+        [ngClass]="{colorRed:errors.firstName}"
         matSuffix
         matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
         matTooltipClass="example-tooltip-uppercase">
@@ -27,6 +27,7 @@
       />
       <mat-icon
         class="card-passenger__input-icon"
+        [ngClass]="{colorRed:errors.lastName}"
         matSuffix
         matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname."
         matTooltipClass="example-tooltip-uppercase">
@@ -49,7 +50,7 @@
       </mat-button-toggle>
       <mat-error *ngIf="errors['gender']">{{ errors['gender'] }}</mat-error>
     </mat-button-toggle-group>
-<!-- ? не всегда срабаьывает  -->
+
     <mat-form-field appearance="outline" class="card-passenger__date"
     [class.has-error]="errors['datepicker']"
     [class.has-success]="!errors['datepicker'] && passengerForm.controls['datepicker'].value">
@@ -61,10 +62,16 @@
     </mat-form-field>
 
   </div>
-  <div class="card-passenger__assistance" *ngIf="isNotInfant()">
-    <mat-slide-toggle formControlName="assistance" ></mat-slide-toggle>
-    <img src="/assets/svg/assistent-icon.svg" alt="assist-icon">
-    <span>Need special assistance?</span>
+  <div class="card-passenger__addition" *ngIf="isNotInfant()">
+    <div class="card-passenger__assistance">
+      <mat-slide-toggle formControlName="assistance" ></mat-slide-toggle>
+      <img src="/assets/svg/assistent-icon.svg" alt="assist-icon" class="img">
+      <span>Need special assistance?</span>
+    </div>
+    <div class="card-passenger__luggage">
+      <mat-slide-toggle formControlName="luggage"></mat-slide-toggle>
+      <mat-icon class="img"> local_mall</mat-icon>
+      <span>Luggage</span>
+    </div>
   </div>
-  <button type="submit">sub</button>
 </form>

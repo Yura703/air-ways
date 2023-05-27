@@ -29,4 +29,17 @@ export class FormValidationService {
     }
     return { strongPassword: true };
   }
+
+  futureDateValidator(
+    control: AbstractControl
+  ): { [key: string]: boolean } | null {
+    const currentDate = new Date();
+    const selectedDate = control.value;
+
+    if (selectedDate instanceof Date && selectedDate < currentDate) {
+      return { pastDate: true };
+    }
+
+    return null;
+  }
 }
