@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
-import { AuthUserDataService } from '../services/auth-user-data.service';
 import { FormProcessingService } from '../services/form-processing.service';
 
 @Injectable({
@@ -8,7 +7,6 @@ import { FormProcessingService } from '../services/form-processing.service';
 })
 export class FlightBookingGuard implements CanActivate {
   constructor(
-    private userService: AuthUserDataService,
     private router: Router,
     private formProcessingService: FormProcessingService
   ) {}

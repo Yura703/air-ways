@@ -94,7 +94,8 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     HeaderComponent,
     FooterComponent,
     FormatMoneyPipe,
-    PhoneCodeCountryComponent
-  ]
+    PhoneCodeCountryComponent,
+    ItemCartFlightComponent,
+  ],
 })
 export class CoreModule {}
