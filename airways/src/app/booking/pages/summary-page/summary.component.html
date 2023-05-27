@@ -18,26 +18,26 @@
         </div>
       </div>
 
-      <div *ngFor="let adult of (ticketData$ | async)?.adult" >
+      <div *ngFor="let adult of (ticketData$ | async)?.adult; let index = index">
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{adult.firstName | uppercase}} {{adult.lastName | uppercase}}</div>
           <div class="info-bag">
             <div *ngIf="adult.luggage" class="info-text">1checked bag (total 23 kg) included</div>
             <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
-            <div class="info-text">Seat {{bookingService.getSeat()}} A</div>
+            <div class="info-text">Seat {{index+1}}A</div>
           </div>
         </div>
       </div>
 
-      <div *ngFor="let child of (ticketData$ | async)?.child">
+      <div *ngFor="let child of (ticketData$ | async)?.child; let index = index">
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{child.firstName | uppercase}} {{child.lastName | uppercase}}</div>
           <div class="info-bag">
             <div *ngIf="child.luggage" class="info-text">1checked bag (total 23 kg) included</div>
             <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
-            <div class="info-text">Seat {{bookingService.getSeat()}} B</div>
+            <div class="info-text">Seat {{index+1}}B</div>
           </div>
         </div>
       </div>
@@ -49,7 +49,6 @@
           <div class="info-bag">
             <div *ngIf="infant.luggage" class="info-text">1checked bag (total 23 kg) included</div>
             <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
-            <div class="info-text">Seat {{bookingService.getSeat()}} C</div>
           </div>
         </div>
       </div>
@@ -67,26 +66,26 @@
         </div>
       </div>
 
-      <div *ngFor="let adult of (ticketData$ | async)?.adult" >
+      <div *ngFor="let adult of (ticketData$ | async)?.adult; let index = index" >
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{adult.firstName | uppercase}} {{adult.lastName | uppercase}}</div>
           <div class="info-bag">
             <div *ngIf="adult.luggage" class="info-text">1checked bag (total 23 kg) included</div>
             <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
-            <div class="info-text">Seat {{bookingService.getSeat()}} D</div>
+            <div class="info-text">Seat {{index+1}} D</div>
           </div>
         </div>
       </div>
 
-      <div *ngFor="let child of (ticketData$ | async)?.child">
+      <div *ngFor="let child of (ticketData$ | async)?.child; let index = index">
         <mat-divider></mat-divider>
         <div class="summary__passenger">
           <div class="info-text">{{child.firstName | uppercase}} {{child.lastName | uppercase}}</div>
           <div class="info-bag">
             <div *ngIf="child.luggage" class="info-text">1checked bag (total 23 kg) included</div>
             <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
-            <div class="info-text">Seat {{bookingService.getSeat()}} E</div>
+            <div class="info-text">Seat {{index+1}} E</div>
           </div>
         </div>
       </div>

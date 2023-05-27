@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
 import { FormErrorMessage } from '../../models/error-message';
 
 @Component({
@@ -14,6 +15,8 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
 
   @Input()  ageCategory!: string;
 
+  @Input()  personData: ITicketPerson | undefined;
+
   private ngUnsubscribe = new Subject<void>();
 
   public passengerForm!: FormGroup;
@@ -25,6 +28,9 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
   public maxDatePicker: Date;
 
   ngOnInit(): void {
+
+    console.log('personData=', this.personData);
+
     this.maxDatePicker = new Date();
 
     this.passengerForm = new FormGroup({

@@ -7,8 +7,8 @@ import { IPassengerData } from 'src/app/shared/models/models';
 import { AddTicketsData } from 'src/app/store/actions/actions';
 import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
 import { IAppStore } from 'src/app/store/models/stateModel';
-import { ITicketsData } from 'src/app/store/models/ticketsData';
-import { selectSearchMain } from 'src/app/store/selectors/selectors';
+import { ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
+import { selectSearchMain, selectTicketsData } from 'src/app/store/selectors/selectors';
 import { FormErrorMessage } from '../../models/error-message';
 import BookingService from '../../service/booking.service';
 
@@ -26,9 +26,9 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
 
   public ticketsData$: Observable<ITicketsData>;
 
-  public adultData: IPassengerData[];
-  public childData: IPassengerData[];
-  public infantData: IPassengerData[];
+  public adultData: ITicketPerson[];
+  public childData: ITicketPerson[];
+  public infantData: ITicketPerson[];
 
   public searchData$: Observable<IOptionsSearch>;
 
@@ -46,6 +46,8 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
 
   public btnContinueIsDisabled$: BehaviorSubject<boolean>;
 
+  public ticketData$: Observable<ITicketsData>;
+
   constructor(public store: Store<IAppStore>, private bookingService: BookingService, private router: Router,) {}
 
   ngOnChanges() {
@@ -53,6 +55,18 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit(): void {
+    this.store.pipe(select(selectTicketsData))
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data) => {
+        if (data) {
+          this.adultData = data.adult ?? [];
+          this.childData = data.child ?? [];
+          this.infantData = data.infant ?? [];
+        }
+      }
+    );
+    //this.ticketData$ = this.store.pipe(select(selectTicketsData));
+
     this.bookingService.btnContinueIsDisabled$.next(false);
 
     this.searchData$ = this.store.pipe(select(selectSearchMain));
