@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidationService } from '../../services/form-validation.service';
 
 @Component({
   selector: 'app-form-date-input-single',
@@ -10,7 +11,10 @@ export class FormDateInputSingleComponent implements OnInit {
   @Input() parentForm: FormGroup;
   dateForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private formValidationService: FormValidationService
+  ) {
     this.createForm();
   }
 
@@ -20,7 +24,10 @@ export class FormDateInputSingleComponent implements OnInit {
 
   private createForm() {
     this.dateForm = this.fb.group({
-      startDate: ['', [Validators.required]],
+      startDate: [
+        '',
+        [Validators.required, this.formValidationService.futureDateValidator],
+      ],
     });
   }
 
