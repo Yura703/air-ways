@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidationService } from '../../services/form-validation.service';
 
 @Component({
   selector: 'app-form-date-input-double',
@@ -11,7 +12,10 @@ export class FormDateInputDoubleComponent implements OnInit {
   @Input() parentForm: FormGroup;
   dateForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private formValidationService: FormValidationService
+  ) {
     this.createForm();
   }
 
@@ -21,8 +25,14 @@ export class FormDateInputDoubleComponent implements OnInit {
 
   private createForm() {
     this.dateForm = this.fb.group({
-      startDate: ['', [Validators.required]],
-      returnDate: ['', [Validators.required]],
+      startDate: [
+        '',
+        [Validators.required, this.formValidationService.futureDateValidator],
+      ],
+      returnDate: [
+        '',
+        [Validators.required, this.formValidationService.futureDateValidator],
+      ],
     });
   }
 
