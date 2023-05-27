@@ -28,7 +28,9 @@
 
   &__contact {
     padding-top: 40px;
-
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   &__contact-details {
@@ -39,6 +41,7 @@
     width: 100%;
     border-radius: 8px;
     box-sizing: border-box;
+    flex-wrap: wrap;
   }
 
   &__contact-details-code {
@@ -58,7 +61,7 @@
   &__contact-details-email {
     background: #F4F6F9;
     border-radius: 4px;
-    margin-left: 20px;
+    //margin-left: 20px;
     width: 418px;
     height: 56px;
   }

@@ -1,3 +1,4 @@
+import { IContactDetals } from './contactDetals';
 import { IMoneyFormat } from './moneyFormat';
 import { IOptionsSearch } from './optionsSearch';
 import { IDateApi } from './responseApiFlightModel';
@@ -9,6 +10,7 @@ export interface IState {
   searchMain: IOptionsSearch;
   ticketsData: ITicketsData,
   selectedTickets: ISelectedTickets;
+  contactDetals: IContactDetals;
   errorLoading: boolean;
   exchangeRate: number;
   moneyFormat: IMoneyFormat;

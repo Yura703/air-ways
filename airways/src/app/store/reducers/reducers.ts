@@ -52,7 +52,13 @@ export const Reducers = (
               ...state,
               selectedTickets: action.payload,
           };
-      }
+        }
+        case AppActionTypes.AddContactDetals: {
+          return {
+              ...state,
+              contactDetals: action.payload,
+          };
+        }
         default:
             return state;
     }

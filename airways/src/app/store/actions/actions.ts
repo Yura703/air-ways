@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { IContactDetals } from '../models/contactDetals';
 import { IMoneyFormat } from '../models/moneyFormat';
 import { IOptionsSearch } from '../models/optionsSearch';
 import { IDateExchange } from '../models/responseApiCurrate';
@@ -14,6 +15,7 @@ export enum AppActionTypes {
   ExchangeChange = '[EXCHANGE CHANGE] ExchangeChange',
   AddTicketsData = '[ADD TICKETS DATA] AddTicketsData',
   AddSelectedTickets = '[ADD SELECTED TICKETS] AddSelectedTickets',
+  AddContactDetals = '[ADD CONTACT DETALS] AddContactDetals',
 }
 
 export class AddSearch implements Action {
@@ -50,6 +52,11 @@ export class AddSelectedTickets implements Action {
   constructor(public payload: ISelectedTickets) {}
 }
 
+export class AddContactDetals implements Action {
+  readonly type = AppActionTypes.AddContactDetals;
+  constructor(public payload: IContactDetals) {}
+}
+
 export type ActionUnion =
   | AddSearch
   | AddInfoFlight
@@ -57,4 +64,5 @@ export type ActionUnion =
   | MoneyChange
   | ExchangeChange
   | AddTicketsData
-  | AddSelectedTickets;
+  | AddSelectedTickets
+  | AddContactDetals;

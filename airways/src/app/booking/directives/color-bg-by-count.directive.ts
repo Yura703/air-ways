@@ -20,8 +20,8 @@ export class ColorBgByCountDirective implements OnChanges {
   static getColorByCount(count: number | undefined): string {
     if (!count) return 'white';
     if (count < 10) return 'red';
-    if (count < 50) return 'yellow';
-    if (count < 100) return 'blue';
+    if (count < 50) return 'orange';
+    if (count < 100) return 'yellow';
     return 'green';
   }
 

@@ -113,9 +113,9 @@ export class LogInComponent implements OnInit {
             .removeUser(el.id)
             .pipe(
               tap(() => {
-                console.log(
-                  `User with ID ${el.id} has been successfully removed.`
-                );
+                // console.log(
+                //   `User with ID ${el.id} has been successfully removed.`
+                // );
               }),
               catchError((error) => {
                 console.error(

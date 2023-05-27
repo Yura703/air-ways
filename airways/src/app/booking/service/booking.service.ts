@@ -36,7 +36,6 @@ export default class BookingService {
       ...this.selectTicketIsOpen,
       ...value,
     };
-console.log('selectTicketIsOpen=', this.selectTicketIsOpen);
 
     let isDisabled = false;
 
@@ -171,7 +170,7 @@ console.log('selectTicketIsOpen=', this.selectTicketIsOpen);
     };
   }
 
-  public getSeat() {
-    return ++this.numberSeat;
-  }
+  // public getSeat() {
+  //   return ++this.numberSeat;
+  // }
 }

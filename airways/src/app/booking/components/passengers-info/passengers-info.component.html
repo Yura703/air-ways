@@ -9,14 +9,17 @@
   (ngSubmit)="passengerInfoForm.valid && onSubmit(passengerInfoForm)">
     <div *ngFor="let passenger of passengers; let index = index">
       <app-card-passenger *ngIf="passenger === 'Adults'"
+        [personData]="personData[index]"
         [ageCategory]="index + 1 + ageCategory.adult"
         [parentForm]="passengerInfoForm">
       </app-card-passenger>
       <app-card-passenger *ngIf="passenger === 'Child'"
+        [personData]="personData[index]"
         [ageCategory]="index + 1 + ageCategory.child"
         [parentForm]="passengerInfoForm">
       </app-card-passenger>
       <app-card-passenger *ngIf="passenger === 'Infant'"
+        [personData]="personData[index]"
         [ageCategory]="index + 1 + ageCategory.infant"
         [parentForm]="passengerInfoForm">
       </app-card-passenger>

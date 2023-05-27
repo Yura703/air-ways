@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
 import { FormErrorMessage } from '../../models/error-message';
 
 @Component({
@@ -13,6 +14,8 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
   @Input() parentForm!: FormGroup;
 
   @Input()  ageCategory!: string;
+
+  @Input()  personData: ITicketPerson | undefined;
 
   private ngUnsubscribe = new Subject<void>();
 
@@ -52,6 +55,10 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
     this.passengerForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
 
     this.parentForm.addControl(this.ageCategory, this.passengerForm);
+
+    if (this.personData) {
+      this.passengerForm.patchValue(this.personData);
+    }
   }
 
   ngOnDestroy(): void {

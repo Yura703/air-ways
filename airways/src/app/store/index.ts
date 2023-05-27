@@ -1,4 +1,5 @@
 import { ActionReducerMap } from '@ngrx/store';
+import { IContactDetals } from './models/contactDetals';
 import { IOptionsSearch } from './models/optionsSearch';
 import { ISelectedTickets } from './models/selectedTickets';
 import { IAppStore, IState } from './models/stateModel';
@@ -10,6 +11,7 @@ export const stateApp: IState = {
   searchMain: {} as IOptionsSearch,
   ticketsData: {} as ITicketsData,
   selectedTickets: {} as ISelectedTickets,
+  contactDetals: {} as IContactDetals,
   errorLoading: false,
   exchangeRate: 1,
   moneyFormat: 'RUB',
