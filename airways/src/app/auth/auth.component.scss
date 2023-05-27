@@ -1,0 +1,118 @@
+@import './../../scss/abstracts/color-styles';
+@import './../../scss/abstracts/typography-styles';
+@import './../../styles.scss';
+
+.user-container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px;
+  background: $color-neutral-100;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-title {
+  color: $color-primary;
+  @include title-large;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+::ng-deep .item-cart-container {
+  display: grid;
+  grid-template-columns: 8% 18% 15% 22% 15% 7.5% 5%;
+  gap: 2%;
+}
+
+::ng-deep .edit-container {
+  display: none;
+}
+
+ul {
+  padding: 0;
+  .user-li {
+    list-style: none;
+    position: relative;
+    height: 80px;
+    border-bottom: solid 1px $color-secondary-50;
+    cursor: pointer;
+    transition-duration: 300ms;
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+      transition-duration: 300ms;
+    }
+
+  }
+}
+
+.item-user-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: $color-neutral-80;
+  border: 0.5px solid $color-secondary-60;
+  padding: 15px 0;
+}
+
+.item-text {
+  color: $color-black;
+  @include body-large;
+  font-weight: 700;
+}
+
+.user-summary-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 70px;
+  border-bottom: solid 1px $color-secondary-50;
+}
+
+.user-total_title {
+  color: $color-black;
+  @include subtitle-medium;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.user-total_price {
+  @include subtitle-large;
+  color: $color-primary;
+  font-weight: 700;
+}
+
+.user-total-container {
+  display: flex;
+  align-items: center;
+}
+
+.user-footer {
+  height: 80px;
+  @include flex-end-space;
+}
+
+//@media (max-width: 1150px) {
+//  .user-container {
+//    width: 90%;
+//    padding: 20px;
+//  }
+//}
+
+@media (max-width: 850px) {
+  .user-container {
+    width: 90%;
+    padding: 5px;
+  }
+}
+
+//@media (max-width: 650px) {
+//  .user-container {
+//    width: 99%;
+//    //padding: 5px;
+//  }
+//
+//}

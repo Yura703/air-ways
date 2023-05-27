@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthUserDataService } from '../../services/auth-user-data.service';
 import { OpenDialogService } from '../../services/open-dialog.service';
 
@@ -14,7 +15,8 @@ export class LoginComponentComponent implements OnInit {
 
   constructor(
     private authUserDataService: AuthUserDataService,
-    private openDialogService: OpenDialogService
+    private openDialogService: OpenDialogService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,5 +37,9 @@ export class LoginComponentComponent implements OnInit {
     this.logIn = false;
     this.authUserDataService.logIn.next(this.logIn);
     this.authUserDataService.userName.next(this.userName);
+    this.router.navigate(['']);
+  }
+  goToUserAccount() {
+    this.router.navigate(['auth']);
   }
 }
