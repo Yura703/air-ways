@@ -36,7 +36,6 @@ export default class BookingService {
       ...this.selectTicketIsOpen,
       ...value,
     };
-console.log('selectTicketIsOpen=', this.selectTicketIsOpen);
 
     let isDisabled = false;
 

@@ -3,12 +3,12 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
-import { IPassengerData } from 'src/app/shared/models/models';
-import { AddTicketsData } from 'src/app/store/actions/actions';
+import { AddContactDetals, AddTicketsData } from 'src/app/store/actions/actions';
+import { IContactDetals } from 'src/app/store/models/contactDetals';
 import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
 import { IAppStore } from 'src/app/store/models/stateModel';
 import { ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
-import { selectSearchMain, selectTicketsData } from 'src/app/store/selectors/selectors';
+import { selectContactDetals, selectSearchMain, selectTicketsData } from 'src/app/store/selectors/selectors';
 import { FormErrorMessage } from '../../models/error-message';
 import BookingService from '../../service/booking.service';
 
@@ -26,9 +26,7 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
 
   public ticketsData$: Observable<ITicketsData>;
 
-  public adultData: ITicketPerson[];
-  public childData: ITicketPerson[];
-  public infantData: ITicketPerson[];
+  public personData: ITicketPerson[] = [];
 
   public searchData$: Observable<IOptionsSearch>;
 
@@ -43,6 +41,8 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
   public passengers: string[];
 
   public searchData: IOptionsSearch;
+
+  public contactDetals: IContactDetals;
 
   public btnContinueIsDisabled$: BehaviorSubject<boolean>;
 
@@ -59,13 +59,12 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {
         if (data) {
-          this.adultData = data.adult ?? [];
-          this.childData = data.child ?? [];
-          this.infantData = data.infant ?? [];
+          if (data.adult?.length) this.personData.push(...data.adult);
+          if (data.child?.length) this.personData.push(...data.child);
+          if (data.infant?.length) this.personData.push(...data.infant);
         }
       }
     );
-    //this.ticketData$ = this.store.pipe(select(selectTicketsData));
 
     this.bookingService.btnContinueIsDisabled$.next(false);
 
@@ -73,6 +72,10 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
 
     this.searchData$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (searchData) => this.searchData = searchData
+    );
+
+    this.store.pipe(select(selectContactDetals)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (contactDetals) => this.contactDetals = contactDetals
     );
 
     this.passengers = this.searchData.passengers.map((passenger) => [...Array(passenger.value).fill(passenger.name)]).flat(1);
@@ -92,6 +95,10 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
     });
 
     this.passengerInfoForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
+
+    if (this.contactDetals) {
+      this.passengerInfoForm.patchValue(this.contactDetals);
+    }
   }
 
   ngOnDestroy(): void {
@@ -162,6 +169,12 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
 
       this.store.dispatch(new AddTicketsData({
         ...changeTicketData,
+      }));
+
+      this.store.dispatch(new AddContactDetals({
+        email: ticketsData.email,
+        phoneNumber: ticketsData.phoneNumber,
+        phoneCodeCountry: ticketsData.phoneCodeCountry,
       }));
 
       this.router.navigate(['flight-booking/summary']);

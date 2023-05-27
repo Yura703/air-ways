@@ -66,10 +66,7 @@ export default class SecondMenuComponent implements OnInit, OnDestroy {
 
   public onChangeDate(type: string) {
     if (type === 'round') {
-      console.log({startDate: this.formDate.value.start?.toString() as string,
-        returnDate: this.formDate.value.end?.toString() as string,});
-
-      this.store.dispatch(
+        this.store.dispatch(
         new AddSearch({
           ...this.searchData,
           startDate: this.formDate.value.start?.toISOString().slice(0,10) as string,

@@ -49,8 +49,6 @@ export class SummaryPageComponent implements OnInit {
     });
 
     this.costTickets = this.bookingService.getCostTickets(this.costTickets);
-  console.log(this.costTickets);
-
   }
 
   public goBack() {

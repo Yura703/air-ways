@@ -28,9 +28,6 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
   public maxDatePicker: Date;
 
   ngOnInit(): void {
-
-    console.log('personData=', this.personData);
-
     this.maxDatePicker = new Date();
 
     this.passengerForm = new FormGroup({
@@ -58,6 +55,10 @@ export class CardPassengerComponent implements OnInit, OnDestroy {
     this.passengerForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
 
     this.parentForm.addControl(this.ageCategory, this.passengerForm);
+
+    if (this.personData) {
+      this.passengerForm.patchValue(this.personData);
+    }
   }
 
   ngOnDestroy(): void {
