@@ -16,6 +16,7 @@ import BookingService from '../../service/booking.service';
 export class SummaryPageComponent implements OnInit {
 
   public selectedTickets$: Observable<ISelectedTickets>;
+
   public ticketData$: Observable<ITicketsData>;
 
   public costTickets: ICostTickets = {
@@ -56,7 +57,11 @@ export class SummaryPageComponent implements OnInit {
     this.router.navigate(['flight-booking/passengers']);
   }
 
-  public goOrderCard() {}
+  public goOrderCard() {
+    console.log();
+  }
 
-  public goBuyNow() {}
+  public goBuyNow() {
+    console.log();
+  }
 }

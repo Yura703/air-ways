@@ -171,7 +171,7 @@ console.log('selectTicketIsOpen=', this.selectTicketIsOpen);
     };
   }
 
-  public getSeat() {
-    return ++this.numberSeat;
-  }
+  // public getSeat() {
+  //   return ++this.numberSeat;
+  // }
 }
