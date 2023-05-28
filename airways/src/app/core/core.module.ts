@@ -8,8 +8,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+import { RouterLink } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
-import { FormatMoneyPipe } from '../pipe/formatMoney.pipe';
+import { FormatMoneyPipe } from '../shared/pipes/formatMoney.pipe';
 import { BasketItemEditComponent } from './components/basket-item-edit/basket-item-edit.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormDateInputDoubleComponent } from './components/form-date-input-double/form-date-input-double.component';
@@ -27,7 +28,6 @@ import { PopUpComponent } from './components/pop-up/pop-up/pop-up.component';
 import { SignUpComponent } from './components/pop-up/sign-up/sign-up.component';
 import { SelectDateFormatComponent } from './components/select-date-format/select-date-format.component';
 import { SelectMoneyFormatComponent } from './components/select-money-format/select-money-format.component';
-import { BasketPageComponent } from './pages/basket-page/basket-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
 @NgModule({
@@ -50,7 +50,6 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     SelectDateFormatComponent,
     SelectMoneyFormatComponent,
     MainPageComponent,
-    BasketPageComponent,
     ItemCartFlightComponent,
     BasketItemEditComponent,
     FormDateInputSingleComponent,
@@ -63,6 +62,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     ReactiveFormsModule,
     FormsModule,
     GoogleSigninButtonModule,
+    RouterLink,
   ],
   providers: [
     MatDatepickerModule,
@@ -96,6 +96,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     FormatMoneyPipe,
     PhoneCodeCountryComponent,
     ItemCartFlightComponent,
+    FormsModule,
   ],
 })
 export class CoreModule {}
