@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of, tap } from 'rxjs';
+import { catchError, map, mergeMap, of } from 'rxjs';
 import { TravelpayoutsService } from 'src/app/core/services/travelpayouts.service';
 import {
   AddInfoFlight,
@@ -15,7 +15,7 @@ export class FlightEffects {
       ofType(AppActionTypes.AddSearchMain),
       mergeMap(() =>
         this.travelpayoutsService.getInfoFlight().pipe(
-          tap((flight) => console.log(flight.data)), //выводит в консоль ответ
+          // tap((flight) => console.log(flight.data)), //выводит в консоль ответ
           map((flight) => new AddInfoFlight(flight.data))
         )
       ),

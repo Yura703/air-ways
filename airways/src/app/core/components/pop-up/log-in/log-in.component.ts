@@ -58,7 +58,7 @@ export class LogInComponent implements OnInit {
         .logIn(this.logInForm.value.email, this.logInForm.value.password)
         .subscribe({
           next: (response: ServerDataInterface) => {
-            console.log(response);
+            // console.log(response);
 
             if (typeof this.authUserData !== 'string') {
               this.logInForm.get('email')?.setValue(this.logInForm.value.email);

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { merge, Observable, scan, tap } from 'rxjs';
+import { merge, Observable, scan } from 'rxjs';
 import { BASIC_URL_TRAVELPAYOUTS } from 'src/app/constants/const';
 import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
 import { IResponseApi } from 'src/app/store/models/responseApiFlightModel';
@@ -20,7 +20,7 @@ export class TravelpayoutsService {
   getInfoFlight(): Observable<IResponseApi> {
     this.optionsQuery$.subscribe((param) => {
       this.optionsQuery = param;
-      console.log(param); //выводит запрос в консоль
+      // console.log(param); //выводит запрос в консоль
     });
 
     return merge(
@@ -29,9 +29,6 @@ export class TravelpayoutsService {
           origin: this.optionsQuery.origin,
           destination: this.optionsQuery.destination,
           departure_at: this.optionsQuery.startDate,
-          // return_at: this.optionsQuery.returnDate
-          //   ? this.optionsQuery.returnDate
-          //   : '',
         },
       }),
       this.http.get<IResponseApi>(BASIC_URL_TRAVELPAYOUTS, {
@@ -41,7 +38,6 @@ export class TravelpayoutsService {
           departure_at: this.optionsQuery.returnDate
             ? this.optionsQuery.returnDate
             : '',
-          // return_at: this.optionsQuery.startDate,
         },
       })
     ).pipe(
