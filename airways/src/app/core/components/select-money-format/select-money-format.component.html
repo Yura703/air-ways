@@ -1,0 +1,5 @@
+<mat-form-field class="format-money-container" appearance="fill">
+    <mat-select [value]="selectFormatMoney$ | async" class="header-style">
+      <mat-option (click)="changeMoney(option)" *ngFor="let option of arrSelectFormatDate" value={{option}}>{{option}}</mat-option>
+    </mat-select>
+  </mat-form-field>

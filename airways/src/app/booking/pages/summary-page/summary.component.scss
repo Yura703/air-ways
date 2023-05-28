@@ -1,0 +1,166 @@
+.summary {
+  margin: 0 auto;
+  max-width: 1128px;
+  padding: 40px 0;
+
+  &__title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #11397E;
+    display: flex;
+    gap: 15px;
+    padding: 0 0 20px 0;
+  }
+
+  &__travel {
+    gap: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__travel-info {
+    width: 551px;
+    //width: 50%;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+
+    .info-text {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      color: #000000;
+      // color: #1C1B1F;
+    }
+  }
+
+  &__travel-header {
+    padding: 22px 24px;
+    background: #F1F3F6;
+    border-top: 3px solid #11397E;
+    border-radius: 8px 8px 0px 0px;
+
+    .info-cities {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      color: #000000;
+      padding-bottom: 8px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .info-date {
+      display: flex;
+      gap: 36px;
+    }
+  }
+
+  &__passenger {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .info-bag {
+      padding-left: 28px;
+    }
+  }
+
+  &__cost {
+    max-width: 551px;
+    background: #FFFFFF;
+    border: 1px solid #E1E5EB;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 24px 72px 20px 40px;
+    box-sizing: border-box;
+    margin-top: 30px;
+  }
+
+  .text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    color: #000000;
+  }
+
+  .flex-sb {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .text-bold {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    color: #000000;
+  }
+
+  &__cost-total {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.5px;
+  }
+
+  &__button-group {
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    gap: 40px;
+    justify-content: flex-end;
+    max-width: 1128px;
+
+    .btn-back {
+      width: 126px;
+      height: 60px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.1px;
+      color:  #11397E;
+    }
+
+    .btn-add-order-card {
+      width: 166px;
+      height: 60px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.1px;
+      color:  #11397E;
+      border: 1px solid #11397E;
+      border-radius: 4px;
+    }
+
+    .btn-buy {
+      width: 126px;
+      height: 60px;
+      background: #11397E;
+      border-radius: 4px;
+      color: #FFFFFF;
+    }
+  }
+}
+
+@media (max-width: 1123px) {
+  .summary__cost {
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+}
+

@@ -1,0 +1,114 @@
+:host-context(.ng-star-inserted) div
+{
+  overflow: revert;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button-row {
+  margin-bottom: 36px;
+  button {
+    width: 50%;
+    height: 48px;
+    &:nth-child(1) {
+      border-radius: 4px 0 0 4px;
+      background-color: #f4f6f9;
+      border-bottom: 3px solid;
+      border-bottom-color: #11397e;
+    }
+    &:nth-child(2) {
+      border-radius: 0 4px 4px 0;
+
+    }
+  }
+}
+.button-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 128px;
+  margin-bottom: 32px;
+  button {
+    height: 56px;
+    span {
+      position: absolute;
+      top: 8%;
+      right: 105%;
+      width: 20px;
+      height: 20px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+  .google {
+    background-image: url("../../../../../assets/svg/google.svg");
+  }
+  .facebook {
+    background-image: url("../../../../../assets/svg/facebook.svg");
+  }
+}
+
+#googleButton{
+  display: none;
+}
+
+.line-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.line {
+  display: block;
+  width: 50%;
+  height: 1px;
+  background-color: #e1e5eb;
+}
+
+.text {
+  white-space: nowrap;
+  font-size: 16px;
+  text-align: center;
+  margin: 0 16px;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  mat-button-toggle-group {
+    height: 40px;
+    margin-bottom: 16px;
+  }
+  .sign-up {
+    background-color: #11397e;
+    color: #ffffff;
+  }
+  mat-error {
+    font-size: 12px;
+    position: relative;
+    bottom: 12px;
+  }
+  .info {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+    &:visited {
+      &.touch {
+        display: none;
+      }
+    }
+  }
+}
+
+
+

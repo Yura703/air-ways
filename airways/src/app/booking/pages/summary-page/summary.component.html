@@ -1,0 +1,167 @@
+<app-second-menu></app-second-menu>
+<div class="summary">
+  <div class="summary__title">
+    <img src="assets/svg/summary-icon.svg" alt="icon">
+    <div >Summary</div>
+  </div>
+  <div class="summary__travel">
+
+    <div class="summary__travel-info">
+      <div class="summary__travel-header">
+        <div class="info-cities">
+          <span style="color: #11397E;">{{(selectedTickets$ | async)?.from?.airline}} {{(selectedTickets$ | async)?.from?.flight_number}}</span>
+          <span>{{(selectedTickets$ | async)?.from?.origin | fullCityName | async}} - {{(selectedTickets$ | async)?.from?.destination | fullCityName | async}}</span>
+        </div>
+        <div class="info-text info-date">
+          <div >{{(selectedTickets$ | async)?.from?.departure_at | date:'EEEE, d MMMM, y'}}</div>
+          <div>{{(selectedTickets$ | async)?.from?.departure_at | date:'hh:mm'}} - {{(selectedTickets$ | async)?.from?.dateFlightTo | date:'hh:mm'}}</div>
+        </div>
+      </div>
+
+      <div *ngFor="let adult of (ticketData$ | async)?.adult; let index = index">
+        <mat-divider></mat-divider>
+        <div class="summary__passenger">
+          <div class="info-text">{{adult.firstName | uppercase}} {{adult.lastName | uppercase}}</div>
+          <div class="info-bag">
+            <div *ngIf="adult.luggage" class="info-text">1checked bag (total 23 kg) included</div>
+            <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
+            <div class="info-text">Seat {{index+1}}A</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let child of (ticketData$ | async)?.child; let index = index">
+        <mat-divider></mat-divider>
+        <div class="summary__passenger">
+          <div class="info-text">{{child.firstName | uppercase}} {{child.lastName | uppercase}}</div>
+          <div class="info-bag">
+            <div *ngIf="child.luggage" class="info-text">1checked bag (total 23 kg) included</div>
+            <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
+            <div class="info-text">Seat {{index+1}}B</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let infant of (ticketData$ | async)?.infant">
+        <mat-divider></mat-divider>
+        <div class="summary__passenger">
+          <div class="info-text">{{infant.firstName | uppercase}} {{infant.lastName | uppercase}}</div>
+          <div class="info-bag">
+            <div *ngIf="infant.luggage" class="info-text">1checked bag (total 23 kg) included</div>
+            <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary__travel-info" *ngIf="(selectedTickets$ | async)?.to">
+      <div class="summary__travel-header">
+        <div class="info-cities">
+          <span style="color: #11397E;">{{(selectedTickets$ | async)?.to?.airline}} {{(selectedTickets$ | async)?.to?.flight_number}}</span>
+          <span>{{(selectedTickets$ | async)?.to?.origin | fullCityName | async}} - {{(selectedTickets$ | async)?.to?.destination | fullCityName | async}}</span>
+        </div>
+        <div class="info-text info-date">
+          <div >{{(selectedTickets$ | async)?.to?.departure_at | date:'EEEE, d MMMM, y'}}</div>
+          <div>{{(selectedTickets$ | async)?.to?.departure_at | date:'hh:mm'}} - {{(selectedTickets$ | async)?.to?.dateFlightTo | date:'hh:mm'}}</div>
+        </div>
+      </div>
+
+      <div *ngFor="let adult of (ticketData$ | async)?.adult; let index = index" >
+        <mat-divider></mat-divider>
+        <div class="summary__passenger">
+          <div class="info-text">{{adult.firstName | uppercase}} {{adult.lastName | uppercase}}</div>
+          <div class="info-bag">
+            <div *ngIf="adult.luggage" class="info-text">1checked bag (total 23 kg) included</div>
+            <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
+            <div class="info-text">Seat {{index+1}} D</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let child of (ticketData$ | async)?.child; let index = index">
+        <mat-divider></mat-divider>
+        <div class="summary__passenger">
+          <div class="info-text">{{child.firstName | uppercase}} {{child.lastName | uppercase}}</div>
+          <div class="info-bag">
+            <div *ngIf="child.luggage" class="info-text">1checked bag (total 23 kg) included</div>
+            <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
+            <div class="info-text">Seat {{index+1}} E</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let infant of (ticketData$ | async)?.infant">
+        <mat-divider></mat-divider>
+        <div class="summary__passenger">
+          <div class="info-text">{{infant.firstName | uppercase}} {{infant.lastName | uppercase}}</div>
+          <div class="info-bag">
+            <div *ngIf="infant.luggage" class="info-text">1checked bag (total 23 kg) included</div>
+            <div class="info-text">1 cabin bag + 1 personal item (max. 8 kg) included</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="summary__cost" *ngIf="costTickets.adult">
+    <div class="text" style="padding-bottom: 16px;">
+      <div class="text-bold flex-sb">
+        <div>{{costTickets.adult}} x Adult Fare</div>
+        <div>{{costTickets.adultFare}}</div>
+      </div>
+      <div style="padding-left: 40px;" class="flex-sb">
+        <div>Fare</div>
+        <div>{{costTickets.adultFare - costTickets.adultTax}}</div>
+      </div>
+      <div  style="padding-left: 40px;" class="flex-sb">
+        <div>Tax & Service Change</div>
+        <div>{{costTickets.adultTax}}</div>
+      </div>
+    </div>
+
+    <div class="text" style="padding-bottom: 16px;" *ngIf="costTickets.child">
+      <div class="text-bold flex-sb">
+        <div>{{costTickets.child}} x Child Fare</div>
+        <div>{{costTickets.childFare}}</div>
+      </div>
+      <div style="padding-left: 40px;" class="flex-sb">
+        <div>Fare</div>
+        <div>{{costTickets.childFare - costTickets.childTax}}</div>
+      </div>
+      <div  style="padding-left: 40px;" class="flex-sb">
+        <div>Tax & Service Change</div>
+        <div>{{costTickets.childTax}}</div>
+      </div>
+    </div>
+
+    <div class="text" style="padding-bottom: 16px;" *ngIf="costTickets.infant">
+      <div class="text-bold flex-sb">
+        <div>{{costTickets.infant}} x Infant Fare</div>
+        <div>{{costTickets.infantFare}}</div>
+      </div>
+      <div style="padding-left: 40px;" class="flex-sb">
+        <div>Fare</div>
+        <div>{{costTickets.infantFare - costTickets.infantTax}}</div>
+      </div>
+      <div  style="padding-left: 40px;" class="flex-sb">
+        <div>Tax & Service Change</div>
+        <div>{{costTickets.infantTax}}</div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="summary__cost-total">
+      <div>TOTAL:</div>
+      <div style="color:#11397E;">{{costTickets.total}}</div>
+    </div>
+  </div>
+
+  <div class="summary__button-group">
+    <button mat-button class="btn-back" (click)="goBack()">Back</button>
+    <button mat-button class="btn-add-order-card" (click)="goOrderCard()">Add to order card</button>
+    <button mat-button class="btn-buy" (click)="goBuyNow()">Buy now</button>
+  </div>
+</div>
+

@@ -1,0 +1,26 @@
+<mat-form-field appearance="outline">
+  <mat-label>Country code</mat-label>
+  <mat-select required [(ngModel)]="selectedOption"
+              [value]="selectedOption" (selectionChange)="phoneCodeCountryChange.emit($event.value)">
+    <mat-option
+      *ngFor="let option of optionsName"
+      [value]="option">
+             <div class="row">
+         <div class="name" >{{option.name}}</div>
+         <div class="number">({{option.dial_code}})</div>
+       </div>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<!--  <input type="text"-->
+<!--         aria-label="Number"-->
+<!--         matInput-->
+<!--         [formControl]="myControl"-->
+<!--         [matAutocomplete]="auto">-->
+<!--  <mat-autocomplete #auto="matAutocomplete">-->
+<!--    <mat-option *ngFor="let optionName of filteredOptions |-->
+<!--    async" [value]="optionName">-->
+<!--      {{optionName}}-->
+<!--    </mat-option>-->
+<!--  </mat-autocomplete>-->

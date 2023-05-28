@@ -1,0 +1,124 @@
+:host {
+  max-width: 1128px;
+  display: block;
+  margin: 0 auto;
+}
+
+.card-passenger {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 32px 44px;
+    gap: 24px;
+    background: #FFFFFF;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-sizing: border-box;
+
+  &__input-icon {
+    width: 26px;
+    height: 26px;
+    transform: scale(1.4);
+  }
+
+  &__input-icon.colorRed {
+    color:red;
+    transform: scale(1.4) rotate(0.5turn);
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #10264C;
+  }
+
+  &__data {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    height: 56px;
+  }
+
+  &__input {
+    background: #F4F6F9;
+    border-radius: 4px;
+    width: 255px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__gender {
+    background: #F4F6F9;
+    border-radius: 4px;
+    width: 255px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__gender-btn {
+    width: 50%;
+    height: 100%;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.1px;
+    color: #1C1B1F;
+  }
+
+  &__date {
+    background: #F4F6F9;
+    border-radius: 4px;
+    width: 255px;
+    height: 100%;
+  }
+
+  &__addition {
+    display: flex;
+    gap: 20px;
+    height: 26px;
+    flex-wrap: wrap;
+  }
+
+  &__assistance {
+    display: flex;
+    align-items: flex-start;
+    .img {
+      padding: 0 6px 0 17px;
+    }
+  }
+
+  &__luggage {
+    display: flex;
+    align-items: flex-start;
+    .img {
+      padding: 0 13px 0 17px;
+    }
+  }
+}
+
+.img {
+  padding: 0 6px 0 17px;
+}
+
+.luggage-input {
+  width: 100px;
+  border: black 1px solid;
+  padding-left: 10px;
+}
+
+::ng-deep .mdc-switch__track {
+  height: 23px !important;
+  border-radius: 11px !important;
+}
+
+::ng-deep .mat-button-toggle-button.mat-focus-indicator {
+  height: 100% !important;
+}
+
+::ng-deep .mat-button-toggle-checked {
+  color: #11397E !important;
+}

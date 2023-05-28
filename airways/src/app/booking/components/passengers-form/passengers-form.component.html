@@ -1,0 +1,20 @@
+<mat-form-field appearance="fill" class="input-select-pass">
+  <mat-label>Passengers</mat-label>
+  <mat-select value="passengers">
+      <mat-option value="passengers" class="option__dissable">{{optionPassenger}}</mat-option>
+      <mat-option class="option__nonEvent" *ngFor="let passenger of (searchData$ | async)?.passengers">
+          <div class="passenger-option">
+              <div>
+                  <p class="passenger-option_name">{{passenger.name}}</p>
+              </div>
+              <div class="passenger-option_value" id={{passenger.name}}>
+                  <span class="option-value_change" (click)="clickMinus($event, passenger.name)">-</span>
+                  <span class="option-value_number"
+                      [ngClass]="{'option-value_number__dissable': !passenger.value}">{{passenger.value}}
+                  </span>
+                  <span class="option-value_change" (click)="clickPlus($event, passenger.name)">+</span>
+              </div>
+          </div>
+      </mat-option>
+  </mat-select>
+</mat-form-field>

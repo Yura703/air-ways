@@ -1,0 +1,15 @@
+<form [formGroup]="locationForm">
+    <mat-form-field appearance="fill" class="input-select-place">
+        <mat-label>{{optionForm.namelabel}}</mat-label>
+        <input type="text" formControlName="location" matInput [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of locationOptions | async" [value]="option.name + ' ' + option.code">
+                <span class="name-city">{{option.name}} </span>
+                <span class="name-city IATA-code">{{option.code}}</span>
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <div *ngIf="_location?.invalid && (_location?.touched || _location?.dirty)">
+        <span class="error-text" *ngIf="_location?.errors?.required">Field From is required</span>
+    </div>
+</form>

@@ -1,0 +1,22 @@
+<div>
+  <ng-container *ngIf="!logIn; else loggedIn">
+    <div class="loginIn-container" (click)="openDialog()">
+      <span class="material-icons">person_2</span>
+      <p class="logIn-text">{{ userName }}</p>
+    </div>
+  </ng-container>
+  <ng-template #loggedIn>
+    <div class="loginIn-container" [matMenuTriggerFor]="menu">
+      <span class="material-icons">person_2</span>
+      <p class="logIn-text">{{ userName }}</p>
+    </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="goToUserAccount()">
+        <span>User Account</span>
+      </button>
+      <button mat-menu-item (click)="clearLocalStorage()">
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+  </ng-template>
+</div>

@@ -1,0 +1,8 @@
+<app-second-menu></app-second-menu>
+<app-ticket-section *ngIf="isAvailableTicketsOrPassengers"></app-ticket-section>
+<div class="button-group">
+  <button mat-button class="btn-back" (click)="goBack()">Back</button>
+  <button [disabled]="btnContinueIsDisabled$ | async"
+    mat-button class="btn-continue" (click)="continue()">Continue
+  </button>
+</div>

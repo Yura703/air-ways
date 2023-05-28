@@ -1,0 +1,22 @@
+<form class="searchFlight-container" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <mat-radio-group aria-label="Select an option" formControlName="type" (change)="changeType()">
+        <mat-radio-button value="Round">Round Trip</mat-radio-button>
+        <mat-radio-button value="One">One Way</mat-radio-button>
+    </mat-radio-group>
+    <div class="input-place-container">
+        <app-form-location [parentForm]="searchForm" *ngFor="let form of locationForms" [optionForm]="form">
+        </app-form-location>
+        <span class="material-icons reverse-search" (click)="reverseClick()"> sync_alt </span>
+    </div>
+    <div>
+        <div class="container-date-pass">
+            <app-form-date-input-single [parentForm]="searchForm" *ngIf="tripOption === 'Round' else elseDate">
+            </app-form-date-input-single>
+            <ng-template #elseDate>
+                <app-form-date-input-double [parentForm]="searchForm"></app-form-date-input-double>
+            </ng-template>
+            <app-form-passengers [parentForm]="searchForm"></app-form-passengers>
+        </div>
+    </div>
+    <button class="button-search-flight">Search</button>
+</form>

@@ -1,0 +1,103 @@
+@import "./../../../../styles.scss";
+@import "./../../../../scss/abstracts/color-styles";
+
+.searchFlight-container {
+  max-width: 580px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-left: 7%;
+}
+
+.input-place-container {
+  position: relative;
+}
+
+.reverse-search {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  background: #ffffff;
+  border: 0.5px solid rgba(116, 118, 122, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #74767a;
+  right: 15px;
+  top: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+}
+
+.button-search-flight {
+  background: #11397e;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 126px;
+  height: 60px;
+  border: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  align-self: self-end;
+
+  &:hover {
+    background: #2767d6;
+  }
+}
+
+::ng-deep .input-select-date {
+  border-radius: 4px;
+  border: 0.5px solid #cecece;
+  position: relative;
+}
+
+.container-date-pass {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  gap: 10px;
+}
+
+.mdc-radio__outer-circle {
+  border-color: $color-primary !important;
+}
+
+.mdc-radio__inner-circle {
+  border-color: $color-primary !important;
+}
+
+@media (max-width: 600px) {
+  .searchFlight-container {
+    padding: 10px;
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container-date-pass {
+    flex-direction: column;
+  }
+
+  .input-select-date {
+    width: 100%;
+  }
+
+  .date-error {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+}
