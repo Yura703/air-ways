@@ -12,7 +12,7 @@
 
     <div class="second-menu__dot"></div>
     <div>{{ (searchData$ | async)?.passengers | quantityPassengers }}</div>
-    <img src="assets/person-icon.svg" alt="person" class="second-menu__person-icon">
+    <img src="./assets/person-icon.svg" alt="person" class="second-menu__person-icon">
 
     <button *ngIf="editBtnIsVisible" class="second-menu__btn" (click)="editSearchData()">Edit</button>
   </div>

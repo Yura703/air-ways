@@ -124,7 +124,7 @@ export class SignUpComponent implements OnInit {
         )
         .subscribe({
           next: (response) => {
-            console.log(response);
+            // console.log(response);
             this.authUserDataService.authUserDataUp.next(this.signUpForm.value); // отправка данных на сервер
             this.toggleChild();
           },
