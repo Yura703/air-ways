@@ -21,31 +21,31 @@ export class FooterComponent {
       link: 'https://rs.school/',
     },
     {
-      img: '../assets/oneGit.png',
+      img: './assets/oneGit.png',
       link: 'https://github.com/yura703',
     },
     {
-      img: '/assets/twoGit.png',
+      img: './assets/twoGit.png',
       link: 'https://github.com/andreiChabatul',
     },
     {
-      img: '/assets/threeGit.png',
+      img: './assets/threeGit.png',
       link: 'https://github.com/guschins',
     },
   ];
 
   footerPayIco: IfooterPayIco[] = [
     {
-      img: '/assets/iconVisa.svg',
+      img: './assets/iconVisa.svg',
     },
     {
-      img: '/assets/iconMastercard.svg',
+      img: './assets/iconMastercard.svg',
     },
     {
-      img: '/assets/iconAmasonPay.svg',
+      img: './assets/iconAmasonPay.svg',
     },
     {
-      img: '/assets/iconAmerican.svg',
+      img: './assets/iconAmerican.svg',
     },
   ];
 }
