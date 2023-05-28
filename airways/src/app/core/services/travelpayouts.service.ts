@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { merge, Observable, scan } from 'rxjs';
@@ -23,15 +23,18 @@ export class TravelpayoutsService {
       // console.log(param); //выводит запрос в консоль
     });
 
-    // const headers = new HttpHeaders({
-    //   'Access-Control-Allow-Origin': 'https://yura703.github.io/', // Добавляем заголовок CORS
-    // });
-    // //
-    // const options = { headers: headers };
+    const headers = new HttpHeaders({
+      // 'Access-Control-Allow-Origin': 'https://yura703.github.io/', // Добавляем заголовок CORS
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin': 'http://api.travelpayouts.com',
+      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET', //not sure if this is right
+    });
+    //
+    const options = { headers: headers };
 
     return merge(
       this.http.get<IResponseApi>(BASIC_URL_TRAVELPAYOUTS, {
-        // ...options,
+        ...options,
         params: {
           origin: this.optionsQuery.origin,
           destination: this.optionsQuery.destination,
@@ -39,7 +42,7 @@ export class TravelpayoutsService {
         },
       }),
       this.http.get<IResponseApi>(BASIC_URL_TRAVELPAYOUTS, {
-        // ...options,
+        ...options,
         params: {
           origin: this.optionsQuery.destination,
           destination: this.optionsQuery.origin,
