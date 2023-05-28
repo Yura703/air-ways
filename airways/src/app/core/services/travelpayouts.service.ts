@@ -24,12 +24,10 @@ export class TravelpayoutsService {
     });
 
     const headers = new HttpHeaders({
-      // 'Access-Control-Allow-Origin': 'https://yura703.github.io/', // Добавляем заголовок CORS
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Origin': 'https://yura703.github.io',
-      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET', //not sure if this is right
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
     });
-    //
+
     const options = { headers: headers };
 
     return merge(
