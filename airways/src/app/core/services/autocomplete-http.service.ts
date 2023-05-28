@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BASIC_URL_AUTOCOMPLETE } from '../constants/const';
-import { IAirportResponse } from '../models/autocompleteModel';
+import { BASIC_URL_AUTOCOMPLETE } from '../../constants/const';
+import { IAirportResponse } from '../../shared/models/autocompleteModel';
 
 @Injectable({
   providedIn: 'root',

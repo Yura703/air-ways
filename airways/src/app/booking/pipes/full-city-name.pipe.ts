@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { map, of } from 'rxjs';
-import { AutocompleteHttpService } from 'src/app/services/autocomplete-http.service';
+import { AutocompleteHttpService } from 'src/app/core/services/autocomplete-http.service';
 
 @Pipe({
   name: 'fullCityName',

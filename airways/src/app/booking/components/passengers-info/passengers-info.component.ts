@@ -1,21 +1,33 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
-import { AddContactDetals, AddTicketsData } from 'src/app/store/actions/actions';
+import {
+  AddContactDetals,
+  AddTicketsData,
+} from 'src/app/store/actions/actions';
 import { IContactDetals } from 'src/app/store/models/contactDetals';
 import { IOptionsSearch } from 'src/app/store/models/optionsSearch';
 import { IAppStore } from 'src/app/store/models/stateModel';
 import { ITicketPerson, ITicketsData } from 'src/app/store/models/ticketsData';
-import { selectContactDetals, selectSearchMain, selectTicketsData } from 'src/app/store/selectors/selectors';
+import {
+  selectContactDetals,
+  selectSearchMain,
+  selectTicketsData,
+} from 'src/app/store/selectors/selectors';
 import { FormErrorMessage } from '../../models/error-message';
 import BookingService from '../../service/booking.service';
 
 @Component({
   selector: 'app-passengers-info',
   templateUrl: './passengers-info.component.html',
-  styleUrls: ['./passengers-info.component.scss']
+  styleUrls: ['./passengers-info.component.scss'],
 })
 export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
   @Input() continueBtnChange: boolean;
@@ -33,8 +45,8 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
   public ageCategory = {
     adult: ' Adult',
     child: ' Child',
-    infant: ' Infant'
-  }
+    infant: ' Infant',
+  };
 
   public errors: { [key: string]: string } = {};
 
@@ -48,14 +60,19 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
 
   public ticketData$: Observable<ITicketsData>;
 
-  constructor(public store: Store<IAppStore>, private bookingService: BookingService, private router: Router,) {}
+  constructor(
+    public store: Store<IAppStore>,
+    private bookingService: BookingService,
+    private router: Router
+  ) {}
 
   ngOnChanges() {
     this.onSubmit(this.passengerInfoForm);
   }
 
   ngOnInit(): void {
-    this.store.pipe(select(selectTicketsData))
+    this.store
+      .pipe(select(selectTicketsData))
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data) => {
         if (data) {
@@ -63,22 +80,24 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
           if (data.child?.length) this.personData.push(...data.child);
           if (data.infant?.length) this.personData.push(...data.infant);
         }
-      }
-    );
+      });
 
     this.bookingService.btnContinueIsDisabled$.next(false);
 
     this.searchData$ = this.store.pipe(select(selectSearchMain));
 
-    this.searchData$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      (searchData) => this.searchData = searchData
-    );
+    this.searchData$
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((searchData) => (this.searchData = searchData));
 
-    this.store.pipe(select(selectContactDetals)).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      (contactDetals) => this.contactDetals = contactDetals
-    );
+    this.store
+      .pipe(select(selectContactDetals))
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((contactDetals) => (this.contactDetals = contactDetals));
 
-    this.passengers = this.searchData.passengers.map((passenger) => [...Array(passenger.value).fill(passenger.name)]).flat(1);
+    this.passengers = this.searchData.passengers
+      .map((passenger) => [...Array(passenger.value).fill(passenger.name)])
+      .flat(1);
 
     this.passengerInfoForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -91,10 +110,11 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
       ]),
 
       phoneCodeCountry: new FormControl('', Validators.required),
-
     });
 
-    this.passengerInfoForm.statusChanges.pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.updateErrorMessages());
+    this.passengerInfoForm.statusChanges
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(() => this.updateErrorMessages());
 
     if (this.contactDetals) {
       this.passengerInfoForm.patchValue(this.contactDetals);
@@ -144,7 +164,7 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
     this.phoneCodeCountry?.setValue(value);
   }
 
-  onInput(event:any ) {
+  onInput(event: any) {
     let value = event.target.value;
     value = value.replace(/-/g, '');
     if (value.length > 3) {
@@ -161,21 +181,26 @@ export class PassengersInfoComponent implements OnInit, OnDestroy, OnChanges {
     key?.updateValueAndValidity();
   }
 
-  onSubmit(form: FormGroup) {
-    if( form && form.status === "VALID") {
-      const ticketsData = form.value;
+  onSubmit(form2: FormGroup) {
+    if (form2 && form2.status === 'VALID') {
+      const ticketsData = form2.value;
 
-      const changeTicketData = this.bookingService.changeTicketsData(ticketsData);
+      const changeTicketData =
+        this.bookingService.changeTicketsData(ticketsData);
 
-      this.store.dispatch(new AddTicketsData({
-        ...changeTicketData,
-      }));
+      this.store.dispatch(
+        new AddTicketsData({
+          ...changeTicketData,
+        })
+      );
 
-      this.store.dispatch(new AddContactDetals({
-        email: ticketsData.email,
-        phoneNumber: ticketsData.phoneNumber,
-        phoneCodeCountry: ticketsData.phoneCodeCountry,
-      }));
+      this.store.dispatch(
+        new AddContactDetals({
+          email: ticketsData.email,
+          phoneNumber: ticketsData.phoneNumber,
+          phoneCodeCountry: ticketsData.phoneCodeCountry,
+        })
+      );
 
       this.router.navigate(['flight-booking/summary']);
     }

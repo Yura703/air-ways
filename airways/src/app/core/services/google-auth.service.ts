@@ -22,7 +22,7 @@ export class GoogleAuthService {
     lastName: string
   ) {
     const body = { email, password, firstName, lastName };
-    console.log(body);
+    // console.log(body);
     return this.http.post(`${this.apiUrl}/signup`, body);
   }
 
@@ -30,7 +30,7 @@ export class GoogleAuthService {
 
   logIn(email: string, password: string): Observable<ServerDataInterface> {
     const body = { email, password };
-    console.log(body);
+    // console.log(body);
     return this.http.post<ServerDataInterface>(`${this.apiUrl}/signin`, body);
   }
 
