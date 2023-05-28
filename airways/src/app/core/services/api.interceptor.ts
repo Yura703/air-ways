@@ -13,7 +13,7 @@ export class ApiInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (req.url.includes('api.travelpayouts.com')) {
+    if (req.url.includes('localhost')) {
       console.log('fds');
       const tokenReq = req.clone({
         headers: req.headers.set(
