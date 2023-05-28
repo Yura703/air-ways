@@ -17,11 +17,11 @@ interface IfooterPayIco {
 export class FooterComponent {
   footerDataIco: IfooterDataIco[] = [
     {
-      img: '/assets/RSlogo.png',
+      img: './assets/RSlogo.png',
       link: 'https://rs.school/',
     },
     {
-      img: '/assets/oneGit.png',
+      img: '../assets/oneGit.png',
       link: 'https://github.com/yura703',
     },
     {
