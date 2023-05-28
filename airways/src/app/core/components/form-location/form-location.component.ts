@@ -13,8 +13,8 @@ import {
   startWith,
   Subscription,
 } from 'rxjs';
-import { IAirportResponse } from '../../../models/autocompleteModel';
-import { AutocompleteHttpService } from '../../../services/autocomplete-http.service';
+import { IAirportResponse } from '../../../shared/models/autocompleteModel';
+import { AutocompleteHttpService } from '../../services/autocomplete-http.service';
 
 export interface ILocationForm {
   nameForm: string;
