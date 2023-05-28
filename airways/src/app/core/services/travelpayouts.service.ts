@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { merge, Observable, scan } from 'rxjs';
@@ -23,15 +23,15 @@ export class TravelpayoutsService {
       // console.log(param); //выводит запрос в консоль
     });
 
-    const headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*', // Добавляем заголовок CORS
-    });
-
-    const options = { headers: headers, params: {} };
+    // const headers = new HttpHeaders({
+    //   'Access-Control-Allow-Origin': '*', // Добавляем заголовок CORS
+    // });
+    //
+    // const options = { headers: headers, params: {} };
 
     return merge(
       this.http.get<IResponseApi>(BASIC_URL_TRAVELPAYOUTS, {
-        ...options,
+        // ...options,
         params: {
           origin: this.optionsQuery.origin,
           destination: this.optionsQuery.destination,
@@ -39,7 +39,7 @@ export class TravelpayoutsService {
         },
       }),
       this.http.get<IResponseApi>(BASIC_URL_TRAVELPAYOUTS, {
-        ...options,
+        // ...options,
         params: {
           origin: this.optionsQuery.destination,
           destination: this.optionsQuery.origin,
