@@ -2,10 +2,8 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { catchError, tap } from 'rxjs';
 import { fakeUser } from '../../../../constants/fake-user';
 import { ServerDataInterface } from '../../../../shared/models/server-data.inerface';
-import { UserInterface } from '../../../../shared/models/server-user.interface';
 import { SignUpInterface } from '../../../../shared/models/sign-up-interface';
 import { AuthUserDataService } from '../../../services/auth-user-data.service';
 import { GoogleAuthService } from '../../../services/google-auth.service';
@@ -105,33 +103,33 @@ export class LogInComponent implements OnInit {
     this.logInForm.get('email')?.setValue(fakeUser.email);
   }
 
-  removeUser() {
-    this.googleAuthService.lengthUsersArray().subscribe({
-      next: (response: UserInterface[]) => {
-        response.forEach((el: UserInterface) => {
-          this.googleAuthService
-            .removeUser(el.id)
-            .pipe(
-              tap(() => {
-                // console.log(
-                //   `User with ID ${el.id} has been successfully removed.`
-                // );
-              }),
-              catchError((error) => {
-                console.error(
-                  `Failed to remove user with ID ${el.id}. Error: ${error}`
-                );
-                return []; // Returning an empty observable to continue the stream
-              })
-            )
-            .subscribe();
-        });
-      },
-      error: (err) => {
-        console.error(err.error);
-      },
-    });
-  }
+  // removeUser() {
+  //   this.googleAuthService.lengthUsersArray().subscribe({
+  //     next: (response: UserInterface[]) => {
+  //       response.forEach((el: UserInterface) => {
+  //         this.googleAuthService
+  //           .removeUser(el.id)
+  //           .pipe(
+  //             tap(() => {
+  //               // console.log(
+  //               //   `User with ID ${el.id} has been successfully removed.`
+  //               // );
+  //             }),
+  //             catchError((error) => {
+  //               console.error(
+  //                 `Failed to remove user with ID ${el.id}. Error: ${error}`
+  //               );
+  //               return []; // Returning an empty observable to continue the stream
+  //             })
+  //           )
+  //           .subscribe();
+  //       });
+  //     },
+  //     error: (err) => {
+  //       console.error(err.error);
+  //     },
+  //   });
+  // }
 
   continueWithGoogle() {
     this.googleButton.nativeElement.querySelector('div[role="button"]').click();
